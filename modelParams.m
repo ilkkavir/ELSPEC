@@ -101,7 +101,25 @@ if isempty(apf107table)
     apfline = 1;
     apf107fid = fopen('apf107.dat');
     while ~feof(apf107fid)
-        apf107table(apfline,:)=sscanf(fgetl(apf107fid), '%3d%3d%3d%3d%3d%3d%3d%3d%3d%3d%3d%3d%3d%5f%5f%5f');
+        apf107str = fgetl(apf107fid);
+        %        apf107table(apfline,:)=sscanf(fgetl(apf107fid),
+        %        '%3d%3d%3d%3d%3d%3d%3d%3d%3d%3d%3d%3d%3d%5f%5f%5f');
+        apf107table(apfline,1) = str2double(apf107str(1:3));
+        apf107table(apfline,2) = str2double(apf107str(4:6));
+        apf107table(apfline,3) = str2double(apf107str(7:9));
+        apf107table(apfline,4) = str2double(apf107str(10:12));
+        apf107table(apfline,5) = str2double(apf107str(13:15));
+        apf107table(apfline,6) = str2double(apf107str(16:18));
+        apf107table(apfline,7) = str2double(apf107str(19:21));
+        apf107table(apfline,8) = str2double(apf107str(22:24));
+        apf107table(apfline,9) = str2double(apf107str(25:27));
+        apf107table(apfline,10) = str2double(apf107str(28:30));
+        apf107table(apfline,11) = str2double(apf107str(31:33));
+        apf107table(apfline,12) = str2double(apf107str(34:36));
+        apf107table(apfline,13) = str2double(apf107str(37:39));
+        apf107table(apfline,14) = str2double(apf107str(40:44));
+        apf107table(apfline,15) = str2double(apf107str(45:49));
+        apf107table(apfline,16) = str2double(apf107str(50:54));
         apfline = apfline+1;
     end
     fclose(apf107fid);
