@@ -1,0 +1,64 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{\textit{{Burnham} and {Anderson}}(2002)}]{burnham2002}
+{Burnham}, K.~P., and D.~R. {Anderson} (2002), \textit{{Model Selection and
+  Multimodel Inference}}, {2nd} ed., Springer.
+
+\bibitem[{\textit{{Dahlgren} et~al.}(2011)\textit{{Dahlgren}, {Gustavsson},
+  {Lanchester}, {Ivchenko}, {Br{\"a}ndstr{\"o}m}, {Whiter}, {Sergienko},
+  {Sandahl}, and {Marklund}}}]{dahlgren2011}
+{Dahlgren}, H., B.~{Gustavsson}, B.~S. {Lanchester}, N.~{Ivchenko},
+  U.~{Br{\"a}ndstr{\"o}m}, D.~K. {Whiter}, T.~{Sergienko}, I.~{Sandahl}, and
+  G.~{Marklund} (2011), {Energy and flux variations across thin auroral arcs},
+  \textit{Ann. Geophys.}, \textit{29}, 1699--1712,
+  \doi{10.5194/angeo-29-1699-2011}.
+
+\bibitem[{\textit{{del Pozo} et~al.}(1997)\textit{{del Pozo}, {Hargreaves}, and
+  {Aylward}}}]{delpozo1997}
+{del Pozo}, C.~F., J.~K. {Hargreaves}, and A.~D. {Aylward} (1997), {Ion
+  composition and effective ion recombination rate in the nighttime auroral
+  lower ionosphere}, \textit{Journal of Atmospheric and Solar-Terrestrial
+  Physics}, \textit{59}(15), 1919--1943, \doi{10.1016/S1364-6826(97)00033-3}.
+
+\bibitem[{\textit{{Fang} et~al.}(2010)\textit{{Fang}, {Randall}, {Lummerzheim},
+  {Wang}, {Lu}, {Solomon}, and {Frahm}}}]{fang2010}
+{Fang}, X., C.~E. {Randall}, D.~{Lummerzheim}, W.~{Wang}, G.~{Lu}, S.~C.
+  {Solomon}, and R.~A. {Frahm} (2010), {Parameterization of monoenergetic
+  electron impact ionization}, \textit{Geophys. Res. Lett.}, \textit{37},
+  L22,106, \doi{10.1029/2010GL045406}.
+
+\bibitem[{\textit{{Picone} et~al.}(2002)\textit{{Picone}, {Hedin}, {Prob}, and
+  {Aikin}}}]{picone2002}
+{Picone}, J.~M., A.~E. {Hedin}, D.~B. {Prob}, and A.~C. {Aikin} (2002),
+  {NRLMSISE-00 empirical mode of the atmosphere: Statistical comparison and
+  scientific issues}, \textit{J. Geophys. Res.}, \textit{107}(A12), 1468,
+  \doi{10.1029/2002JA009430}.
+
+\bibitem[{\textit{{Rees}}(1989)}]{rees1989}
+{Rees}, M. (1989), \textit{{Physics and chemistry of the upper atmosphere}},
+  Cambridge University Press.
+
+\bibitem[{\textit{{Sergienko} and {Ivanov}}(1993)}]{sergienko1993}
+{Sergienko}, T.~I., and V.~E. {Ivanov} (1993), {A new approach to calculate the
+  excitation of atmospheric gases by auroral electron impact}, \textit{{Annales
+  Geophysicae}}, \textit{11}, 717--727.
+
+\bibitem[{\textit{{Sheehan} and {St-Maurice}}(2004)}]{sheehan2004}
+{Sheehan}, C.~H., and J.-P. {St-Maurice} (2004), {Dissociative recombination of
+  N$_2^+$, O$_2^+$, and NO$^+$: Rate coefficients for ground state and
+  vibrationally excited ions}, \textit{J. Geophys. Res.}, \textit{109},
+  A03,302, \doi{10.1029/2003JA010132}.
+
+\bibitem[{\textit{{Virtanen} et~al.}(2018)\textit{{Virtanen}, {Gustavsson},
+  {Aikio}, {Asamura}, and {Ogawa}}}]{virtanen2018}
+{Virtanen}, I.~I., B.~{Gustavsson}, A.~T. {Aikio}, K.~{Asamura}, and Y.~{Ogawa}
+  (2018), {Incoherent scatter observations of electron precipitation energy
+  flux in the auroral ionosphere}, manuscript to be submitted to J. Geophys.
+  Res. Space Physics.
+
+\end{thebibliography}

@@ -1,0 +1,32 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{ElSpec}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{System requirements}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Installation}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Help}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.5}{Reference}{chapter.1}% 6
+\BOOKMARK [0][-]{chapter.2}{Electron energy spectrum estimation}{}% 7
+\BOOKMARK [1][-]{section.2.1}{Electron precipitation and ion production}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{ElSpec implementation}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.1}{Integration of the electron continuity equation}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.2}{Spectrum models}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.3}{Model selection}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.4}{Error estimation}{section.2.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.5}{Derived parameters}{section.2.2}% 14
+\BOOKMARK [0][-]{chapter.3}{ElSpec in practice}{}% 15
+\BOOKMARK [1][-]{section.3.1}{The simplest example}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.2}{Input data}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.2.1}{Both ppdir and fitdir are defined}{section.3.2}% 18
+\BOOKMARK [2][-]{subsection.3.2.2}{Only fitdir is defined}{section.3.2}% 19
+\BOOKMARK [2][-]{subsection.3.2.3}{Only ppdir is defined}{section.3.2}% 20
+\BOOKMARK [1][-]{section.3.3}{Running the GUISDAP analysis}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.4}{Ion production models}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.5}{Ion recombination models}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.6}{Time resolution}{chapter.3}% 24
+\BOOKMARK [0][-]{chapter.4}{Examples}{}% 25
+\BOOKMARK [1][-]{section.4.1}{UHF beata with raw densities}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.2}{UHF beata with a steady state model}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.3}{A fast inversion with fitted data}{chapter.4}% 28
+\BOOKMARK [0][-]{appendix.A}{Command reference}{}% 29
+\BOOKMARK [1][-]{section.A.1}{ElSpec}{appendix.A}% 30
+\BOOKMARK [1][-]{section.A.2}{ElSpecPlot}{appendix.A}% 31
+\BOOKMARK [0][-]{appendix.B}{GNU General Public License}{}% 32
