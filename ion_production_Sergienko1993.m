@@ -11,7 +11,7 @@ function [q,Ec,dE] = ion_production_Sergienko1993(E,z,nN2,nO2,nO,Tn)
 %
 % INPUT:
 %   E    electron energies [eV] (1 x nE array)
-%   z    altitudes [m] (nz x 1 array)
+%   z    altitudes [m] (1 x nz array)
 %   nN2  molecular Nitrogen density [m^-3] (nz x 1 array)
 %   nO2  molecular Oxygen density [m^-3] (nz x 1 array)
 %   nO   atomic oxygen density [m^-3] (nz x 1 array)
