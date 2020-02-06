@@ -351,7 +351,16 @@ eticks=[.5 1 2 4 8 16 32 64 128 256 512 1024];
 set(h3,'YTick',eticks(eticks<p.Results.elim(2)))
 set(h3,'TickDir','both')
 set(h4,'TickDir','both')
-facstep = 1;
+facstep = .1;
+if range(p.Results.faclim) > .5
+    facstep = .2;
+end
+if range(p.Results.faclim) > 1
+    facstep = .5;
+end
+if range(p.Results.faclim) > 2.5
+    facstep = 1;
+end
 if range(p.Results.faclim) > 4
     facstep = 2;
 end
@@ -364,7 +373,10 @@ end
 if range(p.Results.faclim) > 30
     facstep = 10;
 end
-facticks = ceil(p.Results.faclim(1)):facstep:floor(p.Results.faclim(end)-.1);
+facticks = ceil(p.Results.faclim(1)*10)/10:facstep:floor(p.Results.faclim(end)*10-.1)/10;
+if facstep >=2
+    facticks = ceil(p.Results.faclim(1)):facstep:floor(p.Results.faclim(end)-.1);
+end
 set(h4,'YTick',facticks)
 pstep = 1;
 if range(p.Results.plim) > 4

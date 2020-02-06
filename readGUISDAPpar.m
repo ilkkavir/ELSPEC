@@ -81,10 +81,9 @@ for k=1:nf
     % remove failed iterations
     %    failed = (r_status ~= 0) | ( r_res(:,1) > 10 );
     %    failed = (r_status ~= 0) | ( r_res(:,1) > 30 );
-    failed = (all(r_status ~= [0 3])) | ( r_res(:,1) > 3000 );
+    failed = ((r_status ~= 0) & (r_status ~=3)) | ( r_res(:,1) > 3000 );
     par(failed,:,k) = NaN;
     parstd(failed,:,k) = NaN;
-
 end
 
 par(:,3,:) = par(:,3,:) .* par(:,2,:);
