@@ -1,4 +1,4 @@
-function [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp] = modelParams( time , heights , loc , readIRI )
+function [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp,f107,f107a,ap] = modelParams( time , heights , loc , readIRI )
 %
 % IRI and MSIS model parameters. The parameters are read from a
 % table delivered as part of the ElSpec package.
@@ -183,4 +183,5 @@ end
 
 year_prev = year;
 readIRIprev = readIRI;
+
 end

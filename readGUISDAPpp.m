@@ -1,5 +1,5 @@
 function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
-                                             version , tres )
+                                             version , tres , FAonly )
 %
 % Read GUISDAP raw electron densities (power profiles) and their
 % standard deviations from files.
@@ -14,8 +14,7 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
 %  radar   name of the radar 'uhf', 'vhf' or 'esr'
 %  version experiment version number
 %  tres    "type" of time resolution 'best' or 'dump'
-%  loc     [latitude (deg north) longitude (deg east) height (km)]
-%          of the radar site
+%  FAonly  logical. If true, only approximately field-aligned data are used
 %
 % Currently available combinations of exp,radar,version are
 %  'beata','u',1
@@ -27,6 +26,8 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
 %  te    integration end times, unix time (seconds since 1970-01-01 00:00:00 UT)
 %  pp    a matrix of electron density values [m^-3]
 %  ppstd standard deviations of the electron densities [m^-3]
+%  loc     [latitude (deg north) longitude (deg east) height (km)]
+%          of the radar site
 %
 % IV 2016
 % Copyright I Virtanen <ilkka.i.virtanen@oulu.fi> and B Gustavsson <bjorn.gustavsson@uit.no>
@@ -47,11 +48,11 @@ if isempty(fp)
 end
 
 switch lower(exp)
-
+    
   case 'beata'
     switch lower(radar)
       case 'uhf'
-        [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_beata_uhf( fp , version ...
+        [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( fp , version ...
                                                       , tres );
       otherwise
         error(['Experiment ' exp ' is not implemented for radar ' radar])
@@ -59,7 +60,7 @@ switch lower(exp)
   case 'arc1'
     switch lower(radar)
       case 'uhf'
-        [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_arc1_uhf( fp , version ...
+        [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_arc1_uhf( fp , version ...
                                                       , tres );
       otherwise
         error(['Experiment ' exp ' is not implemented for radar ' radar])
@@ -68,15 +69,24 @@ switch lower(exp)
     error(['Experiment ' exp ' is not implemented in readGUISDAPpp']);
 end
 
+if FAonly % remove other than field-aligned data
+    % 3 degree tolerance to allow changes in field-direction...
+    rminds = abs(mod(azel(:,1),360) - 187) > 3 & abs(abs(90-azel(:,2))-12.45) > 3;
+    h(:,rminds) = [];
+    ts(rminds) = [];
+    te(rminds) = [];
+    pp(:,rminds) = [];
+    ppstd(:,rminds) = [];
+end
 
 end
 
 
 
-function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_beata_uhf( ff , version ...
+function [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( ff , version ...
                                                       , tres )
 %
-% [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_beata_uhf( ff , version )
+% [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( ff , version )
 %
 % Read raw electron densities from GUISDAP UHF beata result files.
 % Sufficient power profiles are available ONLY IF the analysis was
@@ -88,8 +98,6 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_beata_uhf( ff , version ...
 %   ff       a char vector of file names
 %   version  exp version number, ignored at the moment
 %   tres     "type" of time resolution 'best' or 'dump'
-%   loc      [latitude (deg north) longitude (deg east) height (km)]
-%            of the radar site
 %
 % OUTPUT:
 %  h     heights [km]
@@ -97,6 +105,9 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_beata_uhf( ff , version ...
 %  te    integration end times, unix time (seconds since 1970-01-01 00:00:00 UT)
 %  pp    a matrix of electron density values [m^-3]
 %  ppstd standard deviations of the electron densities [m^-3]
+%  loc   [latitude (deg north) longitude (deg east) height (km)]
+%        of the radar site
+%  azel  azimuth and elevation angles of the radar beam
 %
 % IV 2016
 
@@ -119,6 +130,7 @@ if lower(tres)=='dump'
     ts = NaN(nf,1);
     te = NaN(nf,1);
     h = NaN(nh,nf);
+    azel = NaN(nf,2);
 elseif lower(tres)=='best'
     nppdump = (length(i_end)+1);
     npp = nf * nppdump;
@@ -127,6 +139,7 @@ elseif lower(tres)=='best'
     ts = NaN(npp,1);
     te = NaN(npp,1);
     h = NaN(nh,npp);
+    azel = NaN(npp,2);
 else
     error(['Unknown time resolution type',tres])
 end
@@ -159,14 +172,17 @@ for k = 1:length(ff)
         end
     end
 
-    % heights
+    % heights and pointing directions
     if lower(tres) == 'dump'
         h( 1 : (i3(1)-i2(1)+1) , k)  = r_pprange(i2(1):i3(1))*sin(r_el*pi/180);
+        azel(k,:) = [r_az r_el];
     else
         h( 1 : (i3(1)-i2(1)+1 ) , (k-1)*nppdump+1 ) = r_pprange(i2(1):i3(1))*sin(r_el*pi/ ...
                                                           180);
+        azel((k-1)*nppdump+1,:) = [r_az r_el];
         for kpp=2:nppdump
             h( : , (k-1)*nppdump+kpp ) = h( : , (k-1)*nppdump+1 );
+            azel((k-1)*nppdump+kpp) = [r_az r_el];
         end
     end
 
@@ -212,7 +228,7 @@ end
 
 
 
-function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_arc1_uhf( ff , version ...
+function [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_arc1_uhf( ff , version ...
                                                       , tres )
 %
 % [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_arc1_uhf( ff , version )
@@ -227,8 +243,6 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_arc1_uhf( ff , version ...
 %   ff       a char vector of file names
 %   version  exp version number, ignored at the moment
 %   tres     "type" of time resolution 'best' or 'dump'
-%   loc      [latitude (deg north) longitude (deg east) height (km)]
-%            of the radar site
 %
 % OUTPUT:
 %  h     heights [km]
@@ -236,6 +250,9 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp_arc1_uhf( ff , version ...
 %  te    integration end times, unix time (seconds since 1970-01-01 00:00:00 UT)
 %  pp    a matrix of electron density values [m^-3]
 %  ppstd standard deviations of the electron densities [m^-3]
+%  loc   [latitude (deg north) longitude (deg east) height (km)]
+%        of the radar site
+%  azel  beam azimuth and elevation angles
 %
 % IV 2016
 
@@ -261,6 +278,7 @@ if lower(tres)=='dump'
     ts = NaN(nf,1);
     te = NaN(nf,1);
     h = NaN(nh,nf);
+    azel = NaN(nf,2);
 elseif lower(tres)=='best'
     nppdump = (length(i_end));
     npp = nf * nppdump;
@@ -269,6 +287,7 @@ elseif lower(tres)=='best'
     ts = NaN(npp,1);
     te = NaN(npp,1);
     h = NaN(nh,npp);
+    azel = NaN(npp,2);
 else
     error(['Unknown time resolution type',tres])
 end
@@ -301,14 +320,17 @@ for k = 1:length(ff)
         end
     end
 
-    % heights
+    % heights and beam directions
     if lower(tres) == 'dump'
         h(:,k)  = r_pprange(i2(1):i3(1))*sin(r_el*pi/180);
+        azel(k,:) = [r_az r_el];
     else
         h( : , (k-1)*nppdump+1 ) = r_pprange(i2(1):i3(1))*sin(r_el*pi/ ...
                                                           180);
+        azel((k-1)*nppdump+1) = [r_az r_el];
         for kpp=2:nppdump
             h( : , (k-1)*nppdump+kpp ) = h( : , (k-1)*nppdump+1 );
+            azel((k-1)*nppdump+kpp) = [r_az r_el];
         end
     end
 

@@ -2,7 +2,7 @@ function [h,ts,te,pp,ppstd,par,parstd,loc] = readGUISDAPdata( ppdir , ...
                                                   fitdir , hmin , ...
                                                   hmax , tmin , tmax ...
                                                   , exp , radar , ...
-                                                      version , tres ...
+                                                      version , tres , FAonly  ...
                                                       )
 %
 % Read GUISDAP raw densities (power profiles) and fit results from
@@ -26,6 +26,7 @@ function [h,ts,te,pp,ppstd,par,parstd,loc] = readGUISDAPdata( ppdir , ...
 %  radar   EISCAT radar name ['U','V']
 %  version EISCAT experiment version number [1,2,3,...]
 %  tres    "type" of time resolution 'best' or 'dump'
+%  FAonly  logical, if true, only approximately field-aligned data are used
 %
 %
 % OUTPUT:
@@ -48,7 +49,7 @@ function [h,ts,te,pp,ppstd,par,parstd,loc] = readGUISDAPdata( ppdir , ...
 
 % a special case for empty ppdir
 if isempty(ppdir)
-    [hpar,ts,te,par,parstd,loc] = readGUISDAPpar( fitdir );
+    [hpar,ts,te,par,parstd,loc] = readGUISDAPpar( fitdir , FAonly );
     hind = hpar(:,1)>=hmin & hpar(:,1)<=hmax;
     if isempty(tmin)
         t1 = -Inf;
@@ -86,10 +87,10 @@ end
 
 % read power profiles
 [hpp,tspp,tepp,pp1,ppstd1,locpp] = readGUISDAPpp( ppdir , exp , radar , ...
-                                            version , tres );
+                                            version , tres , FAonly );
 
 % read fit results
-[hpar,tspar,tepar,par1,parstd1,locpar] = readGUISDAPpar( fitdir );
+[hpar,tspar,tepar,par1,parstd1,locpar] = readGUISDAPpar( fitdir , FAonly );
 
 % pick the location
 loc = locpp;

@@ -1,9 +1,9 @@
-function [h,ts,te,pp,ppstd,par,parstd,model] = readFitData( ppdir , ...
+function [h,ts,te,pp,ppstd,par,parstd,model,f107,f107a,f107p,ap,loc] = readFitData( ppdir , ...
                                                   fitdir , hmin , ...
                                                   hmax , tmin , tmax ...
                                                   , exp  , radar , ...
                                                   version , tres , ...
-                                                      readIRI )
+                                                      readIRI , FAonly )
 %
 %  Read GUISDAP raw densities (power profiles), GUISDAP fit
 %  results, and model (IRI and MSIS) parameters.
@@ -26,7 +26,7 @@ function [h,ts,te,pp,ppstd,par,parstd,model] = readFitData( ppdir , ...
 %  version EISCAT experiment version number [1,2,3,...]
 %  tres    "type" of time resolution 'best' or 'dump'
 %  readIRI logical, do we read the tabulated IRI data at all
-%
+%  FAonly  logical, if true, read only approximately field-aligned data
 %
 % OUTPUT:
 %  h       heights [km]
@@ -65,14 +65,20 @@ end
                                                   fitdir , hmin , ...
                                                   hmax , tmin , tmax ...
                                                   , exp , radar , ...
-                                                 version , tres );
+                                                 version , tres , FAonly );
 
 
 % collect the model data in an array
 model = NaN(length(h),10,length(ts));
+f107 = NaN(length(h),1);
+f107a = NaN(length(h),1);
+f107p = NaN(length(h),1);
+ap = NaN(length(h),1);
 for it=1:length(ts)
-    [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp] = modelParams( ...
+    [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp,f107it,f107ait,apit] = modelParams( ...
         (ts(it)+te(it))./2 , h , loc , readIRI );
+    [~,~,~,~,~,~,~,~,~,~,f107pit,~,~] = modelParams( ...
+        (ts(it)+te(it))./2-86400 , h , loc , readIRI );
     model(:,1,it) = Tn;
     model(:,2,it) = Ti;
     model(:,3,it) = Te;
@@ -83,6 +89,11 @@ for it=1:length(ts)
     model(:,8,it) = nNOp;
     model(:,9,it) = nO2p;
     model(:,10,it) = nOp;
+
+    f107(it) = f107it;
+    f107a(it) = f107ait;
+    f107p(it) = f107pit;
+    ap(it) = apit;
 end
 
 
