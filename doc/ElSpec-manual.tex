@@ -627,7 +627,7 @@ NOTICE: In the example above, \verb|equilibriumresult| is an \verb|ElSpec| outpu
 
 \item[stdprior] \emph{A priori} standard deviations in the same energy and time grid that is used in the inversion. Use an empty matrix to run without a prior. See also \verb|ieprior| above. \\
 Default: [] \\
-Example: \verb|ElSpec('ieprior',equilibriumresult.Ie)|\\
+Example: \verb|ElSpec('stdprior',equilibriumresult.IeStd)|\\
 
 \item[ninteg] Number of time steps to integrate in each profile. \\
 Default: 6 \\
@@ -730,6 +730,6 @@ NOTICE: Error estimates of FAC and net power flux can be recalculated only if th
 \chapter{GNU General Public License}
 
 \footnotesize{\texttt{
-\lstinputlisting[language={}]{../license.txt}
+\lstinputlisting[language={}]{../LICENSE}
 }}
 \end{document}
