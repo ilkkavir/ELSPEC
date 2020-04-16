@@ -100,7 +100,8 @@ function ElSpecGlowOut = GLOWemissions(ElSpecOut,saveresults)
     [Iepeak indIepeak] = max(ElSpecGlowOut.Ie);
     Ecpeak = ElSpecGlowOut.Ec(indIepeak);
 
-    rminds = ElSpecGlowOut.Pe < Pmin | Ecpeak < Epeakmin;
+    %    rminds = ElSpecGlowOut.Pe < Pmin | Ecpeak < Epeakmin;
+    rminds = ElSpecGlowOut.Pe < Pmin ;%| Ecpeak < Epeakmin;
     ElSpecGlowOut.GLOWh5577max(rminds) = NaN;
     ElSpecGlowOut.GLOWe5577max(rminds) = NaN;
     ElSpecGlowOut.GLOWh5577mean(rminds) = NaN;

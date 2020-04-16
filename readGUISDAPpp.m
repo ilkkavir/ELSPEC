@@ -256,10 +256,19 @@ function [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_arc1_uhf( ff , version ...
 %
 % IV 2016
 
+switch version
+  case 1
+    nprofstep = 3;
+  case 2
+    nprofstep = 2;
+  otherwise
+    error('unknown version number')
+end
+
 % load the first file to get the matrix sizes
 load(ff{1});
 i_end = find(diff(r_pprange)<0);
-i_end = i_end(1:3:end); % there are four profiles, we want only the
+i_end = i_end(1:nprofstep:end); % there are four profiles, we want only the
                         % first one...
 nh = i_end(1);
 nf = length(ff);
@@ -301,10 +310,10 @@ for k = 1:length(ff)
     i_end = find(diff(r_pprange)<0);
 
     % start indices of profiles
-    i2 = [1;i_end(3:3:end)+1];
+    i2 = [1;i_end(nprofstep:nprofstep:end)+1];
 
     % end indices of profiles
-    i3 = [i_end(1:3:end)];%length(r_pp)];
+    i3 = [i_end(1:nprofstep:end)];%length(r_pp)];
 
     % start and end times of integration, converted into unix time
     if lower(tres) == 'dump'
