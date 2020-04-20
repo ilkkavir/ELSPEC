@@ -1,5 +1,5 @@
 function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
-                                             version , tres , FAonly )
+                                             version , tres )
 %
 % Read GUISDAP raw electron densities (power profiles) and their
 % standard deviations from files.
@@ -14,7 +14,6 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
 %  radar   name of the radar 'uhf', 'vhf' or 'esr'
 %  version experiment version number
 %  tres    "type" of time resolution 'best' or 'dump'
-%  FAonly  logical. If true, only approximately field-aligned data are used
 %
 % Currently available combinations of exp,radar,version are
 %  'beata','u',1
@@ -68,16 +67,6 @@ switch lower(exp)
     end
   otherwise
     error(['Experiment ' exp ' is not implemented in readGUISDAPpp']);
-end
-
-if FAonly % remove other than field-aligned data
-    % 3 degree tolerance to allow changes in field-direction...
-    rminds = abs(mod(azel(:,1),360) - 187) > 3 & abs(abs(90-azel(:,2))-12.45) > 3;
-    h(:,rminds) = [];
-    ts(rminds) = [];
-    te(rminds) = [];
-    pp(:,rminds) = [];
-    ppstd(:,rminds) = [];
 end
 
 end
