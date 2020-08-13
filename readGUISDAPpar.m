@@ -96,7 +96,7 @@ parstd(:,3,:) = parstd(:,2,:).*par(:,3,:) + parstd(:,3,:).*par(:,2,:);
 
 if FAonly % remove other than field-aligned data
     % 3 degree tolerance to allow changes in field-direction...
-    rminds = abs(mod(azel(:,1),360) - 187) > 3 & abs(abs(90-azel(:,2))-12.45) > 3;
+    rminds = abs(mod(azel(:,1),360) - 187) > 3 | abs(abs(90-azel(:,2))-12.45) > 3;
     h(:,rminds) = [];
     ts(rminds) = [];
     te(rminds) = [];
