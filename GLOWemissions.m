@@ -54,6 +54,7 @@ function ElSpecGlowOut = GLOWemissions(ElSpecOut,saveresults)
     ElSpecGlowOut.GLOWh = NaN(nh,1);
     ElSpecGlowOut.GLOWne = NaN(nh,nt);
     ElSpecGlowOut.GLOWe5577 = NaN(nh,nt);
+    ElSpecGlowOut.GLOWe4278 = NaN(nh,nt);
     ElSpecGlowOut.GLOWtime = times;
 
     fido = fopen(glowout,'r');
@@ -76,6 +77,7 @@ function ElSpecGlowOut = GLOWemissions(ElSpecOut,saveresults)
             end
             ElSpecGlowOut.GLOWne(ih,it) = str2num(strparts{8})*1e6;
             ElSpecGlowOut.GLOWe5577(ih,it) = str2num(strparts{19});
+            ElSpecGlowOut.GLOWe4278(ih,it) = str2num(strparts{17});
         end
         ih = ih + 1;
     end
@@ -86,6 +88,8 @@ function ElSpecGlowOut = GLOWemissions(ElSpecOut,saveresults)
 
     [ElSpecGlowOut.GLOWe5577max i5577max] = max(ElSpecGlowOut.GLOWe5577);
     ElSpecGlowOut.GLOWh5577max = ElSpecGlowOut.GLOWh(i5577max);
+    [ElSpecGlowOut.GLOWe4278max i4278max] = max(ElSpecGlowOut.GLOWe4278);
+    ElSpecGlowOut.GLOWh4278max = ElSpecGlowOut.GLOWh(i4278max);
     [ElSpecGlowOut.nemax inemax] = max(ElSpecGlowOut.ne);
     ElSpecGlowOut.hnemax = ElSpecGlowOut.h(inemax);
     glownetmp = ElSpecGlowOut.GLOWne;
@@ -95,6 +99,7 @@ function ElSpecGlowOut = GLOWemissions(ElSpecOut,saveresults)
     dh = diff(ElSpecGlowOut.GLOWh);
     dh = [dh(1) ; dh];
     ElSpecGlowOut.GLOWh5577mean = sum(ElSpecGlowOut.GLOWh.*dh.*ElSpecGlowOut.GLOWe5577,'omitnan')./sum(dh.*ElSpecGlowOut.GLOWe5577,'omitnan');
+    ElSpecGlowOut.GLOWh4278mean = sum(ElSpecGlowOut.GLOWh.*dh.*ElSpecGlowOut.GLOWe4278,'omitnan')./sum(dh.*ElSpecGlowOut.GLOWe4278,'omitnan');
 
     % peak energy of differential number flux
     [Iepeak indIepeak] = max(ElSpecGlowOut.Ie);
@@ -106,6 +111,10 @@ function ElSpecGlowOut = GLOWemissions(ElSpecOut,saveresults)
     ElSpecGlowOut.GLOWe5577max(rminds) = NaN;
     ElSpecGlowOut.GLOWh5577mean(rminds) = NaN;
     ElSpecGlowOut.GLOWe5577(:,rminds) = NaN;
+    ElSpecGlowOut.GLOWh4278max(rminds) = NaN;
+    ElSpecGlowOut.GLOWe4278max(rminds) = NaN;
+    ElSpecGlowOut.GLOWh4278mean(rminds) = NaN;
+    ElSpecGlowOut.GLOWe4278(:,rminds) = NaN;
 
     if saveresults
         outfilename = ['GLOW_ElSpec_',...
