@@ -87,8 +87,8 @@ checkNeplot = @(x) any(validatestring(x,validNeplot));
 defaultCutgaps = 1;
 checkCutgaps = @(x) (islogical(x)|isnumeric(x));
 
-if isfield(ElSpecOut,'Emin')
-    defaultEmin = ElSpecOut.Emin;
+if isfield(ElSpecOut,'emin')
+    defaultEmin = ElSpecOut.emin;
 else
     defaultEmin = 1e3;
 end
