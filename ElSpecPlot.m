@@ -93,6 +93,8 @@ checkCutgaps = @(x) (islogical(x)|isnumeric(x));
 
 if isfield(ElSpecOut,'Emin')
     defaultEmin = ElSpecOut.Emin;
+elseif isfield(ElSpecOut,'emin')
+    defaultEmin = ElSpecOut.emin;
 else
     defaultEmin = 1e3;
 end
