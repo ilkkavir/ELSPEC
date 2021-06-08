@@ -54,7 +54,7 @@ function ElSpecOut = ElSpec(varargin)
 %  nstep        number of ne-slices in each time-step, default 1
 %  saveiecov    logical, should the large covariance matrices of
 %               the flux estimates be saved? default false.
-%  FAonly       logical, if true, only approximately field-aligned data are used
+%  FAdev        maximum beam direction deviation from field-aligned  [deg], default 3
 %
 % OUTPUT:
 %  ElSpecOut    A MATLAB structure with fields:...
@@ -167,7 +167,7 @@ checkPPdir = @(x) (exist(x,'dir')|isempty(x)|strcmp(x,'simu'));
 
 % plasma parameters
 defaultFitdir = [];
-checkFitdir = @(x) (exist(x,'dir')|isempty(x));
+checkFitdir = @(x) (exist(x,'dir')|isempty(x)|(exist(x,'file')&strcmp( x((end-4):end) ,'.hdf5')));
 
 % name of the experiment
 defaultExperiment = 'beata';
@@ -251,8 +251,8 @@ defaultSaveiecov = false;
 checkSaveiecov = @(x) ((isnumeric(x)|islogial(x))&length(x)==1);
 
 % use only field-aligned data?
-defaultFAonly = true;
-checkFAonly = @(x) ((isnumeric(x)|islogical(x))&length(x)==1);
+defaultFAdev = 3;
+checkFAdev = @(x) (isnumeric(x)&length(x)==1);
 
 % start time
 defaultBtime = [];
@@ -285,7 +285,7 @@ addParameter(p,'stdprior',defaultStdprior,checkStdprior);
 addParameter(p,'ninteg',defaultNinteg,checkNinteg);
 addParameter(p,'nstep',defaultNstep,checkNstep);
 addParameter(p,'saveiecov',defaultSaveiecov,checkSaveiecov);
-addParameter(p,'faonly',defaultFAonly,checkFAonly);
+addParameter(p,'fadev',defaultFAdev,checkFAdev);
 parse(p,varargin{:})
 
 % warn about the ESR compositions
@@ -388,7 +388,7 @@ else
     [out.h,out.ts,out.te,out.pp,out.ppstd,out.par,out.parstd,out.iri,out.f107,out.f107a,out.f107p,out.ap,out.loc] = ...
         readFitData( out.ppdir , out.fitdir , out.hmin , out.hmax , ...
                      out.btime , out.etime , out.experiment , out.radar , ...
-                     out.version , out.tres , readIRI, p.Results.faonly );
+                     out.version , out.tres , readIRI, p.Results.fadev );
 end
 % disp('************************************')
 % disp('TESTING with SIC composition, ElSpec, line 318!')

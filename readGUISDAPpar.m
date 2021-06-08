@@ -1,12 +1,12 @@
-function [h,ts,te,par,parstd,loc] = readGUISDAPpar( fitdir , FAonly )
+function [h,ts,te,par,parstd,loc] = readGUISDAPpar( fitdir , FAdev )
 %
 % Read GUISDAP plasma parameter fit results from mat-files
 %
-% [h,ts,te,par,parstd] = readGUISDAPpar( fitdir )
+% [h,ts,te,par,parstd] = readGUISDAPpar( fitdir , FAdev )
 %
 % INPUT:
 %  fitdir  path to GUISDAP fit results
-%  FAonly  logical, if true, only approximately field-aligned data are used
+%  FAdev   maximum beam direction deviation from field-aligned  [deg]
 %
 % OUTPUT:
 %  h       heights [km]
@@ -26,6 +26,13 @@ function [h,ts,te,par,parstd,loc] = readGUISDAPpar( fitdir , FAonly )
 % Copyright I Virtanen <ilkka.i.virtanen@oulu.fi> and B Gustavsson <bjorn.gustavsson@uit.no>
 % This is free software, licensed under GNU GPL version 2 or later
 
+% if this is a madrigal hdf5 file
+[~,~,fileextension]=fileparts(fitdir);
+if strcmp(fileextension,'.hdf5')
+    [h,ts,te,par,parstd,loc] = readGUISDAPpar_madrigal_hdf5(fitdir,FAdev);
+    return
+end
+    
 % list GUISDAP output files
 fp = listGUISDAPfiles( fitdir );
 
@@ -94,15 +101,30 @@ par(:,3,:) = par(:,3,:) .* par(:,2,:);
 parstd(:,3,:) = parstd(:,2,:).*par(:,3,:) + parstd(:,3,:).*par(:,2,:);
 
 
-if FAonly % remove other than field-aligned data
-    % 3 degree tolerance to allow changes in field-direction...
-    rminds = abs(mod(azel(:,1),360) - 187) > 3 | abs(abs(90-azel(:,2))-12.45) > 3;
-    h(:,rminds) = [];
-    ts(rminds) = [];
-    te(rminds) = [];
-    par(:,:,rminds) = [];
-    parstd(:,:,rminds) = [];
+% remove other than field-aligned data
+%
+% local field-aligned direction in E region
+[~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(r_time(1,:)));
+FAele = abs(I);
+FAaz = D+180;
+if I<0
+    FAaz = D
 end
+while FAaz < 0
+    FAaz = FAaz + 360;
+end
+while FAaz > 360
+    FAaz = FAaz - 360;
+end
+
+% FAdev degree tolerance to allow changes in field-direction...
+%    rminds = abs(mod(azel(:,1),360) - 187) > 3 | abs(abs(90-azel(:,2))-12.45) > 3;
+rminds = abs(mod(azel(:,1),360) - FAaz) > abs(FAdev) | abs(abs(90-azel(:,2))-(90-FAele)) > abs(FAdev);
+h(:,rminds) = [];
+ts(rminds) = [];
+te(rminds) = [];
+par(:,:,rminds) = [];
+parstd(:,:,rminds) = [];
 
 % do not accept Ti < 50 or Ti > 300 K below 100 km altitude, or ne < 1e9 anywhere
 [dim1 dim2] = size(h);
@@ -119,5 +141,8 @@ for i1 = 1:dim1
             parstd(i1,:,i2) = NaN;
         end
     end
+end
+
+
 end
 
