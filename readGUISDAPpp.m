@@ -1,4 +1,4 @@
-function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
+function [h,ts,te,pp,ppstd,loc,azel,I] = readGUISDAPpp( ppdir , exp , radar , ...
                                              version , tres , FAdev )
 %
 % Read GUISDAP raw electron densities (power profiles) and their
@@ -18,6 +18,8 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
 %  version experiment version number
 %  tres    "type" of time resolution 'best' or 'dump'
 %  FAdev   maximum beam direction deviation from field-aligned  [deg]
+%  azel    azimuth and elevation of the radar beam
+%  I       magnetic inclination angle (deg)
 %
 % Currently available combinations of exp,radar,version are
 %  'beata','u',1
@@ -98,12 +100,13 @@ ts(rminds) = [];
 te(rminds) = [];
 pp(:,rminds) = [];
 ppstd(:,rminds) = [];
+azel(rminds,:) = [];
 
 end
 
 
 
-function [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( ff , version ...
+function [h,ts,te,pp,ppstd,loc,azel,I] = readGUISDAPpp_beata_uhf( ff , version ...
                                                       , tres )
 %
 % [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( ff , version )
@@ -128,6 +131,7 @@ function [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( ff , version ...
 %  loc   [latitude (deg north) longitude (deg east) height (km)]
 %        of the radar site
 %  azel  azimuth and elevation angles of the radar beam
+%  I       magnetic inclination angle (deg)
 %
 % IV 2016
 

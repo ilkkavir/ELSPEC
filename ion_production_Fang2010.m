@@ -1,4 +1,4 @@
-function [q,Ec,dE] = ion_production_Fang2010(E,z,nN2,nO2,nO,nAr,Tn)
+function [q,Ec,dE] = ion_production_Fang2010(E,z,nN2,nO2,nO,nAr,Tn,inclination)
 %   Ionization profiles of monoenergetic electron precipitation
 %   according to Fang et al [2010]. This function calculates the
 %   ionization profiles for electron precipitation into the Earths
@@ -19,6 +19,7 @@ function [q,Ec,dE] = ion_production_Fang2010(E,z,nN2,nO2,nO,nAr,Tn)
 %   nO   atomic oxygen density [m^-3] (nz x 1 array)
 %   nAr   Argon density [m^-3] (nz x 1 array)
 %   Tn   neutral temperature [K] (nz x 1 array)
+%   inclination magnetic inclinationation [deg]
 %
 % OUTPUT:
 %   q   ionization profiles [m^-1] (nz x nE array)
@@ -65,7 +66,7 @@ for iE = 1:nE,
 
     E0 = Ec(iE)/1e3;                         % Rescale electron energy to keV
     H = (kB*Tn./(m.*g))*100;                 % scale height [cm]
-    y = 2./(E0).*((ro/1000).*H/6e-6).^(0.7); % "normalized atmospheric column mass"
+    y = ( 2./(E0).*((ro/1000).*H/6e-6).^(0.7) )./sin(pi/180*inclination); % "normalized atmospheric column mass"
     dEion = 0.035;                           % Average energy per ion-electron-pair [keV]
     % ionization profile in m^-1
     q(:,iE) = energy_dissipation_Fang2010(y,E0)/dEion./H*E0*100;

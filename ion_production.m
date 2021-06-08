@@ -1,4 +1,4 @@
-function [q,Ec,dE] = ion_production(E,z,nN2,nO2,nO,nAr,Tn,model)
+function [q,Ec,dE] = ion_production(E,z,nN2,nO2,nO,nAr,Tn,model,inclination)
 %
 % Ionozation profiles of monoenergetic electron precipitation
 % using selected model.
@@ -16,6 +16,7 @@ function [q,Ec,dE] = ion_production(E,z,nN2,nO2,nO,nAr,Tn,model)
 %   nAr   Argon density [m^-3] (nz x 1 array)
 %   Tn    neutral temperature [K] (nz x 1 array)
 %   model The model to use, either 'Fang' or 'Sergienko'.
+%   inclination magnetic inclination [deg]. Used only with the Fang model
 %
 % OUTPUT:
 %   q   ionization profiles [m^-1] (nz x nE array)
@@ -45,7 +46,7 @@ function [q,Ec,dE] = ion_production(E,z,nN2,nO2,nO,nAr,Tn,model)
 % use persistent variables to avoid unnecessary re-calculation
 persistent prev_input prev_q prev_Ec prev_dE
 
-this_input = [E(:);z(:);nN2(:);nO2(:);nO(:);Tn(:);double(model)'];
+this_input = [E(:);z(:);nN2(:);nO2(:);nO(:);Tn(:);double(model)';inclination];
 
 % if the previous input was stored
 if 0% ~isempty(prev_input)
@@ -65,7 +66,7 @@ end
 
 switch lower(model(1:4))
   case 'fang'
-    [q,Ec,dE] = ion_production_Fang2010(E,z,nN2,nO2,nO,nAr,Tn);
+    [q,Ec,dE] = ion_production_Fang2010(E,z,nN2,nO2,nO,nAr,Tn,inclination);
   case 'serg'
     [q,Ec,dE] = ion_production_Sergienko1993(E,z,nN2,nO2,nO,Tn);
   case 'rees'

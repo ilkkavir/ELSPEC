@@ -1,4 +1,4 @@
-function [h,ts,te,par,parstd,loc] = readGUISDAPpar_madrigal_hdf5(madfile,FAdev)
+function [h,ts,te,par,parstd,loc,azel,I] = readGUISDAPpar_madrigal_hdf5(madfile,FAdev)
 %
 % Read GUISDAP plasma parameter fit results from Madrigal hdf5 files
 %
@@ -16,6 +16,8 @@ function [h,ts,te,par,parstd,loc] = readGUISDAPpar_madrigal_hdf5(madfile,FAdev)
 %  parstd  standard deviations of the plasma parameters
 %  loc     [latitude (deg north) , longitude (deg east) , altitude
 %           (km)] of the radar site
+%  azel    azimuth and elevation of the radar beam
+%  I       magnetic inclination angle (deg)
 %
 % The four plasma parameters are Ne [m^-3], Ti [K], Te [k], and Vi
 % [ms^-1]. Failed iterations and results with chi-squared larger
@@ -142,6 +144,7 @@ ts(rminds) = [];
 te(rminds) = [];
 par(:,:,rminds) = [];
 parstd(:,:,rminds) = [];
+azel(rminds,:) = [];
 
 % do not accept Ti < 50 or Ti > 300 K below 100 km altitude, or ne < 1e9 anywhere
 [dim1 dim2] = size(h);
