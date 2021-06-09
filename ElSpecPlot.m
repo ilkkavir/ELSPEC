@@ -23,6 +23,7 @@ function fignum = ElSpecPlot(ElSpecOut,varargin)
 %              default: first data point
 %    etime     plot end time as vector [yyyy mm dd HH MM SS],
 %              default: last data point
+%    fontsize  font size in axis labels. Default 8
 %    fluxtype  flux plot type, 'number', 'energy', or 'both'. If
 %              'both' is selected, the net energy flux plot is
 %              omitted. Default: 'energy'
@@ -70,6 +71,9 @@ checkPlim = @(x) (isnumeric(x) & (length(x)==2));
 defaultChisqrlim = [0 10];
 checkChisqrlim = @(x) (isnumeric(x) & (length(x)==2));
 
+defaultFontsize = 8;
+checkFontsize = @(x) (isnumeric(x) & (length(x)==1));
+
 defaultBtime = datetime((ElSpecOut.te(1) + ElSpecOut.ts(1))/2,'ConvertFrom','posixtime');
 checkBtime = @(x) (isnumeric(x) & (length(x)==6));
 
@@ -87,7 +91,9 @@ checkNeplot = @(x) any(validatestring(x,validNeplot));
 defaultCutgaps = 1;
 checkCutgaps = @(x) (islogical(x)|isnumeric(x));
 
-if isfield(ElSpecOut,'emin')
+if isfield(ElSpecOut,'Emin')
+    defaultEmin = ElSpecOut.Emin;
+elseif isfield(ElSpecOut,'emin')
     defaultEmin = ElSpecOut.emin;
 else
     defaultEmin = 1e3;
@@ -104,6 +110,7 @@ addParameter(p,'elim',defaultElim,checkElim)
 addParameter(p,'faclim',defaultFAClim,checkFAClim)
 addParameter(p,'plim',defaultPlim,checkPlim)
 addParameter(p,'chisqrlim',defaultChisqrlim,checkChisqrlim)
+addParameter(p,'fontsize',defaultFontsize,checkFontsize)
 addParameter(p,'btime',defaultBtime,checkBtime)
 addParameter(p,'etime',defaultEtime,checkEtime)
 addParameter(p,'fluxtype',defaultFluxtype,checkFluxtype)
@@ -445,15 +452,16 @@ set(cbh2,'Position',cbsize2.*[1,1.02,1,.8]);
 cbsize3=get(cbh3,'Position');
 set(cbh3,'Position',cbsize3.*[1,1.02,1,.8]);
 
-set(h1,'fontsize',12)
-set(cbh1,'fontsize',12)
-set(h2,'fontsize',12)
-set(cbh2,'fontsize',12)
-set(h3,'fontsize',12)
-set(cbh3,'fontsize',12)
-set(h4,'fontsize',12)
-set(h5,'fontsize',12)
-set(h6,'fontsize',12)
+
+set(h1,'fontsize',p.Results.fontsize)
+set(cbh1,'fontsize',p.Results.fontsize)
+set(h2,'fontsize',p.Results.fontsize)
+set(cbh2,'fontsize',p.Results.fontsize)
+set(h3,'fontsize',p.Results.fontsize)
+set(cbh3,'fontsize',p.Results.fontsize)
+set(h4,'fontsize',p.Results.fontsize)
+set(h5,'fontsize',p.Results.fontsize)
+set(h6,'fontsize',p.Results.fontsize)
 
 if strcmp(p.Results.neplot,'log')
     set(cbh1,'YTick',5:13)

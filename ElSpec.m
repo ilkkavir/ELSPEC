@@ -390,6 +390,10 @@ else
                      out.btime , out.etime , out.experiment , out.radar , ...
                      out.version , out.tres , readIRI, p.Results.fadev );
 end
+if isempty(out.h)
+    disp('No data')
+    return
+end
 % disp('************************************')
 % disp('TESTING with SIC composition, ElSpec, line 318!')
 % disp('************************************')

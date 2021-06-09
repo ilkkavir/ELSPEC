@@ -52,6 +52,12 @@ function [h,ts,te,pp,ppstd,par,parstd,loc,azel,I] = readGUISDAPdata( ppdir , ...
 % a special case for empty ppdir
 if isempty(ppdir)
     [hpar,ts,te,par,parstd,loc,azel,I] = readGUISDAPpar( fitdir , FAdev );
+    if isempty(hpar)
+        h = [];
+        pp = [];
+        ppstd = [];
+        return
+    end
     hind = hpar(:,1)>=hmin & hpar(:,1)<=hmax;
     if isempty(tmin)
         t1 = -Inf;
@@ -93,6 +99,20 @@ end
 
 % read fit results
 [hpar,tspar,tepar,par1,parstd1,locpar,azelpar,Ipar] = readGUISDAPpar( fitdir , FAdev );
+
+if isempty(hpp) | isempty(hpar)
+    h = [];
+    ts = [];
+    te = [];
+    pp = [];
+    ppstd = [];
+    par = [];
+    parstd = [];
+    loc = [];
+    azel = [];
+    I = [];
+    return
+end
 
 % pick the location
 loc = locpp;

@@ -32,6 +32,7 @@ function [h,ts,te,par,parstd,loc,azel,I] = readGUISDAPpar_madrigal_hdf5(madfile,
 maddata = h5read(madfile,'/Data/Table Layout');
 
 % radar location must be checked from the kinst code
+% Turns out that this functions works only with EISCAT data, but keeping the codes for future reference
 kinst = maddata.kinst(1);
 switch kinst
     % Millstone Hill
