@@ -6,13 +6,13 @@
 \BOOKMARK [1][-]{section.1.5}{Reference}{chapter.1}% 6
 \BOOKMARK [0][-]{chapter.2}{Electron energy spectrum estimation}{}% 7
 \BOOKMARK [1][-]{section.2.1}{Electron precipitation and ion production}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.2}{ElSpec implementation}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{ELSPEC implementation}{chapter.2}% 9
 \BOOKMARK [2][-]{subsection.2.2.1}{Integration of the electron continuity equation}{section.2.2}% 10
 \BOOKMARK [2][-]{subsection.2.2.2}{Spectrum models}{section.2.2}% 11
 \BOOKMARK [2][-]{subsection.2.2.3}{Model selection}{section.2.2}% 12
 \BOOKMARK [2][-]{subsection.2.2.4}{Error estimation}{section.2.2}% 13
 \BOOKMARK [2][-]{subsection.2.2.5}{Derived parameters}{section.2.2}% 14
-\BOOKMARK [0][-]{chapter.3}{ElSpec in practice}{}% 15
+\BOOKMARK [0][-]{chapter.3}{ELSPEC in practice}{}% 15
 \BOOKMARK [1][-]{section.3.1}{The simplest example}{chapter.3}% 16
 \BOOKMARK [1][-]{section.3.2}{Input data}{chapter.3}% 17
 \BOOKMARK [2][-]{subsection.3.2.1}{Both ppdir and fitdir are defined}{section.3.2}% 18

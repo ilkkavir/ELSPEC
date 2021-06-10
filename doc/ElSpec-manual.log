@@ -1,16 +1,15 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.26)  25 JAN 2019 16:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.2.3)  10 JUN 2021 10:19
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **ElSpec-manual.tex
 (./ElSpec-manual.tex
-LaTeX2e <2011/06/27>
-Babel <3.9f> and hyphenation patterns for 78 languages loaded.
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 31 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -25,112 +24,194 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count88
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package color Info: Driver file: pdftex.def on input line 130.
+Package color Info: Driver file: pdftex.def on input line 147.
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/newtxtext.sty
-Package: newtxtext 2013/05/19 v1.10
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/newtxtext.sty
+Package: newtxtext 2017/08/18 v1.526
 
-`newtxtext' v1.10, 2013/05/19 Text macros based on txfonts (msharpe)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/fontaxes/fontaxes.sty
-Package: fontaxes 2011/12/16 v1.0c Font selection axes
+`newtxtext' v1.526, 2017/08/18 Text macros taking advantage of TeX-Gyre Termes 
+fonts (msharpe) (/usr/share/texlive/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+Package: fontaxes 2014/03/23 v1.0d Font selection axes
 LaTeX Info: Redefining \upshape on input line 29.
 LaTeX Info: Redefining \itshape on input line 31.
 LaTeX Info: Redefining \slshape on input line 33.
 LaTeX Info: Redefining \scshape on input line 37.
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+\ntx@fs=\dimen105
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(/usr/local/texlive/2013/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks15
 \XKV@tempa@toks=\toks16
-\XKV@depth=\count89
-File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+)
+\XKV@depth=\count88
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count89
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/t1enc.def
-File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
-)))
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/newtxmath.sty
-Package: newtxmath 2013/05/25 v1.11
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+Package textcomp Info: Changing ? sub-encoding to TS1/0 on input line 80.
 
-`newtxmath' v1.11, 2013/05/25 Math macros based on txfonts (msharpe)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2013/01/14 v2.14 AMS math features
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/newtxmath.sty
+Package: newtxmath 2017/12/14 v1.53
+
+`newtxmath' v1.53, 2017/12/14 Math macros based on txfonts (msharpe)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
-\ex@=\dimen105
+\ex@=\dimen106
 ))
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen106
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen107
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 1999/12/14 v2.01 operator names
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count90
-LaTeX Info: Redefining \frac on input line 210.
+LaTeX Info: Redefining \frac on input line 213.
 \uproot@=\count91
 \leftroot@=\count92
-LaTeX Info: Redefining \overline on input line 306.
+LaTeX Info: Redefining \overline on input line 375.
 \classnum@=\count93
 \DOTSCASE@=\count94
-LaTeX Info: Redefining \ldots on input line 378.
-LaTeX Info: Redefining \dots on input line 381.
-LaTeX Info: Redefining \cdots on input line 466.
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
-\big@size=\dimen107
-LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\big@size=\dimen108
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count95
 \c@MaxMatrixCols=\count96
 \dotsspace@=\muskip10
@@ -141,252 +222,290 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \column@=\count100
 \maxfields@=\count101
 \andhelp@=\toks19
-\eqnshift@=\dimen108
-\alignsep@=\dimen109
-\tagshift@=\dimen110
-\tagwidth@=\dimen111
-\totwidth@=\dimen112
-\lineht@=\dimen113
+\eqnshift@=\dimen109
+\alignsep@=\dimen110
+\tagshift@=\dimen111
+\tagwidth@=\dimen112
+\totwidth@=\dimen113
+\lineht@=\dimen114
 \@envbody=\toks20
 \multlinegap=\skip44
 \multlinetaggap=\skip45
 \mathdisplay@stack=\toks21
-LaTeX Info: Redefining \[ on input line 2665.
-LaTeX Info: Redefining \] on input line 2666.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 )
-(/usr/local/texlive/2013/texmf-dist/tex/generic/kastrup/binhex.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/centernot.sty
+Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kastrup/binhex.tex)
 \tx@Isdigit=\count102
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 68.
-LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 68.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 156.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> T1/ntxrx/m/n on input line 68.
-LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 68.
+(Font)                  OT1/cmr/m/n --> OT1/ntxtlf/m/n on input line 156.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/ntxrx/m/n on input line 68.
+(Font)                  OT1/cmr/bx/n --> OT1/ntxtlf/m/n on input line 156.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  T1/ntxrx/m/n --> T1/ntxrx/b/n on input line 72.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 76.
+(Font)                  OT1/ntxtlf/m/n --> OT1/ntxtlf/b/n on input line 157.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 163.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/ntxss/m/n on input line 76.
+(Font)                  OT1/cmss/m/n --> T1/qhv/m/n on input line 163.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/ntxss/m/n on input line 76.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 77.
+(Font)                  OT1/cmss/bx/n --> T1/qhv/m/n on input line 163.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 164.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/ntxrx/m/it on input line 77.
+(Font)                  OT1/cmr/m/it --> OT1/ntxtlf/m/it on input line 164.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/ntxrx/m/it on input line 77.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 78.
+(Font)                  OT1/cmr/bx/it --> OT1/ntxtlf/m/it on input line 164.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 165.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/ntxtt/m/n on input line 78.
+(Font)                  OT1/cmtt/m/n --> T1/ntxtt/m/n on input line 165.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/ntxtt/m/n on input line 78.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 84.
+(Font)                  OT1/cmtt/m/n --> T1/ntxtt/m/n on input line 165.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 167.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/ntxrx/b/n on input line 84.
+(Font)                  OT1/cmr/bx/n --> OT1/ntxtlf/b/n on input line 167.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/ntxrx/b/n on input line 84.
+(Font)                  OT1/cmr/bx/n --> OT1/ntxtlf/b/n on input line 167.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/ntxrx/m/it --> T1/ntxrx/b/it on input line 85.
+(Font)                  OT1/ntxtlf/m/it --> OT1/ntxtlf/b/it on input line 168.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/ntxss/m/n --> T1/ntxss/b/n on input line 87.
+(Font)                  T1/qhv/m/n --> T1/qhv/b/n on input line 169.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/ntxtt/m/n --> T1/ntxtt/b/n on input line 88.
-LaTeX Font Info:    Redeclaring symbol font `letters' on input line 109.
+(Font)                  T1/ntxtt/m/n --> T1/ntxtt/b/n on input line 170.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 221.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> OML/ntxmi/m/it on input line 109.
+(Font)                  OML/cmm/m/it --> OML/ntxmi/m/it on input line 221.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> OML/ntxmi/m/it on input line 109.
+(Font)                  OML/cmm/b/it --> OML/ntxmi/m/it on input line 221.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/ntxmi/m/it --> OML/ntxmi/b/it on input line 110.
+(Font)                  OML/ntxmi/m/it --> OML/ntxmi/b/it on input line 222.
 \symlettersA=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
-(Font)                  U/ntxmia/m/it --> U/ntxmia/b/it on input line 121.
-LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 129.
+(Font)                  U/ntxmia/m/it --> U/ntxmia/b/it on input line 238.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 259.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 259.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> OMS/ntxsy/m/n on input line 129.
+(Font)                  OMS/cmsy/m/n --> LMS/ntxsy/m/n on input line 259.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 259.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> OMS/ntxsy/m/n on input line 129.
+(Font)                  OMS/cmsy/b/n --> LMS/ntxsy/m/n on input line 259.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/ntxsy/m/n --> OMS/ntxsy/b/n on input line 130.
-\symAMSa=\mathgroup5
-LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
-(Font)                  U/ntxsya/m/n --> U/ntxsya/b/n on input line 146.
-\symAMSb=\mathgroup6
-LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
-(Font)                  U/ntxsyb/m/n --> U/ntxsyb/b/n on input line 155.
-\symsymbolsC=\mathgroup7
+(Font)                  LMS/ntxsy/m/n --> LMS/ntxsy/b/n on input line 260.
+\symAMSm=\mathgroup5
+LaTeX Font Info:    Overwriting symbol font `AMSm' in version `bold'
+(Font)                  U/ntxsym/m/n --> U/ntxsym/b/n on input line 283.
+\symsymbolsC=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
-(Font)                  U/ntxsyc/m/n --> U/ntxsyc/b/n on input line 166.
-LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 178.
+(Font)                  U/ntxsyc/m/n --> U/ntxsyc/b/n on input line 304.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 317.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 3
+17.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> OMX/ntxex/m/n on input line 178.
+(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 317.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 317
+.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> OMX/ntxex/m/n on input line 178.
+(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 317.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/ntxex/m/n --> OMX/ntxex/b/n on input line 179.
-\symlargesymbolsTXA=\mathgroup8
+(Font)                  LMX/ntxexx/m/n --> LMX/ntxexx/b/n on input line 318.
+\symlargesymbolsTXA=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `largesymbolsTXA' in version `bold'
 
-(Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 187.
-LaTeX Info: Redefining \not on input line 1359.
+(Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 332.
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 503.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 504.
+LaTeX Font Info:    Redeclaring math delimiter \lmoustache on input line 505.
+LaTeX Font Info:    Redeclaring math delimiter \rmoustache on input line 506.
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 512.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 513.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 514.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 515.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 516.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 517.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 518.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 520.
+LaTeX Font Info:    Redeclaring math symbol \mid on input line 522.
+LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 524.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 525.
+LaTeX Font Info:    Redeclaring math symbol \parallel on input line 526.
+LaTeX Font Info:    Redeclaring math delimiter \Arrowvert on input line 527.
+LaTeX Font Info:    Redeclaring math delimiter \Vert on input line 528.
+LaTeX Font Info:    Redeclaring math delimiter \updownarrow on input line 530.
+LaTeX Font Info:    Redeclaring math delimiter \Updownarrow on input line 531.
+LaTeX Font Info:    Redeclaring math delimiter \lvert on input line 536.
+LaTeX Font Info:    Redeclaring math delimiter \rvert on input line 537.
+LaTeX Font Info:    Redeclaring math delimiter \lVert on input line 538.
+LaTeX Font Info:    Redeclaring math delimiter \rVert on input line 539.
+LaTeX Info: Redefining \not on input line 2146.
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/tools/bm.sty
-Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup9
-\symboldletters=\mathgroup10
-\symboldsymbols=\mathgroup11
-\symboldlargesymbols=\mathgroup12
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
-LaTeX Info: Redefining \bm on input line 204.
+(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup8
+\symboldletters=\mathgroup9
+\symboldsymbols=\mathgroup10
+\symboldlargesymbols=\mathgroup11
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 207.
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
 
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 
 
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
-Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
-Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
-Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
 )
-Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
-Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
-Package: xcolor-patch 2011/01/30 xcolor patch
-Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
-Package atveryend Info: \enddocument detected (standard20110627).
-Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
-Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
-Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 )
-(/usr/local/texlive/2013/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/auxhook.sty
-Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-)
-\@linkdim=\dimen114
+\@linkdim=\dimen115
 \Hy@linkcounter=\count103
 \Hy@pagecounter=\count104
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 )
 \Hy@SavedSpaceFactor=\count105
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Hyper figures OFF on input line 4443.
-Package hyperref Info: Link nesting OFF on input line 4448.
-Package hyperref Info: Hyper index ON on input line 4451.
-Package hyperref Info: Plain pages OFF on input line 4458.
-Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Hyper figures OFF on input line 4509.
+Package hyperref Info: Link nesting OFF on input line 4514.
+Package hyperref Info: Hyper index ON on input line 4517.
+Package hyperref Info: Plain pages OFF on input line 4524.
+Package hyperref Info: Backreferencing OFF on input line 4529.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4688.
+Package hyperref Info: Bookmarks ON on input line 4762.
 \c@Hy@tempcnt=\count106
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen115
+LaTeX Info: Redefining \url on input line 5115.
+\XeTeXLinkMargin=\dimen116
 \Fld@menulength=\count107
-\Field@Width=\dimen116
-\Fld@charsize=\dimen117
-Package hyperref Info: Hyper figures OFF on input line 6295.
-Package hyperref Info: Link nesting OFF on input line 6300.
-Package hyperref Info: Hyper index ON on input line 6303.
-Package hyperref Info: backreferencing OFF on input line 6310.
-Package hyperref Info: Link coloring OFF on input line 6315.
-Package hyperref Info: Link coloring with OCG OFF on input line 6320.
-Package hyperref Info: PDF/A mode OFF on input line 6325.
-LaTeX Info: Redefining \ref on input line 6365.
-LaTeX Info: Redefining \pageref on input line 6369.
+\Field@Width=\dimen117
+\Fld@charsize=\dimen118
+Package hyperref Info: Hyper figures OFF on input line 6369.
+Package hyperref Info: Link nesting OFF on input line 6374.
+Package hyperref Info: Hyper index ON on input line 6377.
+Package hyperref Info: backreferencing OFF on input line 6384.
+Package hyperref Info: Link coloring OFF on input line 6389.
+Package hyperref Info: Link coloring with OCG OFF on input line 6394.
+Package hyperref Info: PDF/A mode OFF on input line 6399.
+LaTeX Info: Redefining \ref on input line 6439.
+LaTeX Info: Redefining \pageref on input line 6443.
 \Hy@abspage=\count108
 \c@Item=\count109
 \c@Hfootnote=\count110
 )
+Package hyperref Info: Driver (autodetected): hpdftex.
 
-Package hyperref Message: Driver (autodetected): hpdftex.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
 \Fld@listcount=\count111
 \c@bookmark@seq@number=\count112
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
-Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip46
 )
-(/Users/ilkkavir/Library/texmf/tex/latex/copernicus_2.3/natbib.sty
+(/home/ilkkav/texmf/tex/latex/IVnotess/natbib.sty
 Package: natbib 2006/09/06 7.4a (PWD)
 \bibhang=\skip47
 \bibsep=\skip48
 LaTeX Info: Redefining \cite on input line 541.
 \c@NAT@ctr=\count113
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count114
 \lst@gtempboxa=\box28
 \lst@token=\toks22
 \lst@length=\count115
-\lst@currlwidth=\dimen118
+\lst@currlwidth=\dimen119
 \lst@column=\count116
 \lst@pos=\count117
-\lst@lostspace=\dimen119
-\lst@width=\dimen120
+\lst@lostspace=\dimen120
+\lst@width=\dimen121
 \lst@newlines=\count118
 \lst@lineno=\count119
-\lst@maxwidth=\dimen121
+\lst@maxwidth=\dimen122
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count120
 \lst@skipnumbers=\count121
 \lst@framebox=\box29
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2007/02/22 1.4 listings configuration
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
-Package: listings 2007/02/22 1.4 (Carsten Heinz)
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+LaTeX Font Info:    Try loading font information for T1+ntxtlf on input line 64
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
+File: t1ntxtlf.fd 2015/01/17 v1.0 font definition file for T1/ntx/tlf
+)
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 64.
 
 (./ElSpec-manual.aux)
 \openout1 = `ElSpec-manual.aux'.
@@ -395,71 +514,79 @@ LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 64.
 LaTeX Font Info:    Try loading font information for OML+ntxmi on input line 64
 .
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/omlntxmi.fd
-File: omlntxmi.fd 2012/03/22 Fontinst v1.933 font definitions for OML/ntxmi.
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
+File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 64.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
 LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 64.
-LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 64
-.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/omsntxsy.fd
-File: omsntxsy.fd 2012/11/14 Fontinst v1.933 font definitions for OMS/ntxsy.
-)
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/ntxex/m/n on input line 64.
-LaTeX Font Info:    Try loading font information for OMX+ntxex on input line 64
-.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/omxntxex.fd
-File: omxntxex.fd 2012/04/18 Fontinst v1.933 font definitions for OMX/ntxex.
-)
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
 LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 64.
 LaTeX Font Info:    Try loading font information for U+ntxexa on input line 64.
 
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/untxexa.fd
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
+)
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 64.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 64.
+LaTeX Font Info:    Try loading font information for LMS+ntxsy on input line 64
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/lmsntxsy.fd
+File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
+)
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 64.
+LaTeX Font Info:    Try loading font information for LMX+ntxexx on input line 6
+4.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/lmxntxexx.fd
+File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
 LaTeX Font Info:    ... okay on input line 64.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Try loading font information for T1+ntxrx on input line 64.
 
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/t1ntxrx.fd
-File: t1ntxrx.fd 2012/12/25 v1.0
-)
-(/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count122
-\scratchdimen=\dimen122
+\scratchdimen=\dimen123
 \scratchbox=\box30
 \nofMPsegments=\count123
 \nofMParguments=\count124
 \everyMPshowfont=\toks23
 \MPscratchCnt=\count125
-\MPscratchDim=\dimen123
+\MPscratchDim=\dimen124
 \MPnumerator=\count126
 \makeMPintoPDFobject=\count127
 \everyMPtoPDFconversion=\toks24
-) (/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 )
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
+(grfext)             \AppendGraphicsExtensions on input line 456.
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -468,11 +595,11 @@ e
 \AtBeginShipoutBox=\box31
 Package hyperref Info: Link coloring OFF on input line 64.
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count130
 )
@@ -485,45 +612,70 @@ LaTeX Info: Redefining \nameref on input line 64.
 \openout3 = `ElSpec-manual.out'.
 
 \c@lstlisting=\count131
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 20.74pt on input line 70.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 70.
+LaTeX Font Info:    Try loading font information for OT1+ntxtlf on input line 7
+0.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
+File: ot1ntxtlf.fd 2015/01/17 v1.0 font definition file for OT1/ntx/tlf
+)
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 70.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.5pt on input line 70.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.9pt on input line 70.
 LaTeX Font Info:    Try loading font information for U+ntxmia on input line 70.
 
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/untxmia.fd
-File: untxmia.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxmia.
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
+File: untxmia.fd 2016/01/31 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsya on input line 70.
+LaTeX Font Info:    Try loading font information for U+ntxsym on input line 70.
 
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/untxsya.fd
-File: untxsya.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsya.
-)
-LaTeX Font Info:    Try loading font information for U+ntxsyb on input line 70.
-
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/untxsyb.fd
-File: untxsyb.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyb.
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
+File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 70.
 
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/untxsyc.fd
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <14.4> not available
-(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 70.
-LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <10.5> not available
-(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 70.
-LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <7.9> not available
-(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 70.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 14.4pt on input line 70.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.5pt on input line 70.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 7.9pt on input line 70.
  [1
 
-{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 24.88pt on input line 75.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <24.88> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 75.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 24.88pt on input line 75.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 76.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 78.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 78.
 LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 81.
 
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/t1ntxtt.fd
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtt.fd
 File: t1ntxtt.fd 2012/04/20 v3.1
 )
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 10.95pt on input line 81.
+
 Overfull \hbox (64.14995pt too wide) in paragraph at lines 98--98
 []\T1/ntxtt/m/n/10.95 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston
 , MA  02110-1301, USA.[] 
@@ -537,12 +689,22 @@ l.104 \newpage
                [1
 
 ] (./ElSpec-manual.toc
-LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <12> not available
-(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 2.
-LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <8.8> not available
-(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 2.
-LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <6.6> not available
-(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 1.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 2.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.8pt on input line 2.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.6pt on input line 2.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 2.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 8.8pt on input line 2.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 6.6pt on input line 2.
  [2
 
 ])
@@ -551,91 +713,114 @@ LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <6.6> not available
 
  [3]
 Chapter 1.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 17.28pt on input line 116.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <17.28> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 116.
+
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 17.28pt on input line 116.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
+(Font)              scaled to size 12.0pt on input line 122.
 [4
 
 ] [5]
 Chapter 2.
 [6
 
-] [7] [8] [9]
-Chapter 3.
-(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2004/09/05 1.3 listings language file
-) [10
-
 ]
-[11] [12] [13]
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 171.
+
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 14.4pt on input line 171.
+ [7] [8] [9]
+Chapter 3.
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 12.0pt on input line 270.
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 276.
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 10.0pt on input line 276.
+ [10
+
+] [11]
+[12] [13]
 Chapter 4.
 <guisdap1.png, id=293, 264.5082pt x 294.3798pt>
 File: guisdap1.png Graphic file (type png)
- <use guisdap1.png>
-Package pdftex.def Info: guisdap1.png used on input line 359.
+<use guisdap1.png>
+Package pdftex.def Info: guisdap1.png  used on input line 360.
 (pdftex.def)             Requested size: 191.10214pt x 212.68546pt.
-
 <guisdap2.png, id=294, 264.5082pt x 294.3798pt>
 File: guisdap2.png Graphic file (type png)
- <use guisdap2.png>
-Package pdftex.def Info: guisdap2.png used on input line 360.
+<use guisdap2.png>
+Package pdftex.def Info: guisdap2.png  used on input line 361.
 (pdftex.def)             Requested size: 191.10214pt x 212.68546pt.
-
 <ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate_6_1_
 dump.png, id=295, 489.9906pt x 692.3466pt>
 File: ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate
 _6_1_dump.png Graphic file (type png)
-
 <use ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate_
 6_1_dump.png>
 Package pdftex.def Info: ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_
-SheehanGr_integrate_6_1_dump.png used on input line 370.
+SheehanGr_integrate_6_1_dump.png  used on input line 371.
 (pdftex.def)             Requested size: 390.0pt x 551.07849pt.
 
-
-LaTeX Warning: Float too large for page by 11.22249pt on input line 374.
-
+LaTeX Warning: Float too large for page by 11.22849pt on input line 375.
 
 <ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibrium_6_
 1_dump.png, id=296, 489.9906pt x 692.3466pt>
 File: ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibri
 um_6_1_dump.png Graphic file (type png)
-
 <use ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibriu
 m_6_1_dump.png>
 Package pdftex.def Info: ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_
-SheehanGr_equilibrium_6_1_dump.png used on input line 378.
+SheehanGr_equilibrium_6_1_dump.png  used on input line 379.
 (pdftex.def)             Requested size: 390.0pt x 551.07849pt.
 
-
-LaTeX Warning: Float too large for page by 11.22249pt on input line 382.
-
+LaTeX Warning: Float too large for page by 11.22849pt on input line 383.
 
 <ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibrium_1_
 1_dump.png, id=297, 489.9906pt x 692.3466pt>
 File: ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibri
 um_1_1_dump.png Graphic file (type png)
-
 <use ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibriu
 m_1_1_dump.png>
 Package pdftex.def Info: ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_
-SheehanGr_equilibrium_1_1_dump.png used on input line 386.
+SheehanGr_equilibrium_1_1_dump.png  used on input line 387.
 (pdftex.def)             Requested size: 390.0pt x 551.07849pt.
 
-
-LaTeX Warning: Float too large for page by 13.67648pt on input line 390.
+LaTeX Warning: Float too large for page by 13.67648pt on input line 391.
 
 [14
 
  <./guisdap1.png (PNG copy)> <./guisdap2.png (PNG copy)>]
-Overfull \hbox (87.74861pt too wide) in paragraph at lines 412--413
+Overfull \hbox (87.74861pt too wide) in paragraph at lines 413--414
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-LaTeX Font Info:    Try loading font information for T1+ntxr1 on input line 415
-.
-(/usr/local/texlive/2013/texmf-dist/tex/latex/newtx/t1ntxr1.fd
-File: t1ntxr1.fd 2012/07/29 v1.0
-) [15] [16]
-[17]
-Overfull \hbox (56.2487pt too wide) in paragraph at lines 516--517
+LaTeX Font Info:    Try loading font information for T1+ntxsups on input line 4
+16.
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxsups.fd
+File: t1ntxsups.fd 2015/01/17 v1.0
+)
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 12.0pt on input line 416.
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 10.0pt on input line 416.
+ [15]
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.0pt on input line 420.
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 6.0pt on input line 420.
+LaTeX Font Info:    Font shape `T1/ntxtt/bx/n' will be
+(Font)              scaled to size 6.0pt on input line 424.
+ [16] [17]
+Overfull \hbox (56.2487pt too wide) in paragraph at lines 517--518
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -648,185 +833,184 @@ ilibrium_1_1_dump.png (PNG copy)>]) [22
 ]
 Appendix A.
 
-Underfull \hbox (badness 1789) in paragraph at lines 530--531
-\T1/ntxrx/m/n/12 This ap-pendix lists the op-tional ar-gu-ments of the func-tio
-ns []\T1/ntxtt/m/n/12 ElSpec \T1/ntxrx/m/n/12 and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 548--551
+Underfull \hbox (badness 10000) in paragraph at lines 549--552
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 552--555
+Underfull \hbox (badness 10000) in paragraph at lines 553--556
 
  []
 
 [23
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 556--558
+Underfull \hbox (badness 10000) in paragraph at lines 557--559
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 559--562
+Underfull \hbox (badness 10000) in paragraph at lines 560--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 563--566
+Underfull \hbox (badness 10000) in paragraph at lines 564--567
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 567--570
+Underfull \hbox (badness 10000) in paragraph at lines 568--571
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 571--574
+Underfull \hbox (badness 10000) in paragraph at lines 572--575
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 575--578
+Underfull \hbox (badness 10000) in paragraph at lines 576--579
 
  []
 
 [24]
-Underfull \hbox (badness 10000) in paragraph at lines 591--594
+Underfull \hbox (badness 10000) in paragraph at lines 592--595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 595--599
+Underfull \hbox (badness 10000) in paragraph at lines 596--600
 
  []
 
 
-Overfull \hbox (10.03008pt too wide) in paragraph at lines 600--604
-\T1/ntxrx/m/n/12 Example: []\T1/ntxtt/m/n/12 ElSpec('egrid',logspace(log10(800)
-,log10(8e4),200)) 
+Overfull \hbox (10.28203pt too wide) in paragraph at lines 601--605
+\T1/ntxtlf/m/n/12 Example: [][]\T1/ntxtt/m/n/12 ElSpec('egrid',logspace(log10(8
+00),log10(8e4),200)) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 600--604
+Underfull \hbox (badness 10000) in paragraph at lines 601--605
 
  []
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 605--609
+Underfull \hbox (badness 10000) in paragraph at lines 606--610
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--613
+Underfull \hbox (badness 10000) in paragraph at lines 611--614
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 614--617
+Underfull \hbox (badness 10000) in paragraph at lines 615--618
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 618--622
+Underfull \hbox (badness 10000) in paragraph at lines 619--623
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 623--627
+Underfull \hbox (badness 10000) in paragraph at lines 624--628
 
  []
 
 [26]
-Underfull \hbox (badness 10000) in paragraph at lines 628--631
+Underfull \hbox (badness 10000) in paragraph at lines 629--632
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 639--642
+Underfull \hbox (badness 10000) in paragraph at lines 640--643
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 643--646
+Underfull \hbox (badness 10000) in paragraph at lines 644--647
 
  []
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 656--659
+Underfull \hbox (badness 10000) in paragraph at lines 661--664
 
  []
 
 
-Overfull \hbox (3.73009pt too wide) in paragraph at lines 660--663
-\T1/ntxrx/m/n/12 Example: []\T1/ntxtt/m/n/12 out=ElSpec('fitdir','myFitDir'); E
-lSpecPlot(out,2) 
+Overfull \hbox (3.98204pt too wide) in paragraph at lines 665--668
+\T1/ntxtlf/m/n/12 Example: [][]\T1/ntxtt/m/n/12 out=ElSpec('fitdir','myFitDir')
+; ElSpecPlot(out,2) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--667
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 668--671
+Underfull \hbox (badness 10000) in paragraph at lines 669--672
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 672--676
+Underfull \hbox (badness 10000) in paragraph at lines 673--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 677--680
+Underfull \hbox (badness 10000) in paragraph at lines 677--681
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 682--685
 
  []
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 681--684
+Underfull \hbox (badness 10000) in paragraph at lines 686--689
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 685--688
+Underfull \hbox (badness 10000) in paragraph at lines 690--693
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 689--692
+Underfull \hbox (badness 10000) in paragraph at lines 694--697
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--696
+Underfull \hbox (badness 10000) in paragraph at lines 698--701
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--700
+Underfull \hbox (badness 10000) in paragraph at lines 702--705
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 701--704
+Underfull \hbox (badness 10000) in paragraph at lines 706--709
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--708
+Underfull \hbox (badness 10000) in paragraph at lines 710--713
 
  []
 
-[29] [30]
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 724--727
+
+ []
+
+[30]
 Appendix B.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 734.
-(../license.txt
+nput line 747.
+(../LICENSE
 Overfull \hbox (18.00415pt too wide) in paragraph at lines 12--13
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -837,8 +1021,8 @@ Overfull \hbox (30.00427pt too wide) in paragraph at lines 13--14
  []
 
 
-Overfull \hbox (12.00409pt too wide) in paragraph at lines 14--15
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -852,8 +1036,8 @@ Overfull \hbox (30.00427pt too wide) in paragraph at lines 17--18
  []
 
 
-Overfull \hbox (12.00409pt too wide) in paragraph at lines 18--19
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
+[][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -896,14 +1080,14 @@ Overfull \hbox (36.00433pt too wide) in paragraph at lines 30--31
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+[31
 
+]
 Overfull \hbox (6.00403pt too wide) in paragraph at lines 33--34
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[31
 
-]
 Overfull \hbox (24.00421pt too wide) in paragraph at lines 34--35
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -984,8 +1168,8 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 63--64
  []
 
 
-Overfull \hbox (24.00421pt too wide) in paragraph at lines 64--65
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 64--65
+[][][][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -1018,12 +1202,12 @@ Overfull \hbox (30.00427pt too wide) in paragraph at lines 74--75
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
+[32]
 Overfull \hbox (12.00409pt too wide) in paragraph at lines 81--82
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
-[32]
+
 Overfull \hbox (30.00427pt too wide) in paragraph at lines 83--84
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1124,6 +1308,11 @@ Overfull \hbox (12.00409pt too wide) in paragraph at lines 117--118
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+[][][][][][][][][][][][][][][][][][][][][]
+ []
+
+
 Overfull \hbox (24.00421pt too wide) in paragraph at lines 119--120
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1148,7 +1337,7 @@ Overfull \hbox (24.00421pt too wide) in paragraph at lines 125--126
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
+[33]
 Overfull \hbox (30.00427pt too wide) in paragraph at lines 129--130
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1163,7 +1352,7 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 131--132
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[33]
+
 Overfull \hbox (18.00415pt too wide) in paragraph at lines 134--135
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1214,6 +1403,11 @@ Overfull \hbox (24.00421pt too wide) in paragraph at lines 149--150
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
+[][][][][][][][][][][][][][][][]
+ []
+
+
 Overfull \hbox (18.00415pt too wide) in paragraph at lines 152--153
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1234,8 +1428,8 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 157--158
  []
 
 
-Overfull \hbox (24.00421pt too wide) in paragraph at lines 159--160
-[][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
+[][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -1263,7 +1457,7 @@ Overfull \hbox (6.00403pt too wide) in paragraph at lines 174--175
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
+[34]
 Overfull \hbox (30.00427pt too wide) in paragraph at lines 175--176
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1283,14 +1477,19 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 180--181
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[34]
+
 Overfull \hbox (18.00415pt too wide) in paragraph at lines 181--182
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (6.00403pt too wide) in paragraph at lines 183--184
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
+[][][][][][][][][][][][][][][][][][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+[][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -1388,7 +1587,7 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 216--217
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
+[35]
 Overfull \hbox (30.00427pt too wide) in paragraph at lines 222--223
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1408,7 +1607,7 @@ Overfull \hbox (12.00409pt too wide) in paragraph at lines 229--230
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[35]
+
 Overfull \hbox (24.00421pt too wide) in paragraph at lines 230--231
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1439,8 +1638,8 @@ Overfull \hbox (48.00446pt too wide) in paragraph at lines 237--238
  []
 
 
-Overfull \hbox (36.00433pt too wide) in paragraph at lines 238--239
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+[][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -1449,8 +1648,8 @@ Overfull \hbox (42.0044pt too wide) in paragraph at lines 239--240
  []
 
 
-Overfull \hbox (24.00421pt too wide) in paragraph at lines 242--243
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
+[][][][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -1514,8 +1713,8 @@ Overfull \hbox (54.00452pt too wide) in paragraph at lines 260--261
  []
 
 
-Overfull \hbox (36.00433pt too wide) in paragraph at lines 261--262
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 261--262
+[][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -1534,16 +1733,16 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 264--265
  []
 
 
-Overfull \hbox (42.0044pt too wide) in paragraph at lines 265--266
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+[][][][][][][][][][][][][][][][][][][]
  []
 
 
-Overfull \hbox (24.00421pt too wide) in paragraph at lines 266--267
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+[][][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
-
+[36]
 Overfull \hbox (42.0044pt too wide) in paragraph at lines 267--268
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1588,7 +1787,7 @@ Overfull \hbox (24.00421pt too wide) in paragraph at lines 277--278
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[36]
+
 Overfull \hbox (24.00421pt too wide) in paragraph at lines 284--285
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1604,8 +1803,8 @@ Overfull \hbox (60.00458pt too wide) in paragraph at lines 286--288
  []
 
 
-Overfull \hbox (24.00421pt too wide) in paragraph at lines 288--289
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
+[][][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
@@ -1654,6 +1853,11 @@ Overfull \hbox (6.00403pt too wide) in paragraph at lines 302--303
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 303--304
+[][][][][][][][][][][][][][][][][][][][]
+ []
+
+
 Overfull \hbox (60.00458pt too wide) in paragraph at lines 306--307
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1673,7 +1877,7 @@ Overfull \hbox (30.00427pt too wide) in paragraph at lines 312--313
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
+[37]
 Overfull \hbox (72.0047pt too wide) in paragraph at lines 316--317
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1703,7 +1907,7 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 326--327
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[37]
+
 Overfull \hbox (42.0044pt too wide) in paragraph at lines 329--330
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1734,43 +1938,42 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 338--339
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 735.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 748.
  [38]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 735.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 748.
  (./ElSpec-manual.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 735.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 735.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 748.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 748.
 Package rerunfilecheck Info: File `ElSpec-manual.out' has not changed.
-(rerunfilecheck)             Checksum: 010BFC09329AA5788E389A605DCF0734;2134.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 735.
+(rerunfilecheck)             Checksum: 97F0AEE76B69C0407FA72DA0DEFAA7B6;2134.
  ) 
 Here is how much of TeX's memory you used:
- 10869 strings out of 493315
- 151735 string characters out of 6137904
- 343270 words of memory out of 5000000
- 13601 multiletter control sequences out of 15000+600000
- 95768 words of font info for 177 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 45i,9n,97p,815b,1708s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/newtx/ntxsups.pfb></usr/local/texlive
-/2013/texmf-dist/fonts/type1/public/newtx/rntxbmi.pfb></usr/local/texlive/2013/
-texmf-dist/fonts/type1/public/txfonts/rtxb.pfb></usr/local/texlive/2013/texmf-d
-ist/fonts/type1/public/newtx/rtxbmi-rev.pfb></usr/local/texlive/2013/texmf-dist
-/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2013/texmf-dist/fonts
-/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/
-public/txfonts/t1xbtt.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/txfonts/t1xtt.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/newt
-x/txex-bar.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/txfonts/t
-xex.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/txfonts/txmia.pf
-b></usr/local/texlive/2013/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr
-/local/texlive/2013/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/
-texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ElSpec-manual.pdf (39 pages, 922326 bytes).
+ 11976 strings out of 494299
+ 166006 string characters out of 6163396
+ 351785 words of memory out of 5000000
+ 14611 multiletter control sequences out of 15000+600000
+ 101238 words of font info for 160 fonts, out of 8000000 for 9000
+ 372 hyphenation exceptions out of 8191
+ 45i,9n,97p,850b,1714s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/ec.enc}{/usr/share/texliv
+e/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texlive/texmf-di
+st/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/n
+ewtx/ntx-ec-tlf.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ntx
+sups-Regular.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/s
+hare/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/p
+ublic/tex-gyre/qtmri.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newt
+x/rntxbmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rtxbmi-re
+v.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/txfonts/t1xbtt.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/t
+xfonts/txmia.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ElSpec-manual.pdf (39 pages, 977101 bytes).
 PDF statistics:
- 1030 PDF objects out of 1200 (max. 8388607)
- 959 compressed objects within 10 object streams
+ 1031 PDF objects out of 1200 (max. 8388607)
+ 961 compressed objects within 10 object streams
  517 named destinations out of 1000 (max. 500000)
  282 words of extra memory for PDF output out of 10000 (max. 10000000)
 

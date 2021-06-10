@@ -418,8 +418,12 @@ end
 
 
 % time step sizes
-out.dt = diff( out.te );
-out.dt = [out.dt(1);out.dt(:)];
+if length(out.te)==1
+    dt = out.te-out.ts(1);
+else
+    out.dt = diff( out.te );
+    out.dt = [out.dt(1);out.dt(:)];
+end
 
 % some dimensions and initializations
 nt = length(out.ts); % number of time steps

@@ -56,7 +56,7 @@ columns=flexible
 }
 
 
-\title{ElSpec \\
+\title{ELSPEC \\
 \author{Ilkka Virtanen\\
 Ionospheric Physics research unit\\ University of Oulu, Finland}
 \date{Version 0.1 \\ \today}                                           % Activate to display a given date or no date
@@ -115,20 +115,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 \section{ElSpec}
 
-ElSpec is a MATLAB toolbox for estimating differential energy flux of precipitating electrons from EISCAT incoherent scatter radar observations of ionospheric electron density. The ElSpec input data are analysis results from the standard EISCAT data analysis tool, GUISDAP. The input data may be GUISDAP raw densities, GUISDAP fit results, or both. The software assumes that the radar is in magnetic field-aligned position. Several different models of ion production, recombination, and ion composition are available. Also time-resolution and energy grid points can be selected by the user, the former within the limits set by EISCAT experiment design. 
+ELSPEC is a MATLAB toolbox for estimating differential energy flux of precipitating electrons from field-aligned EISCAT incoherent scatter radar observations of ionospheric electron density. The ELSPEC input data are analysis results from the standard EISCAT data analysis tool, GUISDAP. The input data may be GUISDAP raw densities, GUISDAP fit results, or both. %The software assumes that the radar is in magnetic field-aligned position.
+Electron density profiles from other than field-aligned directions are automatically excluded from the analysis. Several different models of ion production, recombination, and ion composition are available. Also time-resolution and energy grid points can be selected by the user, the former within the limits set by EISCAT experiment design. 
 
 
-ElSpec is an upgraded version of the electron energy spectrum estimation technique developed by Bj{\"o}rn Gustavsson, which was used in \citep{dahlgren2011}. The upgraded technique and validation results are published in \citep{virtanen2018}
+ELSPEC is an upgraded version of the electron energy spectrum estimation technique developed by Bj{\"o}rn Gustavsson, which was used in \citep{dahlgren2011}. The upgraded technique and validation results are published in \citep{virtanen2018}
 
 \section{System requirements}
 
-ElSpec has been run on both Mac and Linux with MATLAB2017b. Other reasonably recent MATLAB versions and other operating system will probably work as well. 
+ELSPEC has been run on Linux with MATLAB2021a. Other reasonably recent MATLAB versions and other operating system will probably work as well. 
 
-ElSpec uses the MATLAB implementation of the NRLMSISE-00 model in the Aerospace toolbox, atmosnrlmsise00. This version of ElSpec cannot be used without the Aerospace toolbox. 
+ELSPEC uses the MATLAB implementations of the NRLMSISE-00 model (atmosnrlmsise00) and IGRF (igrfmagm) in the Aerospace toolbox. This version of ELSPEC cannot be used without the Aerospace toolbox. 
 
 \section{Installation}
 
-ElSpec is distributed as a MATLAB toolbox. Add full path to the 'ElSpec' directory in your MATLAB search path or, if you received the package as an .mltbx-file, install it using the MATLAB toolbox installer (a double-click is typically enough).
+ELSPEC is distributed as a MATLAB toolbox. Add full path to the 'ELSPEC' directory in your MATLAB search path or, if you received the package as an .mltbx-file, install it using the MATLAB toolbox installer (a double-click is typically enough).
 
 
 \section{Help}\label{help}
@@ -138,7 +139,7 @@ Standard MATLAB help messages are available at least for the user interface func
 
 \section{Reference}
 
-In published scientific works using ElSpec, please refer to the paper:
+In published scientific works using ELSPEC, please refer to the paper:
 
 Ilkka I. Virtanen, Bj{\"o}rn Gustavsson, Anita Aikio, Antti Kero, Kazushi Asamura, and Yasunobu Ogawa, Electron energy spectrum and auroral power estimation from incoherent scatter radar measurements, J. Geophys. Res. Space Physics, 123, 6865-6887, 2018, \href{https://doi.org/doi:10.1029/2018JA025636}{doi:10.1029/2018JA025636}.
 %Ilkka I. Virtanen, Bj{\"o}rn Gustavsson, Anita Aikio, Antti Kero, Kazushi Asamura and Yasunobu Ogawa, Incoherent scatter observations of electron precipitation energy flux in the auroral ionosphere, J. Geophys. Res. Space Physics, ....
@@ -163,13 +164,13 @@ Incoherent scatter radars can observe electron density as function of time and a
 
 
 
-\section{ElSpec implementation}
+\section{ELSPEC implementation}
 
-Key points of the ElSpec inversion are \emph{analytic integration of the electron continuity equation}, \emph{fits with multiple models} of the spectrum shape, and \emph{model selection} by means of the Akaike information criterion. These are shortly outlined below. 
+Key points of the ELSPEC inversion are \emph{analytic integration of the electron continuity equation}, \emph{fits with multiple models} of the spectrum shape, and \emph{model selection} by means of the Akaike information criterion. These are shortly outlined below. 
 
 \subsection{Integration of the electron continuity equation}
 
-Input data to ElSpec are vectors of electron density at discrete height-gates $h_i$, sampled at times $t_j$, 
+Input data to ELSPEC are vectors of electron density at discrete height-gates $h_i$, sampled at times $t_j$, 
 \begin{equation}
 \bm{N}_j = \left(
 \begin{array}{c}
@@ -199,7 +200,7 @@ where $\bm{Q}_j$ is a vector of ion production rates, elements of the matrix $\b
 \end{equation}
 
 
-A key point in the ElSpec implementation is that the time-derivative of electron density $\partial N / \partial t$ is not explicitly calculated from data, but the software makes an iterative search to find the differential number flux $\bm{I}$ that leads to best match between the observed electron density and the analytic solution from Equation (\ref{eqContinuity}). Electron density as function of time, as solved from (\ref{eqContinuity}), is
+A key point in the ELSPEC implementation is that the time-derivative of electron density $\partial N / \partial t$ is not explicitly calculated from data, but the software makes an iterative search to find the differential number flux $\bm{I}$ that leads to best match between the observed electron density and the analytic solution from Equation (\ref{eqContinuity}). Electron density as function of time, as solved from (\ref{eqContinuity}), is
 \begin{equation}
 n(t) = \frac{ n(t_{j-1}) + \sqrt{Q_j/ \alpha_j}\tanh\left(\sqrt{\alpha_j Q_j} t\right) }{ 1 + \sqrt{\alpha_kQ_j}n(t_{j-1})\tanh\left(\sqrt{\alpha_j Q_j} t\right)} \quad, t_{j-1}\leq t \leq t_{j}.
 \label{eqNet}
@@ -225,11 +226,11 @@ Here $n(t)$ is the electron density and $n(t_{j-1})$ is the density at beginning
 
 \subsection{Spectrum models}
 
-The inverse problem in electron energy spectrum estimation is ill-posed in general, because large energy interval needs to be covered with rather high resolution, but typically only some tens of electron density observations are available for each time step. Regularizing information is thus needed, and this information is included in the form of parametric spectrum shape models in ElSpec. 
+The inverse problem in electron energy spectrum estimation is ill-posed in general, because large energy interval needs to be covered with rather high resolution, but typically only some tens of electron density observations are available for each time step. Regularizing information is thus needed, and this information is included in the form of parametric spectrum shape models in ELSPEC. 
 
 There is a variety of models one could potentially use. For example, Maxwellian and $\kappa$ distributions, as well as narrow- and wide-band accelerated spectra  are observed by satellites above and within the ionosphere. The original implementation in \cite{dahlgren2011} used an exponential of a spline expansion, with both the spline node locations and their amplitudes determined in the inversion. 
 
-ElSpec uses a slightly different polynomial model, because the model of \cite{dahlgren2011} reduces to a polynomial when number of spline nodes is small, which is almost always the case, and the polynomials are technically somewhat easier to control. The polynomial model is of the form
+ELSPEC uses a slightly different polynomial model, because the model of \cite{dahlgren2011} reduces to a polynomial when number of spline nodes is small, which is almost always the case, and the polynomials are technically somewhat easier to control. The polynomial model is of the form
 \begin{equation}
 I = \bm{E}\exp{\left(\sum_{l=0}^L{P_L(l)\bm{E}^l}\right)},
 \end{equation}
@@ -237,12 +238,12 @@ where $P_L$ is a vector of $L+1$ polynomial coefficients, which are the unknowns
 
 \subsection{Model selection}
 
-On each time-step, ElSpec runs a separate fit for each spectrum shape model with $L=1,2,\ldots,N_{max}$, where $N_{max}$ is typically between 5 and 10. The optimal one, which is then selected as the final estimate of the differential number flux, is then selected by means of the Akaike information criterion \citep[e.g.][]{burnham2002}.
+On each time-step, ELSPEC runs a separate fit for each spectrum shape model with $L=1,2,\ldots,N_{max}$, where $N_{max}$ is typically between 5 and 10. The optimal one, which is then selected as the final estimate of the differential number flux, is then selected by means of the Akaike information criterion \citep[e.g.][]{burnham2002}.
 
 
 \subsection{Error estimation}
 
-Error estimation in ElSpec is somewhat complicated, because the error in the modeled electron density in beginning of the integration must be taken into account. An error estimation based on an assumption of Gaussian error distributions and numerical derivatives of linearized theory in vicinity of the iteration convergence point is implemented. 
+Error estimation in ELSPEC is somewhat complicated, because the error in the modeled electron density in beginning of the integration must be taken into account. An error estimation based on an assumption of Gaussian error distributions and numerical derivatives of linearized theory in vicinity of the iteration convergence point is implemented. 
 
 \subsection{Derived parameters}
 
@@ -254,7 +255,7 @@ Several derived parameters and their error estimates are calculated from the dif
 
 ~
 
-\noindent{\bf Upward field aligned current} carried by the precipitating electrons is integrated from the differential number flux. However, this estimate might not reflect the true field-aligned current, because ElSpec cannot see either upward moving electrons or low-energy electrons (typically below 1~keV), whose contribution to the net current may be significant.
+\noindent{\bf Upward field aligned current} carried by the precipitating electrons is integrated from the differential number flux. However, this estimate might not reflect the true field-aligned current, because ELSPEC cannot see either upward moving electrons or low-energy electrons (typically below 1~keV), whose contribution to the net current may be significant.
 
 ~
 
@@ -264,14 +265,14 @@ Several derived parameters and their error estimates are calculated from the dif
 
 
 
-\chapter{ElSpec in practice}
+\chapter{ELSPEC in practice}
 
-The user interface to the ElSpec inversion is the function \verb|ElSpec|, which can be called with various optional parameters. The parameters, their default values, and examples of their use are listed in Appendix \ref{chapCommands}. This chapter explains most important parts of the analysis in more detail. 
+The user interface to the ELSPEC inversion is the function \verb|ElSpec|, which can be called with various optional parameters. The parameters, their default values, and examples of their use are listed in Appendix \ref{chapCommands}. This chapter explains most important parts of the analysis in more detail. 
 
 
 \section{The simplest example}
 
-The simplest, but typically suboptimal way to use ElSpec is to use standard fitted GUISDAP analysis results as input. Because the default setting are for EISCAT UHF beata experiment, more or less reasonable results will be produced if one cd's to a GUISDAP output directory of any field-aligned (CP1) UHF beata experiment and runs the command
+The simplest, but typically suboptimal way to use ELSPEC is to use standard fitted GUISDAP analysis results as input. Because the default setting are for EISCAT UHF beata experiment, more or less reasonable results will be produced if one cd's to a GUISDAP output directory of any field-aligned (CP1) UHF beata experiment and runs the command
 \begin{lstlisting}[style=myMATLAB]
 >> ElSpecOut = ElSpec('fitdir','.');
 \end{lstlisting}
@@ -284,7 +285,7 @@ The software will print its settings, including the output file name. The output
 
 \section{Input data}
 
-ElSpec can use two kinds of EISCAT data as input, 'normal' GUISDAP fit results and high-resolution 'raw densities' from two specific experiments, UHF beata and arc1.  The GUISDAP options for calculating the sufficient raw densities are given in Section \ref{secGUISDAP}. The different input options are explained in the following three subsections. 
+ELSPEC can use two kinds of EISCAT data as input, 'normal' GUISDAP fit results and high-resolution 'raw densities' from two specific experiments, UHF beata and arc1.  The GUISDAP options for calculating the sufficient raw densities are given in Section \ref{secGUISDAP}. The different input options are explained in the following three subsections. 
 
 \subsection{Both ppdir and fitdir are defined}
 
@@ -296,14 +297,14 @@ This combination is currently available only for EISCAT UHF 'beata' and 'arc1' e
 
 \subsection{Only fitdir is defined}
 
-If only \verb|fitdir| is defined but \verb|ppdir| is not, ElSpec reads both electron densities and electron temperatures from the same GUISDAP fit files. This option works with all EISCAT experiments, because the fit results are in a standard format. 
+If only \verb|fitdir| is defined but \verb|ppdir| is not, ELSPEC reads both electron densities and electron temperatures from the same GUISDAP fit files. This option works with all EISCAT experiments, because the fit results are in a standard format. 
 
 Notice that temperature estimation is typically not possible with very high time resolutions. If GUISDAP is set to fit only electron densities, the temperatures in GUISDAP output files will be from the IRI model. 
 
 
 \subsection{Only ppdir is defined}
 
-If only \verb|ppdir| is defined, ElSpec uses the raw electron densities in \verb|ppdir| and takes the electron temperature from a model. Depending on the selected ion recombination model, this model is either IRI or MSIS. In the latter case, electron temperature is assumed to be equal to the neutral temperature. 
+If only \verb|ppdir| is defined, ELSPEC uses the raw electron densities in \verb|ppdir| and takes the electron temperature from a model. Depending on the selected ion recombination model, this model is either IRI or MSIS. In the latter case, electron temperature is assumed to be equal to the neutral temperature. 
 
 The electron temperature is taken from the IRI model if it is needed for the recombination model. Recombination models (\verb|recombmodel|) using IRI are \verb|'Rees'|, \verb|'SheehanGr'| and \verb|'SheehanEx'| (the last one is probably not useful in practice).
 
@@ -320,18 +321,18 @@ analysis_ppshortlags=1
 analysis_pponly=1
 a_satch.do=0 
 \end{verbatim}
-The last one disables the GUISDAP satellite echo detection, which may sometimes cause problems with very high time resolutions. The analysis can be run also with the satellite check, but ElSpec cannot read in data files with data points missing due to satellite echo detections, and such files have to be manually removed. In addition, the analysis time-resolution should be matched with the EISCAT dump length, which is 4~s for UHF arc1 and 5~s for UHF beata. With these options the analysis does not produce the standard fitted parameters at all, but stores only the raw densities with highest available resolutions. ElSpec provides input routines for reading the experiment-specific GUISDAP outputs for UHF beata and arc1. 
+The last one disables the GUISDAP satellite echo detection, which may sometimes cause problems with very high time resolutions. The analysis can be run also with the satellite check, but ELSPEC cannot read in data files with data points missing due to satellite echo detections, and such files have to be manually removed. In addition, the analysis time-resolution should be matched with the EISCAT dump length, which is 4~s for UHF arc1 and 5~s for UHF beata. With these options the analysis does not produce the standard fitted parameters at all, but stores only the raw densities with highest available resolutions. ELSPEC provides input routines for reading the experiment-specific GUISDAP outputs for UHF beata and arc1. 
 
 Power calibration is most practical for the standard fit results. The 'magic constant' estimated with the standard fit can (and should) be used also for the raw density fits. 
 
 \section{Ion production models}
 
-ElSpec allows the user to select between two alternative ion production models. The first implementation used in \cite{dahlgren2011} used an ion production model by \citep{sergienko1993}, which can be selected with the \verb|ionomodel| parameter. The default model is from a more recent work by \citep{fang2010}. 
+ELSPEC allows the user to select between two alternative ion production models. The first implementation used in \cite{dahlgren2011} used an ion production model by \citep{sergienko1993}, which can be selected with the \verb|ionomodel| parameter. The default model is from a more recent work by \citep{fang2010}. 
 
 
 \section{Ion recombination models}
 
-The effective recombination coefficient $\alpha$ is a major issue in the energy spectrum inversion. The topic is problematic, because the coefficient depends on two poorly known things, the ion composition and the recombination coefficients of individual ion species. 
+The effective recombination coefficient $\alpha$ may be an issue in the energy spectrum inversion, because the coefficient depends on two poorly known things, the ion composition and the recombination coefficients of individual ion species. 
 
 The default choice is to use recombination speeds for ions in vibrational ground state from laboratory measurements \citep{sheehan2004} and assume that only NO$^+$ and O$_2^+$ ions, whose abundances are taken from IRI, are present.  The recombination coefficients are different from e.g. the widely used values by \cite{rees1989}, who did not provide different values for the vibrationally excited states. Although there is no practical means to monitor the vibrational state of the molecular ions, the excited states are short-lived in comparison to the ion recombination times, and wast majority of the ions should be in ground state. 
 
@@ -341,7 +342,7 @@ Altogether nine different options for the ion recombination model are currently 
 
 \section{Time resolution}
 
-ElSpec contains a build-in system for controlling the time-resolution according to ionospheric conditions. When electron density is high and recombination fast, the time resolution will automatically drop to the shortest one allowed by the data. When the recombination is slow the user can allow ElSpec to fit to longer periods fo data. The time resolution is determined for each time step and altitude separately, meaning that e.g. low densities at the upper E region may be analyzed with a coarser time resolution than the E region peak. 
+ELSPEC contains a build-in system for controlling the time-resolution according to ionospheric conditions. When electron density is high and recombination fast, the time resolution will automatically drop to the shortest one allowed by the data. When the recombination is slow the user can allow ElSpec to fit to longer periods fo data. The time resolution is determined for each time step and altitude separately, meaning that e.g. low densities at the upper E region may be analyzed with a coarser time resolution than the E region peak. 
 
 The adaptation to the recombination time is built in the system and cannot be directly accessed by the user. The adaptation is based on scaling the electron density variances according to the recombination time-scale, as explained in \cite{virtanen2018}. 
 
@@ -350,7 +351,7 @@ However, the user can control the maximum amount of data used in each fit with t
 
 \chapter{Examples}
 
-This chapter provides some practical examples of using ElSpec. 
+This chapter provides some practical examples of using ELSPEC. 
 
 \section{UHF beata with raw densities}
 
@@ -358,7 +359,7 @@ This chapter provides some practical examples of using ElSpec.
 \begin{center}
 \includegraphics[width=.49\textwidth]{guisdap1.png}
 \includegraphics[width=.49\textwidth]{guisdap2.png}
-\caption{Left: A GUISDAP GUI window with settings for a fit, which will produce the electron temperature estimates for ElSpec. Right: A GUISDAP GUI window with setting for a fit of the raw electron densities.}
+\caption{Left: A GUISDAP GUI window with settings for a fit, which will produce the electron temperature estimates for ELSPEC. Right: A GUISDAP GUI window with setting for a fit of the raw electron densities.}
 \label{figGUISDAP}
 \end{center}
 \end{figure}
@@ -368,7 +369,7 @@ This chapter provides some practical examples of using ElSpec.
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=\textwidth]{ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate_6_1_dump.png}
-\caption{ElSpec inversion results with the time dependent model and 5~s time resolution. }
+\caption{ELSPEC inversion results with the time dependent model and 5~s time resolution. }
 \label{figElSpecOut}
 \end{center}
 \end{figure}
@@ -376,7 +377,7 @@ This chapter provides some practical examples of using ElSpec.
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=\textwidth]{ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibrium_6_1_dump.png}
-\caption{ElSpec inversion results with the steady state model and 5~s time resolution. }
+\caption{ELSPEC inversion results with the steady state model and 5~s time resolution. }
 \label{figElSpecOutEquilibrium}
 \end{center}
 \end{figure}
@@ -384,16 +385,16 @@ This chapter provides some practical examples of using ElSpec.
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=\textwidth]{ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibrium_1_1_dump.png}
-\caption{ElSpec inversion results with the steady state model and 60~s time resolution using only the standard GUISDAP fit results.}
+\caption{ELSPEC inversion results with the steady state model and 60~s time resolution using only the standard GUISDAP fit results.}
 \label{figElSpecOutEquilibrium60s}
 \end{center}
 \end{figure}
 
-A default ElSpec use case is inversion of EISCAT UHF beata data, using both GUISDAP fits of all plasma parameters and raw electron densities. 
+A default ELSPEC use case is inversion of EISCAT UHF beata data, using both GUISDAP fits of all plasma parameters and raw electron densities. 
 
 First of all, a 'normal' GUISDAP fit with a rather coarse time resolution is needed. 60~s is typically enough for reasonable temperature estimation. The default height limits for temperature estimation are typically a bit high, and better electron temperature and density estimates can be gained if ion temperature is fitted above 80~km and the electron-to-ion temperature ratio above 103~km. The limits can be set with the GUISDAP \verb|fit_altitude| option. An example of a GUISDAP GUI is given on the left panel of Figure \ref{figGUISDAP}.
 
-After running the analysis, one should carefully calibrate the data, using either plasma lines or comparisons with the EISCAT dynasonde. For example, the dynasonde calibration can be done with the standard GUISDAP function \verb|calib_ne|. Notice that ElSpec is typically used in conditions, where E region may have strong ionization but the F region is empty, so it may be better to calibrate against the E region peak densities. Also, the dynasonde calibration should be made with a time period where the ionosphere is more or less stable. Another option is to use the plasma line data in beata, which is often available because the electron precipitation heats the electron gas. The plasma lines have the benefit that they are from the very same volume with the ion line data. 
+After running the analysis, one should carefully calibrate the data, using either plasma lines or comparisons with the EISCAT dynasonde. For example, the dynasonde calibration can be done with the standard GUISDAP function \verb|calib_ne|. Notice that ELSPEC is typically used in conditions, where E region may have strong ionization but the F region is empty, so it may be better to calibrate against the E region peak densities. Also, the dynasonde calibration should be made with a time period where the ionosphere is more or less stable. Another option is to use the plasma line data in beata, which is often available because the electron precipitation heats the electron gas. The plasma lines have the benefit that they are from the very same volume with the ion line data. 
 
 The calibration will suggest a 'Magic constant'. If the value is different from that used in the original analysis, the analysis should be run again with the correct magic constant. The calibration should be checked again after the second analysis run, but is typically OK at this point. If not, one more analysis run might be needed. 
 
@@ -412,7 +413,7 @@ After the GUISDAP analysis, we will have the 60~s fitted parameters and the 5~s 
 >> out=ElSpec('ppdir','2015-02-16_beata_5_rawNe@uhfa','fitdir','2015-02-16_beata_60@uhfa');
 \end{lstlisting}
 
-ElSpec will then print the license information\footnote{Only on the first call in each MATLAB session} and its settings. The listing is worth checking, especially when analyzing other EISCAT experiments than the default beata, to be sure that all default parameters match with the experiment at hand. \verb|ElSpec| reads all input data at once, which may take some time. When all data are read the result file name is printed, and information about each time step is printed while the inversion proceeds. An example of the output is given below. 
+ELSPEC will then print the license information\footnote{Only on the first call in each MATLAB session} and its settings. The listing is worth checking, especially when analyzing other EISCAT experiments than the default beata, to be sure that all default parameters match with the experiment at hand. \verb|ElSpec| reads all input data at once, which may take some time. When all data are read the result file name is printed, and information about each time step is printed while the inversion proceeds. An example of the output is given below. 
 
 
 
@@ -488,18 +489,18 @@ Will write results in:
 
 \end{lstlisting}
 
-With the default settings ElSpec will regularly update a plot of the inversions results, and will leave a plot of the final results open when the analysis is finished. The default axis limits used in this plot may not be the optimal ones. In this case we adjust the axis limits with
+With the default settings ELSPEC will regularly update a plot of the inversions results, and will leave a plot of the final results open when the analysis is finished. The default axis limits used in this plot may not be the optimal ones. In this case we adjust the axis limits with
 \begin{lstlisting}[style=myMATLAB]
 >> ElSpecPlot(out,'plim',[0 10],'faclim',[0 5],'elim',[1 20]);
 \end{lstlisting}
 
 The plot produced with this command is shown in Figure \ref{figElSpecOut}. The top panel is the observed raw electron density, followed by the density modeled in the inversion, the inverted differential energy flux, the upward field-aligned current, and the net energy flux. The bottom panel is $\chi^2$ of the fit. 
 
-Figure \ref{figElSpecOut} shows a relatively good match between the observed and modeled densities, but also reveals one key issue in the inversion. Clearly visible mismatch between the model and the observation is seen during sudden decreases in electron density around 23:11, 23:15, 23:28, etc., where the ElSpec recombination model does not allow the electrons to recombine as fast as the density decreases in the observed data. These issues are possibly related to ion convection -- the plasma may have moved out of the radar beam instead of recombining within the beam. 
+Figure \ref{figElSpecOut} shows a relatively good match between the observed and modeled densities, but also reveals one key issue in the inversion. Clearly visible mismatch between the model and the observation is seen during sudden decreases in electron density around 23:11, 23:15, 23:28, etc., where the ELSPEC recombination model does not allow the electrons to recombine as fast as the density decreases in the observed data. These issues are possibly related to ion convection -- the plasma may have moved out of the radar beam instead of recombining within the beam. 
 
 \section{UHF beata with a steady state model}
 
-The steady state assumption, i.e. the assumption that ion production and recombination are in balance during an analysis time step, is widely used in electron energy spectrum inversion. This option can be selected with the \verb|integtype| option of ElSpec. The same beata data can be analyzed with the steady state assumption using the command
+The steady state assumption, i.e. the assumption that ion production and recombination are in balance during an analysis time step, is widely used in electron energy spectrum inversion. This option can be selected with the \verb|integtype| option of ELSPEC. The same beata data can be analyzed with the steady state assumption using the command
 \begin{lstlisting}[style=myMATLAB]
 out=ElSpec('ppdir','2015-02-16_beata_5_rawNe@uhfa','fitdir', ...
              '2015-02-16_beata_60@uhfa','integtype','equilibrium');
@@ -516,7 +517,7 @@ The same data that was used in the two previous examples can be inverted in this
 out=ElSpec('fitdir','2015-02-16_beata_60@uhfa','integtype','equilibrium','ninteg',1);
 \end{lstlisting}
 
-Figure \ref{figElSpecOutEquilibrium60s} shows this inversion results. All fine details are missing, because they are averaged out in the 60~s GUISDAP fit. However, the main characteristics of the spectra are roughly still there. Also the estimates of the field-aligned current and the net power flux are reasonably close to the values from the higher resolution inversions. A clear difference to the previous examples are the $\chi^2$ estimates, which are much larger. This is possibly caused by inaccuracies in GUISDAP error estimation, but the actual cause has not been studied in detail. Also the default height resolution of the GUISDAP fit is slightly too coarse for ElSpec, and may have affected the results.
+Figure \ref{figElSpecOutEquilibrium60s} shows this inversion results. All fine details are missing, because they are averaged out in the 60~s GUISDAP fit. However, the main characteristics of the spectra are roughly still there. Also the estimates of the field-aligned current and the net power flux are reasonably close to the values from the higher resolution inversions. A clear difference to the previous examples are the $\chi^2$ estimates, which are much larger. This is possibly caused by inaccuracies in GUISDAP error estimation, but the actual cause has not been studied in detail. Also the default height resolution of the GUISDAP fit is slightly too coarse for ELSPEC, and may have affected the results.
 
 
 
@@ -543,7 +544,7 @@ NOTICE: either \verb|ppdir| or \verb|fitdir| must be defined.
 \item[fitdir] path to the 'standard' GUISDAP fit results.\\
 Default: []\\
 Example: \verb|ElSpec('ppdir','1900-01-02_beata_60@uhfa')|\\
-NOTICE: either \verb|ppdir| or \verb|fitdir| must be defined.
+NOTICE: either \verb|ppdir| or \verb|fitdir| must be defined. \verb|fitdir| can be also a full path to a Madrigal hdf5 file with EISCAT data. 
 
 \item[experiment] Name of the EISCAT experiment. The argument is used for selecting correct input routine for the raw densities, and is written in the output filename.\\
 Default: 'beata' \\
@@ -644,6 +645,10 @@ Example: \verb|ElSpec('nstep',2)|\\
 Default: false\\
 Example: \verb|ElSpec('saveiecov',1)|\\
 
+\item[FAdev] Maximum allowed deviation from field-aligned direction in degrees. \\
+Default: 3\\
+Example: \verb|ElSpec('FAdev',5)|
+
 \end{itemize}
 
 
@@ -716,6 +721,14 @@ Default: 1000\\
 Example: \verb|ElSpecPlot(out,'emin',500)|\\
 NOTICE: Error estimates of FAC and net power flux can be recalculated only if the full covariance matrix of the number flux is available (\verb|saveiecov| is \verb|true|) in \verb|ElSpec|. If the covariance matrix is not available, the estimates are plotted without error bars. 
 
+\item[fontsize] Font size in axis labels.\\
+Default: 8\\
+Example: \verb|ElSpecPlot(out,'fontsize',10)| \\
+
+\item[cutgaps] Logical, should white space be plotted on obvious data gaps?\\
+Default: true\\
+Example: \verb|ElSpecPlot(out,'cutgaps',false)|
+
 \end{itemize}
 %
 %
@@ -730,6 +743,6 @@ NOTICE: Error estimates of FAC and net power flux can be recalculated only if th
 \chapter{GNU General Public License}
 
 \footnotesize{\texttt{
-\lstinputlisting[language={}]{../license.txt}
+\lstinputlisting[language={}]{../LICENSE}
 }}
 \end{document}
