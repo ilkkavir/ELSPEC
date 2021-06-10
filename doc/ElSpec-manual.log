@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.20)  23 MAR 2020 09:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.2.3)  10 JUN 2021 11:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **ElSpec-manual.tex
 (./ElSpec-manual.tex
 LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 5 language(s) loaded.
+Babel <3.18> and hyphenation patterns for 31 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -721,7 +721,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <17.28> not available
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 17.28pt on input line 116.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 12.0pt on input line 121.
+(Font)              scaled to size 12.0pt on input line 122.
 [4
 
 ] [5]
@@ -730,21 +730,21 @@ Chapter 2.
 
 ]
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 170.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 171.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 170.
+(Font)              scaled to size 14.4pt on input line 171.
  [7] [8] [9]
 Chapter 3.
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 12.0pt on input line 269.
+(Font)              scaled to size 12.0pt on input line 270.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 275.
+(Font)              scaled to size 10.0pt on input line 276.
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 10.0pt on input line 275.
+(Font)              scaled to size 10.0pt on input line 276.
  [10
 
 ] [11]
@@ -753,12 +753,12 @@ Chapter 4.
 <guisdap1.png, id=293, 264.5082pt x 294.3798pt>
 File: guisdap1.png Graphic file (type png)
 <use guisdap1.png>
-Package pdftex.def Info: guisdap1.png  used on input line 359.
+Package pdftex.def Info: guisdap1.png  used on input line 360.
 (pdftex.def)             Requested size: 191.10214pt x 212.68546pt.
 <guisdap2.png, id=294, 264.5082pt x 294.3798pt>
 File: guisdap2.png Graphic file (type png)
 <use guisdap2.png>
-Package pdftex.def Info: guisdap2.png  used on input line 360.
+Package pdftex.def Info: guisdap2.png  used on input line 361.
 (pdftex.def)             Requested size: 191.10214pt x 212.68546pt.
 <ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate_6_1_
 dump.png, id=295, 489.9906pt x 692.3466pt>
@@ -767,10 +767,10 @@ _6_1_dump.png Graphic file (type png)
 <use ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate_
 6_1_dump.png>
 Package pdftex.def Info: ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_
-SheehanGr_integrate_6_1_dump.png  used on input line 370.
+SheehanGr_integrate_6_1_dump.png  used on input line 371.
 (pdftex.def)             Requested size: 390.0pt x 551.07849pt.
 
-LaTeX Warning: Float too large for page by 11.22849pt on input line 374.
+LaTeX Warning: Float too large for page by 11.22849pt on input line 375.
 
 <ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibrium_6_
 1_dump.png, id=296, 489.9906pt x 692.3466pt>
@@ -779,10 +779,10 @@ um_6_1_dump.png Graphic file (type png)
 <use ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibriu
 m_6_1_dump.png>
 Package pdftex.def Info: ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_
-SheehanGr_equilibrium_6_1_dump.png  used on input line 378.
+SheehanGr_equilibrium_6_1_dump.png  used on input line 379.
 (pdftex.def)             Requested size: 390.0pt x 551.07849pt.
 
-LaTeX Warning: Float too large for page by 11.22849pt on input line 382.
+LaTeX Warning: Float too large for page by 11.22849pt on input line 383.
 
 <ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibrium_1_
 1_dump.png, id=297, 489.9906pt x 692.3466pt>
@@ -791,36 +791,36 @@ um_1_1_dump.png Graphic file (type png)
 <use ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibriu
 m_1_1_dump.png>
 Package pdftex.def Info: ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_
-SheehanGr_equilibrium_1_1_dump.png  used on input line 386.
+SheehanGr_equilibrium_1_1_dump.png  used on input line 387.
 (pdftex.def)             Requested size: 390.0pt x 551.07849pt.
 
-LaTeX Warning: Float too large for page by 13.67648pt on input line 390.
+LaTeX Warning: Float too large for page by 13.67648pt on input line 391.
 
 [14
 
  <./guisdap1.png (PNG copy)> <./guisdap2.png (PNG copy)>]
-Overfull \hbox (87.74861pt too wide) in paragraph at lines 412--413
+Overfull \hbox (87.74861pt too wide) in paragraph at lines 413--414
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 LaTeX Font Info:    Try loading font information for T1+ntxsups on input line 4
-15.
+16.
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxsups.fd
 File: t1ntxsups.fd 2015/01/17 v1.0
 )
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 12.0pt on input line 415.
+(Font)              scaled to size 12.0pt on input line 416.
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 10.0pt on input line 415.
+(Font)              scaled to size 10.0pt on input line 416.
  [15]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.0pt on input line 419.
+(Font)              scaled to size 6.0pt on input line 420.
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 6.0pt on input line 419.
+(Font)              scaled to size 6.0pt on input line 420.
 LaTeX Font Info:    Font shape `T1/ntxtt/bx/n' will be
-(Font)              scaled to size 6.0pt on input line 423.
+(Font)              scaled to size 6.0pt on input line 424.
  [16] [17]
-Overfull \hbox (56.2487pt too wide) in paragraph at lines 516--517
+Overfull \hbox (56.2487pt too wide) in paragraph at lines 517--518
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -833,178 +833,183 @@ ilibrium_1_1_dump.png (PNG copy)>]) [22
 ]
 Appendix A.
 
-Underfull \hbox (badness 10000) in paragraph at lines 548--551
+Underfull \hbox (badness 10000) in paragraph at lines 549--552
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 552--555
+Underfull \hbox (badness 10000) in paragraph at lines 553--556
 
  []
 
 [23
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 556--558
+Underfull \hbox (badness 10000) in paragraph at lines 557--559
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 559--562
+Underfull \hbox (badness 10000) in paragraph at lines 560--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 563--566
+Underfull \hbox (badness 10000) in paragraph at lines 564--567
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 567--570
+Underfull \hbox (badness 10000) in paragraph at lines 568--571
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 571--574
+Underfull \hbox (badness 10000) in paragraph at lines 572--575
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 575--578
+Underfull \hbox (badness 10000) in paragraph at lines 576--579
 
  []
 
 [24]
-Underfull \hbox (badness 10000) in paragraph at lines 591--594
+Underfull \hbox (badness 10000) in paragraph at lines 592--595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 595--599
+Underfull \hbox (badness 10000) in paragraph at lines 596--600
 
  []
 
 
-Overfull \hbox (10.28203pt too wide) in paragraph at lines 600--604
+Overfull \hbox (10.28203pt too wide) in paragraph at lines 601--605
 \T1/ntxtlf/m/n/12 Example: [][]\T1/ntxtt/m/n/12 ElSpec('egrid',logspace(log10(8
 00),log10(8e4),200)) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 600--604
+Underfull \hbox (badness 10000) in paragraph at lines 601--605
 
  []
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 605--609
+Underfull \hbox (badness 10000) in paragraph at lines 606--610
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--613
+Underfull \hbox (badness 10000) in paragraph at lines 611--614
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 614--617
+Underfull \hbox (badness 10000) in paragraph at lines 615--618
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 618--622
+Underfull \hbox (badness 10000) in paragraph at lines 619--623
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 623--627
+Underfull \hbox (badness 10000) in paragraph at lines 624--628
 
  []
 
 [26]
-Underfull \hbox (badness 10000) in paragraph at lines 628--631
+Underfull \hbox (badness 10000) in paragraph at lines 629--632
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 639--642
+Underfull \hbox (badness 10000) in paragraph at lines 640--643
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 643--646
+Underfull \hbox (badness 10000) in paragraph at lines 644--647
 
  []
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 656--659
+Underfull \hbox (badness 10000) in paragraph at lines 661--664
 
  []
 
 
-Overfull \hbox (3.98204pt too wide) in paragraph at lines 660--663
+Overfull \hbox (3.98204pt too wide) in paragraph at lines 665--668
 \T1/ntxtlf/m/n/12 Example: [][]\T1/ntxtt/m/n/12 out=ElSpec('fitdir','myFitDir')
 ; ElSpecPlot(out,2) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--667
+Underfull \hbox (badness 10000) in paragraph at lines 669--672
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 668--671
+Underfull \hbox (badness 10000) in paragraph at lines 673--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 672--676
+Underfull \hbox (badness 10000) in paragraph at lines 677--681
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 677--680
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 681--684
+Underfull \hbox (badness 10000) in paragraph at lines 682--685
 
  []
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 685--688
+Underfull \hbox (badness 10000) in paragraph at lines 686--689
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 689--692
+Underfull \hbox (badness 10000) in paragraph at lines 690--693
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--696
+Underfull \hbox (badness 10000) in paragraph at lines 694--697
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--700
+Underfull \hbox (badness 10000) in paragraph at lines 698--701
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 701--704
+Underfull \hbox (badness 10000) in paragraph at lines 702--705
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--708
+Underfull \hbox (badness 10000) in paragraph at lines 706--709
 
  []
 
-[29] [30]
+
+Underfull \hbox (badness 10000) in paragraph at lines 710--713
+
+ []
+
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 724--727
+
+ []
+
+[30]
 Appendix B.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 734.
+nput line 747.
 (../LICENSE
 Overfull \hbox (18.00415pt too wide) in paragraph at lines 12--13
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
@@ -1933,22 +1938,32 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 338--339
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 735.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 748.
  [38]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 735.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 748.
  (./ElSpec-manual.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 735.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 735.
-Package rerunfilecheck Info: File `ElSpec-manual.out' has not changed.
-(rerunfilecheck)             Checksum: 010BFC09329AA5788E389A605DCF0734;2134.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 748.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 748.
+
+
+Package rerunfilecheck Warning: File `ElSpec-manual.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `ElSpec-manual.out':
+(rerunfilecheck)             Before: 010BFC09329AA5788E389A605DCF0734;2134
+(rerunfilecheck)             After:  97F0AEE76B69C0407FA72DA0DEFAA7B6;2134.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 11976 strings out of 494880
- 166006 string characters out of 6179600
- 350417 words of memory out of 5000000
- 14575 multiletter control sequences out of 15000+600000
+ 11976 strings out of 494299
+ 166006 string characters out of 6163396
+ 351785 words of memory out of 5000000
+ 14611 multiletter control sequences out of 15000+600000
  101238 words of font info for 160 fonts, out of 8000000 for 9000
- 36 hyphenation exceptions out of 8191
+ 372 hyphenation exceptions out of 8191
  45i,9n,97p,850b,1714s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/ec.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texlive/texmf-di
@@ -1965,7 +1980,7 @@ ist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/t
 xfonts/txmia.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ElSpec-manual.pdf (39 pages, 976542 bytes).
+Output written on ElSpec-manual.pdf (39 pages, 977099 bytes).
 PDF statistics:
  1031 PDF objects out of 1200 (max. 8388607)
  961 compressed objects within 10 object streams
