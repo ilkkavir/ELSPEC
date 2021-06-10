@@ -54,6 +54,7 @@ function ElSpecOut = ElSpec(varargin)
 %  nstep        number of ne-slices in each time-step, default 1
 %  saveiecov    logical, should the large covariance matrices of
 %               the flux estimates be saved? default false.
+%  FAdev        maximum beam direction deviation from field-aligned  [deg], default 3
 %
 % OUTPUT:
 %  ElSpecOut    A MATLAB structure with fields:...
@@ -166,7 +167,7 @@ checkPPdir = @(x) (exist(x,'dir')|isempty(x)|strcmp(x,'simu'));
 
 % plasma parameters
 defaultFitdir = [];
-checkFitdir = @(x) (exist(x,'dir')|isempty(x));
+checkFitdir = @(x) (exist(x,'dir')|isempty(x)|(exist(x,'file')&strcmp( x((end-4):end) ,'.hdf5')));
 
 % name of the experiment
 defaultExperiment = 'beata';
@@ -249,6 +250,10 @@ checkNstep = @(x) (isnumeric(x) & length(x)==1 & all(x>0));
 defaultSaveiecov = false;
 checkSaveiecov = @(x) ((isnumeric(x)|islogial(x))&length(x)==1);
 
+% use only field-aligned data?
+defaultFAdev = 3;
+checkFAdev = @(x) (isnumeric(x)&length(x)==1);
+
 % start time
 defaultBtime = [];
 
@@ -280,6 +285,7 @@ addParameter(p,'stdprior',defaultStdprior,checkStdprior);
 addParameter(p,'ninteg',defaultNinteg,checkNinteg);
 addParameter(p,'nstep',defaultNstep,checkNstep);
 addParameter(p,'saveiecov',defaultSaveiecov,checkSaveiecov);
+addParameter(p,'fadev',defaultFAdev,checkFAdev);
 parse(p,varargin{:})
 
 % warn about the ESR compositions
@@ -379,10 +385,14 @@ else
     if any(strcmp(out.recombmodel,{'SheehanGr','SheehanEx','Rees'}))
         readIRI = true;
     end
-    [out.h,out.ts,out.te,out.pp,out.ppstd,out.par,out.parstd,out.iri] = ...
+    [out.h,out.ts,out.te,out.pp,out.ppstd,out.par,out.parstd,out.iri,out.f107,out.f107a,out.f107p,out.ap,out.loc,out.azel,out.I] = ...
         readFitData( out.ppdir , out.fitdir , out.hmin , out.hmax , ...
                      out.btime , out.etime , out.experiment , out.radar , ...
-                     out.version , out.tres , readIRI);
+                     out.version , out.tres , readIRI, p.Results.fadev );
+end
+if isempty(out.h)
+    disp('No data')
+    return
 end
 % disp('************************************')
 % disp('TESTING with SIC composition, ElSpec, line 318!')
@@ -408,8 +418,12 @@ end
 
 
 % time step sizes
-out.dt = diff( out.te );
-out.dt = [out.dt(1);out.dt(:)];
+if length(out.te)==1
+    dt = out.te-out.ts(1);
+else
+    out.dt = diff( out.te );
+    out.dt = [out.dt(1);out.dt(:)];
+end
 
 % some dimensions and initializations
 nt = length(out.ts); % number of time steps
@@ -469,7 +483,7 @@ for tt = 1:out.nstep:nt-out.ninteg
     % Update the ion production matrix
     [A,Ec,dE] = ion_production( out.E , out.h*1000 , out.iri(:,4,tt) , ...
                                 out.iri(:,5,tt) , out.iri(:,6,tt) , out.iri(:,7,tt) , ...
-                                out.iri(:,1,tt) , out.ionomodel );
+                                out.iri(:,1,tt) , out.ionomodel , out.I);
     A(isnan(A)) = 0;
 
     % save an example of A on out
@@ -607,8 +621,8 @@ for tt = 1:out.nstep:nt-out.ninteg
                                                       1:locminAIC+1 , ...
                                                       tt ) , nmeaseff ...
                                                   );
-    end
-        
+    end        
+
     % flux covariance matrix
     out.IeCov(:,:,tt) = ElSpec_error_estimate_Ie( xCovar(1:locminAIC+1 ...
                                                       , 1:locminAIC+1) ...

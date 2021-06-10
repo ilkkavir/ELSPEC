@@ -1,8 +1,8 @@
-function [h,ts,te,pp,ppstd,par,parstd,loc] = readGUISDAPdata( ppdir , ...
+function [h,ts,te,pp,ppstd,par,parstd,loc,azel,I] = readGUISDAPdata( ppdir , ...
                                                   fitdir , hmin , ...
                                                   hmax , tmin , tmax ...
                                                   , exp , radar , ...
-                                                      version , tres ...
+                                                      version , tres , FAdev  ...
                                                       )
 %
 % Read GUISDAP raw densities (power profiles) and fit results from
@@ -10,7 +10,7 @@ function [h,ts,te,pp,ppstd,par,parstd,loc] = readGUISDAPdata( ppdir , ...
 %
 % [h,ts,te,pp,ppstd,par,parstd] =
 %    readGUISDAPdata( ppdir , fitdir , hmin , hmax , tmin , tmax , ...
-%    exp , radar , version )
+%    exp , radar , version , tres , FAdev)
 %
 %
 % INPUT:
@@ -26,6 +26,9 @@ function [h,ts,te,pp,ppstd,par,parstd,loc] = readGUISDAPdata( ppdir , ...
 %  radar   EISCAT radar name ['U','V']
 %  version EISCAT experiment version number [1,2,3,...]
 %  tres    "type" of time resolution 'best' or 'dump'
+%  FAdev   maximum beam direction deviation from field-aligned  [deg]
+%  azel    azimuth and elevation of the radar beam
+%  I       magnetic inclination angle (deg)
 %
 %
 % OUTPUT:
@@ -48,7 +51,13 @@ function [h,ts,te,pp,ppstd,par,parstd,loc] = readGUISDAPdata( ppdir , ...
 
 % a special case for empty ppdir
 if isempty(ppdir)
-    [hpar,ts,te,par,parstd,loc] = readGUISDAPpar( fitdir );
+    [hpar,ts,te,par,parstd,loc,azel,I] = readGUISDAPpar( fitdir , FAdev );
+    if isempty(hpar)
+        h = [];
+        pp = [];
+        ppstd = [];
+        return
+    end
     hind = hpar(:,1)>=hmin & hpar(:,1)<=hmax;
     if isempty(tmin)
         t1 = -Inf;
@@ -85,11 +94,25 @@ if isempty(ppdir)
 end
 
 % read power profiles
-[hpp,tspp,tepp,pp1,ppstd1,locpp] = readGUISDAPpp( ppdir , exp , radar , ...
-                                            version , tres );
+[hpp,tspp,tepp,pp1,ppstd1,locpp,azelpp,Ipp] = readGUISDAPpp( ppdir , exp , radar , ...
+                                            version , tres , FAdev );
 
 % read fit results
-[hpar,tspar,tepar,par1,parstd1,locpar] = readGUISDAPpar( fitdir );
+[hpar,tspar,tepar,par1,parstd1,locpar,azelpar,Ipar] = readGUISDAPpar( fitdir , FAdev );
+
+if isempty(hpp) | isempty(hpar)
+    h = [];
+    ts = [];
+    te = [];
+    pp = [];
+    ppstd = [];
+    par = [];
+    parstd = [];
+    loc = [];
+    azel = [];
+    I = [];
+    return
+end
 
 % pick the location
 loc = locpp;
@@ -112,6 +135,10 @@ if isempty(loc)
         error(['radar location not found from data files and unknown radar site' radar])
     end
 end
+% azimuth and elevation
+azel = azelpp;
+% magnetic inclination
+I = Ipp;
 
 % now we have data in different grids 
 

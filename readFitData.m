@@ -1,9 +1,9 @@
-function [h,ts,te,pp,ppstd,par,parstd,model] = readFitData( ppdir , ...
+function [h,ts,te,pp,ppstd,par,parstd,model,f107,f107a,f107p,ap,loc,azel,I] = readFitData( ppdir , ...
                                                   fitdir , hmin , ...
                                                   hmax , tmin , tmax ...
                                                   , exp  , radar , ...
                                                   version , tres , ...
-                                                      readIRI )
+                                                      readIRI , FAdev )
 %
 %  Read GUISDAP raw densities (power profiles), GUISDAP fit
 %  results, and model (IRI and MSIS) parameters.
@@ -26,7 +26,7 @@ function [h,ts,te,pp,ppstd,par,parstd,model] = readFitData( ppdir , ...
 %  version EISCAT experiment version number [1,2,3,...]
 %  tres    "type" of time resolution 'best' or 'dump'
 %  readIRI logical, do we read the tabulated IRI data at all
-%
+%  FAdev   maximum beam direction deviation from field-aligned  [deg], default 3
 %
 % OUTPUT:
 %  h       heights [km]
@@ -37,6 +37,13 @@ function [h,ts,te,pp,ppstd,par,parstd,model] = readFitData( ppdir , ...
 %  par     lenth(h)x4xlength(ts) array of plasma parameters
 %  parstd  standard deviations of the plasma parameters
 %  model   length(h) x 10 x length(ts) array of model parameters
+%  f107
+%  f107a
+%  f107p
+%  ap
+%  loc     radar coordinates (lat, lon) [deg]
+%  azel    radar beam azimuths and elevations [deg]
+%  I       magnetic inclination [deg]
 %
 % The four plasma parameters are Ne [m^-3],Ti [K], Te [k], and Vi
 % [ms^-1]. Failed iterations and results with chi-squared larger
@@ -61,18 +68,24 @@ if (hmax>150)
 end
 
 % read GUISDAP power profiles and fit results
-[h,ts,te,pp,ppstd,par,parstd,loc] = readGUISDAPdata( ppdir , ...
+[h,ts,te,pp,ppstd,par,parstd,loc,azel,I] = readGUISDAPdata( ppdir , ...
                                                   fitdir , hmin , ...
                                                   hmax , tmin , tmax ...
                                                   , exp , radar , ...
-                                                 version , tres );
+                                                 version , tres , FAdev );
 
 
 % collect the model data in an array
 model = NaN(length(h),10,length(ts));
+f107 = NaN(length(ts),1);
+f107a = NaN(length(ts),1);
+f107p = NaN(length(ts),1);
+ap = NaN(length(ts),1);
 for it=1:length(ts)
-    [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp] = modelParams( ...
+    [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp,f107it,f107ait,apit] = modelParams( ...
         (ts(it)+te(it))./2 , h , loc , readIRI );
+    [~,~,~,~,~,~,~,~,~,~,f107pit,~,~] = modelParams( ...
+        (ts(it)+te(it))./2-86400 , h , loc , readIRI );
     model(:,1,it) = Tn;
     model(:,2,it) = Ti;
     model(:,3,it) = Te;
@@ -83,6 +96,11 @@ for it=1:length(ts)
     model(:,8,it) = nNOp;
     model(:,9,it) = nO2p;
     model(:,10,it) = nOp;
+
+    f107(it) = f107it;
+    f107a(it) = f107ait;
+    f107p(it) = f107pit;
+    ap(it) = apit;
 end
 
 
@@ -100,7 +118,7 @@ par = fillmissing(par,'linear',1,'endvalues',NaN);
 % Ne
 %[i1,i2] = find(isnan(par(:,1,:)));
 
-% something is wrong here, ii1 and ii2 do not contain all NaN values!!!
+% replace the remaining NaN's with model values
 ii1 = i1(i3==1);
 ii2 = i2(i3==1);
 for inan = 1:length(ii1)
@@ -165,3 +183,5 @@ end
 % remove zero variances in pp...
 izerostd = ppstd<=0;
 ppstd(izerostd) = 1e12;
+end
+

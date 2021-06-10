@@ -1,8 +1,11 @@
-function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
-                                             version , tres )
+function [h,ts,te,pp,ppstd,loc,azel,I] = readGUISDAPpp( ppdir , exp , radar , ...
+                                             version , tres , FAdev )
 %
 % Read GUISDAP raw electron densities (power profiles) and their
 % standard deviations from files.
+%
+% [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar ,  version , tres , FAdev )
+%
 %
 % To calculate sufficient data with GUISDAP, use the options
 % analysis_ppshortlags=1
@@ -14,11 +17,13 @@ function [h,ts,te,pp,ppstd,loc] = readGUISDAPpp( ppdir , exp , radar , ...
 %  radar   name of the radar 'uhf', 'vhf' or 'esr'
 %  version experiment version number
 %  tres    "type" of time resolution 'best' or 'dump'
+%  FAdev   maximum beam direction deviation from field-aligned  [deg]
+%  azel    azimuth and elevation of the radar beam
+%  I       magnetic inclination angle (deg)
 %
 % Currently available combinations of exp,radar,version are
 %  'beata','u',1
 %  'arc1','u',1
-%  'arc1','u',2
 %
 % OUTPUT:
 %  h     heights [km]
@@ -69,11 +74,39 @@ switch lower(exp)
     error(['Experiment ' exp ' is not implemented in readGUISDAPpp']);
 end
 
+% remove other than field-aligned data
+
+%
+% local field-aligned direction in E region
+[~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(r_time(1,:)));
+FAele = abs(I);
+FAaz = D+180;
+if I<0
+    FAaz = D
+end
+while FAaz < 0
+    FAaz = FAaz + 360;
+end
+while FAaz > 360
+    FAaz = FAaz - 360;
+end
+
+% 3 degree tolerance to allow changes in field-direction...
+%    rminds = abs(mod(azel(:,1),360) - 187) > 3 | abs(abs(90-azel(:,2))-12.45) > 3;
+rminds = abs(mod(azel(:,1),360) - FAaz) > abs(FAdev) | abs(abs(90-azel(:,2))-(90-FAele)) > abs(FAdev);
+
+h(:,rminds) = [];
+ts(rminds) = [];
+te(rminds) = [];
+pp(:,rminds) = [];
+ppstd(:,rminds) = [];
+azel(rminds,:) = [];
+
 end
 
 
 
-function [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( ff , version ...
+function [h,ts,te,pp,ppstd,loc,azel,I] = readGUISDAPpp_beata_uhf( ff , version ...
                                                       , tres )
 %
 % [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( ff , version )
@@ -98,6 +131,7 @@ function [h,ts,te,pp,ppstd,loc,azel] = readGUISDAPpp_beata_uhf( ff , version ...
 %  loc   [latitude (deg north) longitude (deg east) height (km)]
 %        of the radar site
 %  azel  azimuth and elevation angles of the radar beam
+%  I       magnetic inclination angle (deg)
 %
 % IV 2016
 
