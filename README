@@ -3,6 +3,7 @@ ElSpec is a package for estimating power spectra of precipitating electrons
 from EISCAT data. The package is based on "ISR_Akaike_inversion" by Björn
 Gustavsson (bjorn.gustavsson@uit.no).
 
-The package uses GUISDAP "raw electron densities" as input.
+The package uses GUISDAP "raw electron densities" and/or fitted plasma parameters as input. 
+See doc/ElSpec-manual.pdf for instructions.
 
 Ilkka Virtanen June 2016-
