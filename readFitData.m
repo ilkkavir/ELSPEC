@@ -103,12 +103,15 @@ for it=1:length(ts)
     ap(it) = apit;
 end
 
+% no need to continue if there was no data
+if isempty(ts)
+    return
+end
 
 % replace NaN values with interpolation or model and large errors
 
 % find the NaN points, notice the order of the incides...
-[i1,i3,i2] = ind2sub(size(par),find(isnan(par))); % fix this!! find does not work
-                               % properly with 3d arrays!!!
+[i1,i3,i2] = ind2sub(size(par),find(isnan(par)));
 
 % first try to fill with linear interpolation in height, but excluding end points
 par = fillmissing(par,'linear',1,'endvalues',NaN);
