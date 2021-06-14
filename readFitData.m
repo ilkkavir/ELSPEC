@@ -81,6 +81,12 @@ f107 = NaN(length(ts),1);
 f107a = NaN(length(ts),1);
 f107p = NaN(length(ts),1);
 ap = NaN(length(ts),1);
+
+% no need to continue if there was no data
+if isempty(ts) | isempty(h)
+    return
+end
+
 for it=1:length(ts)
     [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp,f107it,f107ait,apit] = modelParams( ...
         (ts(it)+te(it))./2 , h , loc , readIRI );
@@ -101,11 +107,6 @@ for it=1:length(ts)
     f107a(it) = f107ait;
     f107p(it) = f107pit;
     ap(it) = apit;
-end
-
-% no need to continue if there was no data
-if isempty(ts)
-    return
 end
 
 % replace NaN values with interpolation or model and large errors
