@@ -8,9 +8,9 @@ function [h,ts,te,pp,ppstd,par,parstd,model,f107,f107a,f107p,ap,loc,azel,I] = re
 %  Read GUISDAP raw densities (power profiles), GUISDAP fit
 %  results, and model (IRI and MSIS) parameters.
 %
-% [h,ts,te,pp,ppstd,par,parstd,model] =
+% [h,ts,te,pp,ppstd,par,parstd,model,f107,f107a,f107p,ap,loc,azel.I] =
 %    readFitData( ppdir , fitdir , hmin , hmax , tmin , tmax  , exp
-%    , radar , version )
+%    , radar , version , tres , readIRI , FAdev)
 %
 % INPUT:
 %  ppdir   path to GUISDAP power profile data
@@ -50,9 +50,8 @@ function [h,ts,te,pp,ppstd,par,parstd,model,f107,f107a,f107p,ap,loc,azel,I] = re
 % than 10 are replaced with NaNs.
 %
 % The 10 model parameters are Tn [K],Ti [K] ,Te [K], nN2 [m^-3],
-% nO2 [m^-3], nO [m^-3], nNOp [m^-3], nO2p [m^-3], nOp [m^-3],
-% ncluster [m^-3], where 'n' refers to number density and 'p' to a
-% positive ion.
+% nO2 [m^-3], nO [m^-3], nAr[m^-3], nNOp [m^-3], nO2p [m^-3], nOp [m^-3],
+% where 'n' refers to number density and 'p' to a positive ion.
 %
 %
 % IV 2017

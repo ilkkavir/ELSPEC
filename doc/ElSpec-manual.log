@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.2.3)  10 JUN 2021 11:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.2.3)  26 AUG 2021 12:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1944,18 +1944,8 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 748.
  (./ElSpec-manual.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 748.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 748.
-
-
-Package rerunfilecheck Warning: File `ElSpec-manual.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `ElSpec-manual.out':
-(rerunfilecheck)             Before: 010BFC09329AA5788E389A605DCF0734;2134
-(rerunfilecheck)             After:  97F0AEE76B69C0407FA72DA0DEFAA7B6;2134.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `ElSpec-manual.out' has not changed.
+(rerunfilecheck)             Checksum: 97F0AEE76B69C0407FA72DA0DEFAA7B6;2134.
  ) 
 Here is how much of TeX's memory you used:
  11976 strings out of 494299
@@ -1980,7 +1970,7 @@ ist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/t
 xfonts/txmia.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ElSpec-manual.pdf (39 pages, 977099 bytes).
+Output written on ElSpec-manual.pdf (39 pages, 977117 bytes).
 PDF statistics:
  1031 PDF objects out of 1200 (max. 8388607)
  961 compressed objects within 10 object streams

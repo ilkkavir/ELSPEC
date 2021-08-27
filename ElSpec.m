@@ -34,7 +34,7 @@ function ElSpecOut = ElSpec(varargin)
 %  etime        Analysis end time [year,month,day,hour,minute,second]
 %  ionomodel    Ion production model, 'Fang' or 'Sergienko'. See details.
 %  recombmodel  Recombination model, 'Rees', 'ReesO2+', 'ReesN2+', 'ReesNO+',
-%               'SheehanGrO2+', 'SheehanGrN2+', 'SheehanGrNO+',
+%               'SheehanGrO2+', 'SheehanGrN2+', 'SheehanGrNO+', 'SheehanGrFlipchem'
 %               'delPozo1', or 'delPozo2'. See details.
 %  integtype   Type of continuity function integration, 'endNe',
 %              'integrate', or 'equilibrium'. See details.
@@ -89,7 +89,7 @@ function ElSpecOut = ElSpec(varargin)
 %  help ion_production_Fang2010
 %  for details.
 %
-%  Eight recombination models are implemented. 'Rees' is based on
+%  Nine recombination models are implemented. 'Rees' is based on
 %  ion abundances from IRI and values from Rees
 %  (1989). 'SheehanGr' uses values for ground state ions from
 %  Sheehan and St.-Maurice (2004). 'SheehanEx' uses values for
@@ -98,9 +98,10 @@ function ElSpecOut = ElSpec(varargin)
 %  pure O2+, N2+, adn NO+, correspondingly. 'SheehanGrO2+',
 %  'SheehanGrN2+' and 'SheehanGrNO+' are the corresponding Sheehan
 %  and St.-Maurice (2004) recombination rates for vibrational
-%  ground-states. 'delPozo1' and 'delPozo2' are simple analytic
-%  approximations. See
-%  help effective_recombination_rate
+%  ground-states. 'SheehanGrFlipchem' is Sheehan and St.-Maurice (2004)
+%  with ion composition from the flipchem model.
+%  'delPozo1' and 'delPozo2' are simple analytic approximations. See
+%   help effective_recombination_rate
 %  for details.
 %
 %  Three different methods for integrating the electron continuity
@@ -199,7 +200,8 @@ checkIonomodel = @(x) any(validatestring(x,validIonomodel));
 defaultRecombmodel = 'SheehanGr';
 validRecombmodel = {'SheehanGr','SheehanEx','Rees','ReesO2+', ...
                     'ReesN2+','ReesNO+','SheehanGrO2+', ...
-                    'SheehanGrN2+','SheehanGrNO+','delPozo1','delPozo2'};
+                    'SheehanGrN2+','SheehanGrNO+','SheehanGrFlipchem',...
+                    'delPozo1','delPozo2'};
 checkRecombmodel = @(x) any(validatestring(x,validRecombmodel));
 
 % type of integration
@@ -389,6 +391,9 @@ else
         readFitData( out.ppdir , out.fitdir , out.hmin , out.hmax , ...
                      out.btime , out.etime , out.experiment , out.radar , ...
                      out.version , out.tres , readIRI, p.Results.fadev );
+    if strcmp(out.recombmodel,'SheehanGrFlipchem')
+        out.iri = calculateFlipchemComposition(out.ts,out.h,out.par,out.loc,out.iri);
+    end
 end
 if isempty(out.h)
     disp('No data')

@@ -84,6 +84,11 @@ switch lower(type)
   case 'sheehangrno+'
     [a1,a2,a3] = recombination_rate( Te , 'SheehanGr' );
     alpha = a3;
+  case 'sheehangrflipchem'
+    [a1,a2,a3] = recombination_rate( Te , 'SheehanGr' );
+    alpha = sum( [a1 a2 a3] .* [O2p N2p NOp] , 2 );
+    % make sure that sum of ion abundances is 1
+    alpha = alpha ./ sum([O2p N2p NOp] , 2 );    
   case 'sheehanex'
     [a1,a2,a3] = recombination_rate( Te , 'SheehanEx' );
     alpha = sum( [a1 a2 a3] .* [O2p N2p NOp] , 2 );

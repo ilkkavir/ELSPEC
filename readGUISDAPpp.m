@@ -78,7 +78,7 @@ end
 
 %
 % local field-aligned direction in E region
-[~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(r_time(1,:)));
+[~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(datetime(mean(ts,'omitnan'),'convertfrom','posixtime')));
 FAele = abs(I);
 FAaz = D+180;
 if I<0
