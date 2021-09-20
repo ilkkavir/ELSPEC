@@ -80,7 +80,7 @@ if isempty(ppdir)
 
 
     % the guisdap error estimates are not good enough for us, try
-    % to calculate an ensamble average
+    % to calculate a samble average
     [d1 d2 d3] = size(parstd);
     for i1 = 1:d1
         for i3 = 1:d3

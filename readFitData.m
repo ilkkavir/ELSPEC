@@ -73,7 +73,6 @@ end
                                                   , exp , radar , ...
                                                  version , tres , FAdev );
 
-
 % collect the model data in an array
 model = NaN(length(h),10,length(ts));
 f107 = NaN(length(ts),1);

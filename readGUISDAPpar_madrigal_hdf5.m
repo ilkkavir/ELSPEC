@@ -31,6 +31,13 @@ function [h,ts,te,par,parstd,loc,azel,I] = readGUISDAPpar_madrigal_hdf5(madfile,
 % read the file contents
 maddata = h5read(madfile,'/Data/Table Layout');
 
+if ~isfield(maddata,'tr')
+   maddata.tr = maddata.te ./ maddata.ti;
+end
+if ~isfield(maddata,'dtr')
+   maddata.dtr = maddata.dte ./ maddata.ti + maddata.te./maddata.ti.^2 .*maddata.dte;
+end
+
 % radar location must be checked from the kinst code
 % Turns out that this functions works only with EISCAT data, but keeping the codes for future reference
 kinst = maddata.kinst(1);
@@ -99,13 +106,19 @@ for it=1:nt
     parstd(ih,2,it) = maddata.dti(its);
     par(ih,3,it) = maddata.tr(its);
     parstd(ih,3,it) = maddata.dtr(its);
-    par(ih,4,it) = maddata.vo(its);
-    parstd(ih,4,it) = maddata.dvo(its);
+    if isfield(maddata,'vo')
+       par(ih,4,it) = maddata.vo(its);
+       parstd(ih,4,it) = maddata.dvo(its);
+    end
     
 
     % remove failed iterations
     res = maddata.chisq(its);
-    status = maddata.gfit(its);
+    if isfield(maddata,'gfit')
+        status = maddata.gfit(its);
+    else
+      status = 0;
+    end
     failed = ((status ~= 0) & (status ~=3)) | ( res(:,1) > 30 );
     par(failed,:,it) = NaN;
     parstd(failed,:,it) = NaN;
@@ -140,6 +153,7 @@ end
 
 % FAdev degree tolerance to allow changes in field-direction...
 rminds = abs(mod(azel(:,1),360) - FAaz) > abs(FAdev) | abs(abs(90-azel(:,2))-(90-FAele)) > abs(FAdev);
+
 h(:,rminds) = [];
 ts(rminds) = [];
 te(rminds) = [];
@@ -147,17 +161,17 @@ par(:,:,rminds) = [];
 parstd(:,:,rminds) = [];
 azel(rminds,:) = [];
 
-% do not accept Ti < 50 or Ti > 300 K below 100 km altitude, or ne < 1e9 anywhere
+% do not accept Ti > 300 K below 100 km altitude, or ne < 1e9 or Ti < 50 anywhere
 [dim1 dim2] = size(h);
 for i1 = 1:dim1
     for i2 = 1:dim2
         if h(i1,i2) < 100
-            if par(i1,2,i2) < 50 | par(i1,2,i2) > 300
+            if  par(i1,2,i2) > 300
                 par(i1,:,i2) = NaN;
                 parstd(i1,:,i2) = NaN;
             end
         end
-        if par(i1,1,i2) < 1e9
+        if par(i1,1,i2) < 1e9 | par(i1,2,i2) < 50
             par(i1,:,i2) = NaN;
             parstd(i1,:,i2) = NaN;
         end

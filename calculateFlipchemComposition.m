@@ -1,4 +1,4 @@
-function modelout = calculateFlipchemComposition(ts,h,par,loc,modelin)
+function modelout = calculateFlipchemComposition(ts,h,par,pp,loc,modelin)
 %
 % model = calculateFlipchemComposition(ts,h,par,loc)
 %
@@ -27,9 +27,9 @@ function modelout = calculateFlipchemComposition(ts,h,par,loc,modelin)
         fc = py.flipchem.Flipchem(pydate);
         for ih = 1:length(h)
             galt = h(ih);
-            ne = par(ih,1,it);
-            ti = par(ih,2,it);
-            te = par(ih,3,it);
+	    ne = max(pp(ih,it),1e7);
+	    ti = max(par(ih,2,it),50);
+	    te = max(par(ih,3,it),50);
             outputs = fc.get_point(glat,glon,galt,ne,te,ti);
             outputsm = cell(outputs);
             modelout(ih,9,it) = outputsm{5}; % O2+

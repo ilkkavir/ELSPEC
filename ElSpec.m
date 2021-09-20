@@ -392,7 +392,7 @@ else
                      out.btime , out.etime , out.experiment , out.radar , ...
                      out.version , out.tres , readIRI, p.Results.fadev );
     if strcmp(out.recombmodel,'SheehanGrFlipchem')
-        out.iri = calculateFlipchemComposition(out.ts,out.h,out.par,out.loc,out.iri);
+    out.iri = calculateFlipchemComposition(out.ts,out.h,out.par,out.pp,out.loc,out.iri);
     end
 end
 if isempty(out.h)

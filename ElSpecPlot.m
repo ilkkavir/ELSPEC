@@ -242,12 +242,12 @@ ylabel(cbh1,{'N_e [m^{-3}] (meas.)'})
 
 h2=subplot(6,1,2);
 if strcmp(p.Results.neplot,'log')
-    ppOut = ElSpecOut.ne;
+    ppOut = real(ElSpecOut.ne); % Ne should be real, but we have seen imaginary parts with unrealistic inputs...
     ppOut(ppOut<1) = 1;
     pcolor(ts,hh,log10(ppOut)),shading flat
     caxis(p.Results.nelim)
 elseif strcmp(p.Results.neplot,'linear')
-    pcolor(ts,hh,ElSpecOut.ne),shading flat
+    pcolor(ts,hh,real(ElSpecOut.ne)),shading flat
     caxis(10.^(p.Results.nelim))
 else
     error(['Unknown neplot ',neplot])
