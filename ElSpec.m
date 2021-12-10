@@ -54,7 +54,9 @@ function ElSpecOut = ElSpec(varargin)
 %  nstep        number of ne-slices in each time-step, default 1
 %  saveiecov    logical, should the large covariance matrices of
 %               the flux estimates be saved? default false.
-%  FAdev        maximum beam direction deviation from field-aligned  [deg], default 3
+%  fadev        maximum beam direction deviation from field-aligned  [deg], default 3
+%  bottomstdfail standard deviation given for model Ne in the lowest observed gate when the
+%                guisdap fit has failed [m^-3], default 1e10
 %
 % OUTPUT:
 %  ElSpecOut    A MATLAB structure with fields:...
@@ -125,7 +127,15 @@ function ElSpecOut = ElSpec(varargin)
 %  pacakge, whereas the package IRI2016 can be requested from Ilkka
 %  Virtanen (ilkka.i.virtanen@oulu.fi).
 %
-% IV 2017, 2018
+%
+%  The bottomstdfail argument is used to suppress unrealistic high-energy
+%  peaks from the energy spectra when GUISDAP fits in the bottom part of the
+%  Ne profile have failed. It is usually safe to assume a very small electron density
+%  with a small variance, because the most common reason for failed fits in the
+%  bottom part is very low Ne. This parameter has no effect on analysis with
+%  power profile input, because there are no failed fits GUISDAP raw density data. 
+%
+% IV 2017, 2018, 2021
 %
 % Copyright I Virtanen <ilkka.i.virtanen@oulu.fi> and B Gustavsson <bjorn.gustavsson@uit.no>
 % This is free software, licensed under GNU GPL version 2 or later
@@ -256,6 +266,10 @@ checkSaveiecov = @(x) ((isnumeric(x)|islogial(x))&length(x)==1);
 defaultFAdev = 3;
 checkFAdev = @(x) (isnumeric(x)&length(x)==1);
 
+% standard deviation for model Ne in the lowest observed altitude when the guisdap fit has failed
+defaultBottomStdFail = 1e10;
+checkBottomStdFail = @(x) (isnumeric(x)&length(x)==1 & x>0);
+
 % start time
 defaultBtime = [];
 
@@ -288,6 +302,7 @@ addParameter(p,'ninteg',defaultNinteg,checkNinteg);
 addParameter(p,'nstep',defaultNstep,checkNstep);
 addParameter(p,'saveiecov',defaultSaveiecov,checkSaveiecov);
 addParameter(p,'fadev',defaultFAdev,checkFAdev);
+addParameter(p,'bottomstdfail',defaultBottomStdFail,checkBottomStdFail);
 parse(p,varargin{:})
 
 % warn about the ESR compositions
@@ -390,7 +405,7 @@ else
     [out.h,out.ts,out.te,out.pp,out.ppstd,out.par,out.parstd,out.iri,out.f107,out.f107a,out.f107p,out.ap,out.loc,out.azel,out.I] = ...
         readFitData( out.ppdir , out.fitdir , out.hmin , out.hmax , ...
                      out.btime , out.etime , out.experiment , out.radar , ...
-                     out.version , out.tres , readIRI, p.Results.fadev );
+                     out.version , out.tres , readIRI, p.Results.fadev , p.Results.bottomstdfail);
     if strcmp(out.recombmodel,'SheehanGrFlipchem')
     out.iri = calculateFlipchemComposition(out.ts,out.h,out.par,out.pp,out.loc,out.iri);
     end

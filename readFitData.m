@@ -3,7 +3,7 @@ function [h,ts,te,pp,ppstd,par,parstd,model,f107,f107a,f107p,ap,loc,azel,I] = re
                                                   hmax , tmin , tmax ...
                                                   , exp  , radar , ...
                                                   version , tres , ...
-                                                      readIRI , FAdev )
+                                                      readIRI , FAdev , BottomStdFail)
 %
 %  Read GUISDAP raw densities (power profiles), GUISDAP fit
 %  results, and model (IRI and MSIS) parameters.
@@ -27,6 +27,10 @@ function [h,ts,te,pp,ppstd,par,parstd,model,f107,f107a,f107p,ap,loc,azel,I] = re
 %  tres    "type" of time resolution 'best' or 'dump'
 %  readIRI logical, do we read the tabulated IRI data at all
 %  FAdev   maximum beam direction deviation from field-aligned  [deg], default 3
+%  BottomStdFail Standard deviation given for the model Ne in the lowest observed gate when
+%                the GUISDAP fit has failed. 
+%
+%
 %
 % OUTPUT:
 %  h       heights [km]
@@ -185,5 +189,18 @@ end
 % remove zero variances in pp...
 izerostd = ppstd<=0;
 ppstd(izerostd) = 1e12;
+
+
+% If variance 1e12 was put to the lowest gate, assume that Ne must have been small and put
+% there a smaller variance to avoid unrealistic Ne profiles when the bottom part is very noisy
+% do this in the lowest gate from which we have at least one measurement
+ilow = 1;
+while all(ppstd(ilow,:)==1e12)
+    ilow = ilow + 1;
 end
 
+ppstd(ilow,ppstd(ilow,:)==1e12) = BottomStdFail;
+
+
+
+end

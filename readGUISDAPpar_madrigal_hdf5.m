@@ -161,7 +161,9 @@ par(:,:,rminds) = [];
 parstd(:,:,rminds) = [];
 azel(rminds,:) = [];
 
-% do not accept Ti > 300 K below 100 km altitude, or ne < 1e9 or Ti < 50 anywhere
+
+
+% do not accept Ti > 300 K below 100 km altitude or Ti < 50 K anywhere. If Ne < 1e9, keep the electron densities but do not use the temperatures
 [dim1 dim2] = size(h);
 for i1 = 1:dim1
     for i2 = 1:dim2
@@ -171,13 +173,16 @@ for i1 = 1:dim1
                 parstd(i1,:,i2) = NaN;
             end
         end
-        if par(i1,1,i2) < 1e9 | par(i1,2,i2) < 50
+        if par(i1,2,i2) < 50
             par(i1,:,i2) = NaN;
             parstd(i1,:,i2) = NaN;
         end
+        if par(i1,1,i2) < 1e9 
+            par(i1,2:end,i2) = NaN;
+            parstd(i1,2:end,i2) = NaN;
+        end
     end
 end
-
 
 end
 
