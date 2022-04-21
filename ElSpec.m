@@ -50,7 +50,7 @@ function ElSpecOut = ElSpec(varargin)
 %                work... use empty array to skip the prior...
 %  stdprior
 %  ninteg       number of ne-profiles to use in each integration
-%               period, default 2
+%               period, default 6
 %  nstep        number of ne-slices in each time-step, default 1
 %  saveiecov    logical, should the large covariance matrices of
 %               the flux estimates be saved? default false.
