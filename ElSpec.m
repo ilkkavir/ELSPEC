@@ -305,13 +305,6 @@ addParameter(p,'fadev',defaultFAdev,checkFAdev);
 addParameter(p,'bottomstdfail',defaultBottomStdFail,checkBottomStdFail);
 parse(p,varargin{:})
 
-% warn about the ESR compositions
-if strcmp(p.Results.radar,'esr')
-    disp(['WARNING: ElSpec calculates the ion and neutral compositions ' ...
-          'with EISCAT Tromso coordinates, the compositions may be ' ...
-          'incorrect for the ESR radar'])
-end
-
 %out = struct;
 
 % collect all the inputs to the output list
@@ -409,6 +402,19 @@ else
     if strcmp(out.recombmodel,'SheehanGrFlipchem')
     out.iri = calculateFlipchemComposition(out.ts,out.h,out.par,out.pp,out.loc,out.iri);
     end
+    % warn about the ESR compositions
+    if strcmp(p.Results.radar,'esr')
+        if readIRI
+            disp(['WARNING: With the selected recombination model ElSpec calculates the ion  compositions ' ...
+                  'with EISCAT Tromso coordinates, the compositions may be ' ...
+                  'incorrect for the ESR radar'])
+            % disp(['WARNING: ElSpec calculates the ion and neutral compositions ' ...
+            %       'with EISCAT Tromso coordinates, the compositions may be ' ...
+            %       'incorrect for the ESR radar'])
+        end
+    end
+
+
 end
 if isempty(out.h)
     disp('No data')

@@ -36,6 +36,8 @@ function fignum = ElSpecPlot(ElSpecOut,varargin)
 %              'saveiecov','false' in ElSpec.
 %    cutgaps   logical, should white space be plotted on obvious
 %              data gaps. Default true
+%    visible   figure visibility. Use 'on' to plot on a visible device,
+%              'off' to avoid opening a figure window. Default 'on'
 %
 %
 % IV 2016, 2017, 2018
@@ -91,6 +93,9 @@ checkNeplot = @(x) any(validatestring(x,validNeplot));
 defaultCutgaps = 1;
 checkCutgaps = @(x) (islogical(x)|isnumeric(x));
 
+defaultVisible = 'on';
+checkVisible = @(x) (ischar(x)); % this is enough,the option will be checked by figure()
+
 if isfield(ElSpecOut,'Emin')
     defaultEmin = ElSpecOut.Emin;
 elseif isfield(ElSpecOut,'emin')
@@ -117,6 +122,7 @@ addParameter(p,'fluxtype',defaultFluxtype,checkFluxtype)
 addParameter(p,'neplot',defaultNeplot,checkNeplot)
 addParameter(p,'emin',defaultEmin,checkEmin)
 addParameter(p,'cutgaps',defaultCutgaps,checkCutgaps)
+addParameter(p,'visible',defaultVisible,checkVisible)
 parse(p,ElSpecOut,varargin{:})
 
 
@@ -212,15 +218,16 @@ end
 fignum = p.Results.fignum;
 
 if fignum>0
-    figure(fignum);
-    figpos = get(gcf,'Position');
+    fh = figure(fignum,'visible',p.Results.visible);
+    figpos = get(fh,'Position');
 else
-    figtmp = figure;
-    fignum = figtmp.Number;
+    fh = figure;
+    fignum = fh.Number;
     figpos = [0 0 21/29.7*690 690];
+    set(fh,'visible',p.Results.visible);
 end
 figpos(3:4) = [21/29.7*690 690];
-set(gcf,'Position',figpos,'PaperPositionMode','Auto');
+set(fh,'Position',figpos,'PaperPositionMode','Auto');
 colormap(jet);
 
 h1=subplot(6,1,1);
