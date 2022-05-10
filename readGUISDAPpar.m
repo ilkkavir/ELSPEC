@@ -34,26 +34,74 @@ if strcmp(fileextension,'.hdf5')
     [h,ts,te,par,parstd,loc,azel,I] = readGUISDAPpar_madrigal_hdf5(fitdir,FAdev);
     return
 end
+
+mergedfile = false;
+if isdir(fitdir)
+    % list GUISDAP output files
+    fp = listGUISDAPfiles( fitdir );
     
-% list GUISDAP output files
-fp = listGUISDAPfiles( fitdir );
+    % if no files available
+    if isempty(fp)
+        h=[];
+        ts=[];
+        te=[];
+        par=[];
+        parstd=[];
+        loc=[];
+        return
+    end
+    
+    % number of files
+    nf = length(fp);
+    
+    % load the first file to get initial matrix dimensions
+    load(fp{1});
+else
+    mergedfile = true;
+    % this must be a merged matlab file
+    try
+        fnames = sort(fieldnames(matfile(fitdir)));
+    catch
+        % if cannot list the file contents
+        h=[];
+        ts=[];
+        te=[];
+        par=[];
+        parstd=[];
+        loc=[];
+        return
+    end
 
-% if no files available
-if isempty(fp)
-    h=[];
-    ts=[];
-    te=[];
-    par=[];
-    parstd=[];
-    loc=[];
-    return
+    l = 1;
+    flist = [];
+    for k=1:length(fnames)
+        fname = char(fnames(k));
+        if length(fname)==12
+            if fname(1:4)=='data'
+                flist(l).file = str2num(fname(5:12));
+                flist(l).fname = fullfile(fileparts(fitdir),[fname(5:12) '.mat']);
+                l = l+1;
+            end
+        end
+    end
+    nf = length(flist);
+    if nf==0
+        % if no files available
+        h=[];
+        ts=[];
+        te=[];
+        par=[];
+        parstd=[];
+        loc=[];
+        return
+    end
+    fname = ['data' flist(1).fname((end-11):(end-4))];
+    tmpdata = getfield(load(fitdir,fname),fname);
+    filefields = fieldnames(tmpdata);
+    for ii=1:length(filefields)
+        eval([char(filefields(ii)) '=tmpdata.' char(filefields(ii)) ';']);
+    end
 end
-
-% number of files
-nf = length(fp);
-
-% load the first file to get initial matrix dimensions
-load(fp{1});
 nh = length(r_h);
 
 loc = r_XMITloc;
@@ -67,7 +115,16 @@ azel = NaN(nf,2);
 
 for k=1:nf
 
-    load(fp{k});
+    if ~mergedfile
+        load(fp{k});
+    else
+        fname = ['data' flist(k).fname((end-11):(end-4))];
+        tmpdata = getfield(load(fitdir,fname),fname);
+        filefields = fieldnames(tmpdata);
+        for ii=1:length(filefields)
+            eval([char(filefields(ii)) '=tmpdata.' char(filefields(ii)) ';']);
+        end
+    end
 
     % start and end times of integration, converted into unix time
     ts(k) = date2unixtime(r_time(1,:));

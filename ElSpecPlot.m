@@ -218,13 +218,12 @@ end
 fignum = p.Results.fignum;
 
 if fignum>0
-    fh = figure(fignum,'visible',p.Results.visible);
+    fh = figure(fignum);
     figpos = get(fh,'Position');
 else
-    fh = figure;
+    fh = figure('visible',p.Results.visible);
     fignum = fh.Number;
     figpos = [0 0 21/29.7*690 690];
-    set(fh,'visible',p.Results.visible);
 end
 figpos(3:4) = [21/29.7*690 690];
 set(fh,'Position',figpos,'PaperPositionMode','Auto');

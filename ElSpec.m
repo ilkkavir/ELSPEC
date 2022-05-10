@@ -178,7 +178,7 @@ checkPPdir = @(x) (exist(x,'dir')|isempty(x)|strcmp(x,'simu'));
 
 % plasma parameters
 defaultFitdir = [];
-checkFitdir = @(x) (exist(x,'dir')|isempty(x)|(exist(x,'file')&strcmp( x((end-4):end) ,'.hdf5')));
+checkFitdir = @(x) (exist(x,'dir')|isempty(x)|(exist(x,'file')&strcmp( x((end-4):end) ,'.hdf5'))|(exist(x,'file')&strcmp( x((end-3):end) ,'.mat')));
 
 % name of the experiment
 defaultExperiment = 'beata';
