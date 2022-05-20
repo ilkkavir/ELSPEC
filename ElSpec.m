@@ -490,11 +490,11 @@ fms_opts.TolFun=1e-8;
 fms_opts.TolX=1e-8;
 
 % name of the output file
-outfilename = ['ElSpec_',datestr(datetime(round(out.ts(1)), ...
+out.outputfile = ['ElSpec_',datestr(datetime(round(out.ts(1)), ...
                                             'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'-',datestr(datetime(round(out.te(end)),'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'_',out.experiment,'_',out.radar,'_',out.ionomodel,'_',out.recombmodel,'_',out.integtype,'_',num2str(out.ninteg),'_',num2str(out.nstep),'_',out.tres,'_',datestr(datetime('now'),'yyyymmddTHHMMSS'),'.mat'];
 
 
-fprintf('Will write results in:\n %s\n',outfilename);
+fprintf('Will write results in:\n %s\n',out.outputfile);
 
 % save interval is 100 step, independently from the time resolution
 ndtsave = 100;%ceil(mean(120./out.dt));
@@ -763,7 +763,7 @@ for tt = 1:out.nstep:nt-out.ninteg
 
     if tt==1 | any(mod(tt:tt+out.nstep-1,ndtsave)==0 )
         try
-            save(outfilename,'ElSpecOut','-v7.3');
+            save(out.outputfile,'ElSpecOut','-v7.3');
         catch
             ;
         end
@@ -781,7 +781,7 @@ for tt = 1:out.nstep:nt-out.ninteg
     end
 end
 try
-    save(outfilename,'ElSpecOut','-v7.3');
+    save(out.outputfile,'ElSpecOut','-v7.3');
 catch
     ;
 end
