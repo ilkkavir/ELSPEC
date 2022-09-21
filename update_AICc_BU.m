@@ -1,5 +1,5 @@
 function AIC = update_AICc(ne,stdne,ne0,A,alpha,dt,X0,E,dE, ...
-                           integtype,IePrior,stdPrior , nmeas,eType,eWidth,varargin)
+                           integtype,IePrior,stdPrior , nmeas)
 %
 % Calculate corrected Akaike information criterion value for model
 % value of the  next electron density profile.
@@ -20,8 +20,6 @@ function AIC = update_AICc(ne,stdne,ne0,A,alpha,dt,X0,E,dE, ...
 %             ('endNe','integrate',or 'equilibrium')
 %  IePrior    Apriori flux
 %  stdPrior   standard deviation of the apriori
-%  eType      type of error distribution: 's', 'n', 't', or 'l'.
-%  eWidht     width of transition from normal to long-tailed distribution in units of sigma
 %
 %
 % OUTPUT:
@@ -29,49 +27,19 @@ function AIC = update_AICc(ne,stdne,ne0,A,alpha,dt,X0,E,dE, ...
 %
 %
 % IV 2017
-% BG 2022
 %
 % Copyright I Virtanen <ilkka.i.virtanen@oulu.fi> and B Gustavsson <bjorn.gustavsson@uit.no>
 % This is free software, licensed under GNU GPL version 2 or later
 
-n_t = numel(dt);
-
 % the high-resolution spectrum
-if nargin < 16 || isempty(varargin{1})
-  for it4s = size(X0,1):-1:1
-    s(it4s,:) = model_spectrum( X0(it4s,:) , E );
-  end
-else
-  s_type = varargin{1};
-  t = cumsum(dt);
-  if size(X0,1)> 1
-    Xend = X0(1,:).*X0(2,:);
-  else
-    Xend = X0(1,:);
-  end
-  for it4s = numel(dt):-1:1
-    X_curr = X0(1,:) + (t(it4s)-t(1))/(t(end)-t(1))*(Xend - X0(1,:));
-    s(it4s,:) = model_spectrum( X_curr, E, s_type );
-  end
-end
+s = model_spectrum( X0 , E );
+
 % the updated model ne profile
 if strcmp(integtype,'equilibrium')
     nemod = integrate_continuity_equation(ne0(:),s(:),dt(1),A,dE(: ...
                                                       ),alpha(:),integtype);
     nemeas = ne(:,1);
     stdmeas = stdne(:,1);
-elseif strcmp(integtype,'equilibriumavg')
-  ninteg = length(dt);
-  nemod = NaN(length(ne0),ninteg);
-  neEnd = NaN(length(ne0),ninteg);
-  nemod(:,1) = integrate_continuity_equation(ne0(:),s(1,:)',dt(1),A,dE(:),alpha(:,1),'equilibrium');
-  if ninteg > 1
-    for tt=2:ninteg
-      nemod(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(1,:)',dt(tt),A,dE(:),alpha(:,min(end,tt)),'equilibrium');
-    end
-  end
-  nemeas = ne;
-  stdmeas = stdne;
 else
     switch lower(integtype)
       case 'endne'
@@ -89,12 +57,12 @@ else
     ninteg = length(dt);
     nemod = NaN(length(ne0),ninteg);
     neEnd = NaN(length(ne0),ninteg);
-    nemod(:,1) = integrate_continuity_equation(ne0(:),s(1,:)',dt(1),A,dE(:),alpha(:,1),integtype);
-    neEnd(:,1) = integrate_continuity_equation(ne0(:),s(1,:)',dt(1),A,dE(:),alpha(:,1),integ_type_end);
+    nemod(:,1) = integrate_continuity_equation(ne0(:),s(:),dt(1),A,dE(:),alpha(:),integtype);
+    neEnd(:,1) = integrate_continuity_equation(ne0(:),s(:),dt(1),A,dE(:),alpha(:),integ_type_end);
     if ninteg > 1
         for tt=2:ninteg
-            nemod(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(min(end,tt),:)',dt(tt),A,dE(:),alpha(:,min(end,tt)),integtype);
-            neEnd(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(min(end,tt),:)',dt(tt),A,dE(:),alpha(:,min(end,tt)),integ_type_end);
+            nemod(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(:),dt(tt),A,dE(:),alpha(:),integtype);
+            neEnd(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(:),dt(tt),A,dE(:),alpha(:),integ_type_end);
         end
     end
     nemeas = ne;
@@ -103,18 +71,10 @@ end
 
 % the information criterion value
 %AIC = AICc( nemeas(:) , stdmeas(:).^2 , nemod(:) , length(X0) , length(nemeas(:)) );
-% AIC = AICc( nemeas(:) , stdmeas(:).^2 , nemod(:) , length(X0) , ...
-%            nmeas, eType,eWidth );
-%AIC = AICc( nemeas(:) , stdmeas(:).^2 , nemod(:) , numel(X0) , ...
-%            nmeas, eType,eWidth );
-nParams = size(X0,2).*max(1,size(X0,1)/2);
-AIC = AICc( nemeas(:) , stdmeas(:).^2 , nemod(:) , nParams , ...
-            nmeas, eType,eWidth );
-% Ougth to be numel(X0) above: BG-20220630?
+AIC = AICc( nemeas(:) , stdmeas(:).^2 , nemod(:) , length(X0) , nmeas );
 
 % slight regularization for all coefficients
-AIC = AIC + sum(X0.^2./1e5.*10.^[1:size(X0,2)],'all') - ...
-      diff(s(end-1:end)).*(diff(s(end-1:end))<0);
+AIC = AIC + sum(X0.^2./1e5.*10.^[1:length(X0)]);
 
 %% the spectrum should go to zero at the high energy end
 %AIC = AIC + s(end)^2;

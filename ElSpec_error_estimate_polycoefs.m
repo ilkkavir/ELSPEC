@@ -1,14 +1,15 @@
-function  covar = ElSpec_error_estimate_polycoefs( pp , ppstd , ne0 , ne0cov, A, alpha , dt , Ec , dE , integtype , IePrior , stdPrior , polycoefs,nmeaseff)
+function  covar = ElSpec_error_estimate_polycoefs( pp , ppstd , ne0 , ne0cov, A, alpha , dt , Ec , dE , integtype , IePrior , stdPrior , polycoefs,nmeaseff,eType,ewidth)
 %
 % Estimate posterior covariance of the polynomial coefficients and ne0.
 % Consider both ne0 and polycoefs as unknowns, and calculate
 % Gaussian error estimates from finite-difference approximation
 % of the Hessian matrix.
 %
-% covar = ElSpec_error_estimate_polycoefs( pp , ppstd , ne0 , ne0cov, A, alpha , dt , Ec , dE , integ_type_tt , IePrior , stdPrior , polycoefs)
+% covar = ElSpec_error_estimate_polycoefs( pp , ppstd , ne0 , ne0cov, A, alpha , dt , Ec , dE , integ_type_tt , IePrior , stdPrior , polycoefs , nmeaseff , etype , ewidth)
 %
 %
 % IV 2017
+% GB 2022
 %
 % Copyright I Virtanen <ilkka.i.virtanen@oulu.fi> and B Gustavsson <bjorn.gustavsson@uit.no>
 % This is free software, licensed under GNU GPL version 2 or later
@@ -62,22 +63,22 @@ for nn = 1:k%nx-1
         % chi-squared at points par([nn,ll]) + dpar([nn,ll])
         par = param;
         par([nn,ll]) = par([nn,ll]) + dpar([nn,ll]);
-        H(nn,ll) = H(nn,ll) + ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff);
+        H(nn,ll) = H(nn,ll) + ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff,eType,ewidth);
 
         % chi-squared at points par([nn,ll]) - dpar([nn,ll])
         par = param;
         par([nn,ll]) = par([nn,ll]) - dpar([nn,ll]);
-        H(nn,ll) = H(nn,ll) + ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff);
+        H(nn,ll) = H(nn,ll) + ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff,eType,ewidth);
 
         %
         par = param;
         par([nn,ll]) = par([nn,ll]) + [dpar(nn) , -dpar(ll)];
-        H(nn,ll) = H(nn,ll) - ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff);
+        H(nn,ll) = H(nn,ll) - ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff,eType,ewidth);
 
         %
         par = param;
         par([nn,ll]) = par([nn,ll]) + [-dpar(nn) , dpar(ll)];
-        H(nn,ll) = H(nn,ll) - ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff);
+        H(nn,ll) = H(nn,ll) - ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff,eType,ewidth);
 
         % normalization
         H(nn,ll) = H(nn,ll) / (4 * dpar(nn) * dpar(ll));
@@ -90,17 +91,17 @@ H = H + H';
 
 % chi-squared at the iteration end point
 par = param;
-chisqr0 = ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff);
+chisqr0 = ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff,eType,ewidth);
 
 % the main diagonal
 for nn=1:k%nx
     par = param;
     par(nn) = par(nn) + dpar(nn);
-    H(nn,nn) = H(nn,nn) + ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff);
+    H(nn,nn) = H(nn,nn) + ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff,eType,ewidth);
 
     par = param;
     par(nn) = par(nn) - dpar(nn);
-    H(nn,nn) = H(nn,nn) + ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff);
+    H(nn,nn) = H(nn,nn) + ElSpec_fitfun(par(1:k),pp,ppstd,par(k+1:end),A,alpha,dt,Ec,dE,integtype,IePrior,stdPrior,nmeaseff,eType,ewidth);
 
     H(nn,nn) = H(nn,nn) - 2*chisqr0;
 

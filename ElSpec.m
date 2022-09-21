@@ -57,6 +57,13 @@ function ElSpecOut = ElSpec(varargin)
 %  fadev        maximum beam direction deviation from field-aligned  [deg], default 3
 %  bottomstdfail standard deviation given for model Ne in the lowest observed gate when the
 %                guisdap fit has failed [m^-3], default 1e10
+%  errtype     assumed error distribution. 's' or 'n' for normal distribution,
+%              't' for tanh-weighting, 'l' for log-weighting. Default 's'.
+%  errwidth     sigma-width of transition to long-tailed error distribution. Default 3.
+%               this has no effect if errtype is 's' or 'n'.
+%  outfilename  a string that defines the output file. defalt '' generates a standard output string that is differnt for each run. 
+%
+%
 %
 % OUTPUT:
 %  ElSpecOut    A MATLAB structure with fields:...
@@ -136,6 +143,7 @@ function ElSpecOut = ElSpec(varargin)
 %  power profile input, because there are no failed fits GUISDAP raw density data. 
 %
 % IV 2017, 2018, 2021
+% BG 2022
 %
 % Copyright I Virtanen <ilkka.i.virtanen@oulu.fi> and B Gustavsson <bjorn.gustavsson@uit.no>
 % This is free software, licensed under GNU GPL version 2 or later
@@ -262,10 +270,6 @@ checkNstep = @(x) (isnumeric(x) & length(x)==1 & all(x>0));
 defaultSaveiecov = false;
 checkSaveiecov = @(x) ((isnumeric(x)|islogial(x))&length(x)==1);
 
-% use only field-aligned data?
-defaultFAdev = 3;
-checkFAdev = @(x) (isnumeric(x)&length(x)==1);
-
 % standard deviation for model Ne in the lowest observed altitude when the guisdap fit has failed
 defaultBottomStdFail = 1e10;
 checkBottomStdFail = @(x) (isnumeric(x)&length(x)==1 & x>0);
@@ -278,6 +282,36 @@ defaultEtime = [];
 
 % function for checking the time limits
 checkTlim = @(x) (isnumeric(x) & length(x)==6 & all(x>=0));
+
+% Type of neg-log-likelihood-function
+% For normal-distributed errors standard least-squares fitting is
+% appropriate, for this choise use 's' or 'n'. For more
+% heavy-tailed noise-distributions use a Lorentzian ('l') or tanh ('t')
+% weighting function with a width-parameter specifying at how many
+% sigma the error-distribution starts to significantly deviate from
+% a Gaussian (typically 3-4?)
+defaultErrType = 's';
+validErrType = {'s','n','t','l'}; % for standard, tanh-weighting, log-weighting
+checktErrType = @(x) any(validatestring(x,validErrType));
+
+% sigma-width of transition to long-tailed residfual distribution
+% for the robust fitting AICc
+defaultErrWidth = 3;
+checktErrWidth = @(x) (length(x)==1 & all(x>=1));
+
+% Outlier-settings (add outliers to data for testing purposes)
+% no outliers added if the fifth value is 1.
+defaultOutliers = ones(1,5);
+checkOutliers = @(x) (all(isnumeric(x)) & size(x,2)==5 & size(x,1)>=1 & all(x(:)>0));
+
+% Outfilename-settings
+defaultOutfilename = '';
+checkOutfilename = @(x) isstring(x)| ischar(x);
+
+% use only field-aligned data?
+defaultFAdev = 3;
+checkFAdev = @(x) (isnumeric(x)&length(x)==1);
+
 
 addParameter(p,'btime',defaultBtime,checkTlim);
 addParameter(p,'etime',defaultEtime,checkTlim);
@@ -303,6 +337,10 @@ addParameter(p,'nstep',defaultNstep,checkNstep);
 addParameter(p,'saveiecov',defaultSaveiecov,checkSaveiecov);
 addParameter(p,'fadev',defaultFAdev,checkFAdev);
 addParameter(p,'bottomstdfail',defaultBottomStdFail,checkBottomStdFail);
+addParameter(p,'ErrType',defaultErrType,checktErrType);
+addParameter(p,'ErrWidth',defaultErrWidth,checktErrWidth);
+addParameter(p,'Outliers',defaultOutliers,checkOutliers);
+addParameter(p,'Outfilename',defaultOutfilename,checkOutfilename);
 parse(p,varargin{:})
 
 %out = struct;
@@ -420,28 +458,17 @@ if isempty(out.h)
     disp('No data')
     return
 end
-% disp('************************************')
-% disp('TESTING with SIC composition, ElSpec, line 318!')
-% disp('************************************')
-% %load('/Users/ilkkavir/Documents/EISCAT_LAB/ElectronPrecipitationSpectra/SIC_composition/Ilkalle_composition.mat');
-% load('Ilkalle_composition.mat');
-% tsic = posixtime(datetime(t,'convertfrom','datenum'));
-% %interpolate to the correct height grid
-% O2p = zeros(length(out.h),length(tsic));
-% Op = zeros(length(out.h),length(tsic));
-% NOp = zeros(length(out.h),length(tsic));
-% for indd = 1:length(tsic)
-%    O2p(:,indd) = interp1(Hgt,O2plus(:,indd),out.h,'linear','extrap');
-%    Op(:,indd) = interp1(Hgt,Oplus(:,indd),out.h,'linear','extrap');
-%    NOp(:,indd) = interp1(Hgt,NOplus(:,indd),out.h,'linear','extrap');
-% end
-% %interplation in time
-% for indd = 1:length(out.h)
-%    out.iri(indd,8,:) = interp1(tsic,NOp(indd,:),out.ts,'linear','extrap');
-%    out.iri(indd,9,:) = interp1(tsic,O2p(indd,:),out.ts,'linear','extrap');
-%    out.iri(indd,10,:) = interp1(tsic,Op(indd,:),out.ts,'linear','extrap');
-% end
 
+if any(isfinite(out.Outliers))
+  for i1 = 1:size(out.Outliers,1)
+    i1_1 = out.Outliers(i1,1);
+    i1_2 = out.Outliers(i1,2);
+    i2_1 = out.Outliers(i1,3);
+    i2_2 = out.Outliers(i1,4);
+    C = out.Outliers(i1,5);
+    out.pp(i1_1:i1_2,i2_1:i2_2) = out.pp(i1_1:i1_2,i2_1:i2_2)*C;
+  end
+end
 
 % time step sizes
 if length(out.te)==1
@@ -481,6 +508,12 @@ out.FACstd = NaN(1,nt);
 out.Pe = NaN(1,nt);
 out.PeStd = NaN(1,nt);
 
+% differential number flux, differential energy flux, and peak energy
+% Nlux will be a copy of Ie, but also Ie is kept for backward compatibility
+out.Nflux = NaN(nE,nt);
+out.Eflux = NaN(nE,nt);
+out.E0 = NaN(1,nt);
+
 % options for the MATLAB fit routines
 fms_opts = optimset('fminsearch');
 fms_opts.Display = 'off';%'off';%'final';
@@ -490,11 +523,30 @@ fms_opts.TolFun=1e-8;
 fms_opts.TolX=1e-8;
 
 % name of the output file
-out.outputfile = ['ElSpec_',datestr(datetime(round(out.ts(1)), ...
-                                            'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'-',datestr(datetime(round(out.te(end)),'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'_',out.experiment,'_',out.radar,'_',out.ionomodel,'_',out.recombmodel,'_',out.integtype,'_',num2str(out.ninteg),'_',num2str(out.nstep),'_',out.tres,'_',datestr(datetime('now'),'yyyymmddTHHMMSS'),'.mat'];
+%out.outfilename = ['ElSpec_',datestr(datetime(round(out.ts(1)), ...
+%                                            'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'-',datestr(datetime(round(out.te(end)),'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'_',out.experiment,'_',out.radar,'_',out.ionomodel,'_',out.recombmodel,'_',out.integtype,'_',num2str(out.ninteg),'_',num2str(out.nstep),'_',out.tres,'_',datestr(datetime('now'),'yyyymmddTHHMMSS'),'.mat'];
 
+% name of the output file
+if isempty(out.Outfilename)
+    outfilename = ['ElSpec_',...
+                   datestr(datetime(round(out.ts(1)),'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'-',...
+                   datestr(datetime(round(out.te(end)),'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'_',...
+                   out.experiment,'_',...
+                   out.radar,'_',...
+                   out.ionomodel,'_',...
+                   out.recombmodel,'_',...
+                   out.integtype,'_',...
+                   num2str(out.ninteg),'_',...
+                   num2str(out.nstep),'_',...
+                   out.tres,'_',...
+                   datestr(datetime('now'),'yyyymmddTHHMMSS'),'.mat'];
+    
+else
+    outfilename = out.Outfilename;
+end
+out.outfilename = outfilename;
 
-fprintf('Will write results in:\n %s\n',out.outputfile);
+fprintf('Will write results in:\n %s\n',out.outfilename);
 
 % save interval is 100 step, independently from the time resolution
 ndtsave = 100;%ceil(mean(120./out.dt));
@@ -597,13 +649,13 @@ for tt = 1:out.nstep:nt-out.ninteg
                 p , out.pp(:,tt:tt+out.ninteg-1) , stdppfit , ne0 , A , ...
                 out.alpha(:,tt) , out.dt(tt:tt+out.ninteg-1) , out.Ec , ...
                 out.dE , integ_type_tt , out.ieprior(:,tt) , out.stdprior(:,tt) ...
-                , nmeaseff) , X0 , fms_opts);
+                , nmeaseff,out.ErrType,out.ErrWidth) , X0 , fms_opts);
         % the normal fit
         else
             [x,fval,exitflag,output] = fminsearch( @(p) ElSpec_fitfun( ...
                 p , out.pp(:,tt:tt+out.ninteg-1) , stdppfit , ne0 , A , ...
                 out.alpha(:,tt) , out.dt(tt:tt+out.ninteg-1) , out.Ec , ...
-                out.dE , integ_type_tt , [] , [] , nmeaseff ...
+                out.dE , integ_type_tt , [] , [] , nmeaseff,out.ErrType,out.ErrWidth ...
                 ) , X0 , fms_opts);
         end
 
@@ -633,7 +685,7 @@ for tt = 1:out.nstep:nt-out.ninteg
                                                   , out.stdprior(:,tt) , out.polycoefs( ...
                                                       locminAIC , ...
                                                       1:locminAIC+1 , ...
-                                                      tt ) , nmeaseff ...
+                                                      tt ) , nmeaseff, out.ErrType,out.ErrWidth ...
                                                   );
     else
         xCovar = ElSpec_error_estimate_polycoefs( out.pp(:,tt:tt+out.ninteg-1) ...
@@ -645,7 +697,7 @@ for tt = 1:out.nstep:nt-out.ninteg
                                                   , [] , out.polycoefs( ...
                                                       locminAIC , ...
                                                       1:locminAIC+1 , ...
-                                                      tt ) , nmeaseff ...
+                                                      tt ) , nmeaseff, out.ErrType,out.ErrWidth ...
                                                   );
     end        
 
@@ -744,6 +796,14 @@ for tt = 1:out.nstep:nt-out.ninteg
                                                     Eind_fac,tt+istep) ...
                                     * EdE ) * 1.60217662e-19;
 
+
+        % Nflux, Eflux and E0
+        out.Nflux(:,tt+istep) = out.Ie(:,tt+istep);
+        out.Eflux(:,tt+istep) = out.Nflux(:,tt+istep) .* out.Ec(:);
+        [EfMax,iMax] = max(out.Eflux(:,tt+istep));
+        out.E0(tt+istep) = out.Ec(iMax);
+        
+
     end
 
     tstamp = datestr(datenum(datetime((out.te(tt) + out.ts(tt))/2,'ConvertFrom','posixtime')));
@@ -763,7 +823,7 @@ for tt = 1:out.nstep:nt-out.ninteg
 
     if tt==1 | any(mod(tt:tt+out.nstep-1,ndtsave)==0 )
         try
-            save(out.outputfile,'ElSpecOut','-v7.3');
+            save(out.outfilename,'ElSpecOut','-v7.3');
         catch
             ;
         end
@@ -781,7 +841,7 @@ for tt = 1:out.nstep:nt-out.ninteg
     end
 end
 try
-    save(out.outputfile,'ElSpecOut','-v7.3');
+    save(out.outfilename,'ElSpecOut','-v7.3');
 catch
     ;
 end
