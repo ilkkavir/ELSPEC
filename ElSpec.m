@@ -481,6 +481,12 @@ out.FACstd = NaN(1,nt);
 out.Pe = NaN(1,nt);
 out.PeStd = NaN(1,nt);
 
+% differential number flux, differential energy flux, and peak energy
+% Nlux will be a copy of Ie, but also Ie is kept for backward compatibility
+out.Nflux = NaN(nE,nt);
+out.Eflux = NaN(nE,nt);
+out.E0 = NaN(1,nt);
+
 % options for the MATLAB fit routines
 fms_opts = optimset('fminsearch');
 fms_opts.Display = 'off';%'off';%'final';
@@ -743,6 +749,12 @@ for tt = 1:out.nstep:nt-out.ninteg
         out.PeStd(tt+istep) = sqrt( EdE' * out.IeCov(Eind_fac, ...
                                                     Eind_fac,tt+istep) ...
                                     * EdE ) * 1.60217662e-19;
+
+        % Nflux, Eflux and E0
+        out.Nflux(:,tt+istep) = out.Ie(:,tt+istep);
+        out.Eflux(:,tt+istep) = out.Nflux(:,tt+istep) .* out.Ec(:);
+        [EfMax,iMax] = max(out.Eflux(:,tt+istep));
+        out.E0(tt+istep) = out.Ec(iMax);
 
     end
 
