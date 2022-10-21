@@ -29,4 +29,5 @@
 \contentsline {chapter}{\numberline {A}Command reference}{23}{appendix.A}
 \contentsline {section}{\numberline {A.1}ElSpec}{23}{section.A.1}
 \contentsline {section}{\numberline {A.2}ElSpecPlot}{28}{section.A.2}
-\contentsline {chapter}{\numberline {B}GNU General Public License}{31}{appendix.B}
+\contentsline {chapter}{\numberline {B}Output file structure}{31}{appendix.B}
+\contentsline {chapter}{\numberline {C}GNU General Public License}{34}{appendix.C}

@@ -123,7 +123,7 @@ ELSPEC is an upgraded version of the electron energy spectrum estimation techniq
 
 \section{System requirements}
 
-ELSPEC has been run on Linux with MATLAB2021a. Other reasonably recent MATLAB versions and other operating system will probably work as well. 
+ELSPEC has been run on Linux with MATLAB2021b and earlier versions. Other reasonably recent MATLAB versions and other operating system will probably work as well. 
 
 ELSPEC uses the MATLAB implementations of the NRLMSISE-00 model (atmosnrlmsise00) and IGRF (igrfmagm) in the Aerospace toolbox. This version of ELSPEC cannot be used without the Aerospace toolbox. 
 
@@ -259,7 +259,7 @@ Several derived parameters and their error estimates are calculated from the dif
 
 ~
 
-\noindent{\bf Net energy flux} of the precipitation is integrated from the differential energy flux. These estimates are accurate, because contribution of the low-energy electrons is very small. The net energy flux estimates have been found to be very accurate even if the shape of the differential energy flux is not. 
+\noindent{\bf Auroral power} (integral energy flux) of the precipitation is integrated from the differential energy flux. These estimates are accurate, because contribution of the low-energy electrons is very small. The auroral power estimates have been found to be very accurate even if the shape of the differential energy flux is not. 
 
 
 
@@ -291,7 +291,7 @@ ELSPEC can use two kinds of EISCAT data as input, 'normal' GUISDAP fit results a
 
 If both \verb|ppdir| and \verb|fitdir| are given in the \verb|ElSpec| function call, the electron density data are read from raw electron densities in \verb|ppdir|. Electron temperatures are extracted from the fit results in  \verb|fitdir|. 
 
-In this case the \verb|tres| argument is effective and has two alternatives. \verb|dump| means that the raw densities from EISCAT data dumps are integrated together. Standard deviation of the electron density is calculated as an ensemble average over all raw density profiles in a data dump. \verb|best| means that the original, best available time resolution is maintained. The same standard deviations are copied for all raw density profiles in each EISCAT data dump. 
+In this case the \verb|tres| argument is effective and has two alternatives. \verb|dump| means that the raw densities from EISCAT data dumps are integrated together. Standard deviation of the electron density is calculated as a sample average over all raw density profiles in a data dump. \verb|best| means that the original, best available time resolution is maintained. The same standard deviations are copied for all raw density profiles in each EISCAT data dump. 
 
 This combination is currently available only for EISCAT UHF 'beata' and 'arc1' experiments. 
 
@@ -649,6 +649,11 @@ Example: \verb|ElSpec('saveiecov',1)|\\
 Default: 3\\
 Example: \verb|ElSpec('FAdev',5)|
 
+\item[bottomstdfail] Standard deviation given for model Ne in the lowest observed gate when the GUISDAP fit has failed [m$^{-3}$].\\
+Default: 1e10\\
+Example: \verb|ElSpec('bottomstdfail',5e10)|
+
+
 \end{itemize}
 
 
@@ -729,6 +734,7 @@ Example: \verb|ElSpecPlot(out,'fontsize',10)| \\
 Default: true\\
 Example: \verb|ElSpecPlot(out,'cutgaps',false)|
 
+
 \end{itemize}
 %
 %
@@ -739,6 +745,61 @@ Example: \verb|ElSpecPlot(out,'cutgaps',false)|
 %\lstinputlisting[style=myMATLAB]{ElSpec.m}
 %
 %\newpage
+
+\chapter{Output file structure}
+
+The ELSPEC output files contain a MATLAB structure \verb|ElSpecOut|. The structure contains a copy of all input arguments, bot those explicitly defined and those with the default values. In addition, following fit results are included.
+
+\begin{itemize}
+\item[Nflux] Differential number flux $\mathrm{[(eVm^2s)^{-1}]}$
+\item[Ie] Differential number flux (copy of Nflux, for backward compatibility) $\mathrm{[(eVm^2s)^{-1}]}$
+\item[IeStd] Standard deviation of differential number flux $\mathrm{[(eVm^2s)^{-1}]}$
+\item[IeCov] Full covariance matrices of the differential number flux $\mathrm{[(eVm^2s)^{-2}]}$
+\item[FAC] Field-aligned current carried by the precipitating electrons $\mathrm{[Am^{-2}]}$
+\item[FACstd] Standard deviation of FAC $\mathrm{[Am^{-2}]}$
+\item[Eflux] Differential energy flux $\mathrm{[eV(eVm^2s)^{-1}]}$
+\item[Pe] Differential energy flux (for backward compatibility) $\mathrm{[eV(eVm^2s)^{-1}]}$
+\item[PeStd] Standard deviation of differential energy flux $\mathrm{[eV(eVm^2s)^{-1}]}$
+\item[E0] Peak energy (the energy where Eflux reaches its maximum) [eV]
+\item[q] Ion production rate $\mathrm{m^{-3}s^{-1}}$
+\item[E] Energy bin boundaries [eV]
+\item[Ec] Centre points of energy bins [eV]
+\item[dE] Energy bin widths [eV]
+\item[ts] time step start times [unix time]
+\item[te] time step end times [unix time]
+\item[dt] time step durations [s]
+\item[h] altitude bin centre points [km]
+\item[polycoefs] fitted polynomial coefficients
+\item[polycoefsCovar] Covariances of the polynomial coefficients
+\item[AICc] Akaike information criterion values
+\item[best\_order] Best polynomial order based on AICc
+\item[output] outputs from the fminsearch function
+\item[exitflag] exit flag of fminsearch  
+\item[chisqr] normalized summed square of residuals
+\item[A] The ion production rate matrix A (only one example stored) 
+\item[alpha] effective recombination rates $\mathrm{[m^3 s^-1]}$
+\item[loc] Radar location (lat, lon) [degrees] 
+\item[azel] Radar azimuth and elevation [degrees]
+\item[pp] raw electron density (or fitted if \verb|ppdir| is not defined) [$\mathrm{m^{-3}}$]
+\item[ppstd] standard deviations of raw densities  [$\mathrm{m^{-3}}$]
+\item[ne] Modelled electron density measurements  [$\mathrm{m^{-3}}$]
+\item[neEnd] Modelled electron densities at end of each time step  [$\mathrm{m^{-3}}$]
+\item[neEndCov] Covariance matrices of neEnd  [$\mathrm{m^{-6}}$]
+\item[neEndStd] Standard deviations of neEnd  [$\mathrm{m^{-3}}$]
+\item[par] Array of measured plasma parameters
+\item[parstd] Standard deviations of par
+\item[iri] Array of model densities and temperatures
+\item[I] Magnetic inclination
+\item[ap] ap index         
+\item[f107] daily f10.7
+\item[f107p] daily f10.7 one day before
+\item[f107a] 81 day average of f10.7
+\item[outputfile] output file name     
+\end{itemize}
+
+
+
+
 
 \chapter{GNU General Public License}
 

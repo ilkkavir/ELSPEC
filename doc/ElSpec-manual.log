@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.2.3)  26 AUG 2021 12:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.10.18)  21 OCT 2022 11:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **ElSpec-manual.tex
 (./ElSpec-manual.tex
 LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 31 language(s) loaded.
+Babel <3.18> and hyphenation patterns for 35 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -750,18 +750,18 @@ LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
 ] [11]
 [12] [13]
 Chapter 4.
-<guisdap1.png, id=293, 264.5082pt x 294.3798pt>
+<guisdap1.png, id=298, 264.5082pt x 294.3798pt>
 File: guisdap1.png Graphic file (type png)
 <use guisdap1.png>
 Package pdftex.def Info: guisdap1.png  used on input line 360.
 (pdftex.def)             Requested size: 191.10214pt x 212.68546pt.
-<guisdap2.png, id=294, 264.5082pt x 294.3798pt>
+<guisdap2.png, id=299, 264.5082pt x 294.3798pt>
 File: guisdap2.png Graphic file (type png)
 <use guisdap2.png>
 Package pdftex.def Info: guisdap2.png  used on input line 361.
 (pdftex.def)             Requested size: 191.10214pt x 212.68546pt.
 <ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate_6_1_
-dump.png, id=295, 489.9906pt x 692.3466pt>
+dump.png, id=300, 489.9906pt x 692.3466pt>
 File: ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate
 _6_1_dump.png Graphic file (type png)
 <use ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_integrate_
@@ -773,7 +773,7 @@ SheehanGr_integrate_6_1_dump.png  used on input line 371.
 LaTeX Warning: Float too large for page by 11.22849pt on input line 375.
 
 <ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibrium_6_
-1_dump.png, id=296, 489.9906pt x 692.3466pt>
+1_dump.png, id=301, 489.9906pt x 692.3466pt>
 File: ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibri
 um_6_1_dump.png Graphic file (type png)
 <use ElSpec_20150216T230135-20150216T235955_beata_uhf_Fang_SheehanGr_equilibriu
@@ -785,7 +785,7 @@ SheehanGr_equilibrium_6_1_dump.png  used on input line 379.
 LaTeX Warning: Float too large for page by 11.22849pt on input line 383.
 
 <ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibrium_1_
-1_dump.png, id=297, 489.9906pt x 692.3466pt>
+1_dump.png, id=302, 489.9906pt x 692.3466pt>
 File: ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibri
 um_1_1_dump.png Graphic file (type png)
 <use ElSpec_20150216T230130-20150216T235900_beata_uhf_Fang_SheehanGr_equilibriu
@@ -936,80 +936,84 @@ Underfull \hbox (badness 10000) in paragraph at lines 644--647
  []
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 661--664
+Underfull \hbox (badness 10000) in paragraph at lines 666--669
 
  []
 
 
-Overfull \hbox (3.98204pt too wide) in paragraph at lines 665--668
+Overfull \hbox (3.98204pt too wide) in paragraph at lines 670--673
 \T1/ntxtlf/m/n/12 Example: [][]\T1/ntxtt/m/n/12 out=ElSpec('fitdir','myFitDir')
 ; ElSpecPlot(out,2) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 669--672
+Underfull \hbox (badness 10000) in paragraph at lines 674--677
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 673--676
+Underfull \hbox (badness 10000) in paragraph at lines 678--681
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 677--681
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--685
+Underfull \hbox (badness 10000) in paragraph at lines 682--686
 
  []
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 686--689
+Underfull \hbox (badness 10000) in paragraph at lines 687--690
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 690--693
+Underfull \hbox (badness 10000) in paragraph at lines 691--694
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 694--697
+Underfull \hbox (badness 10000) in paragraph at lines 695--698
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 698--701
+Underfull \hbox (badness 10000) in paragraph at lines 699--702
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 702--705
+Underfull \hbox (badness 10000) in paragraph at lines 703--706
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 706--709
+Underfull \hbox (badness 10000) in paragraph at lines 707--710
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 710--713
+Underfull \hbox (badness 10000) in paragraph at lines 711--714
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 715--718
 
  []
 
 [29]
-Underfull \hbox (badness 10000) in paragraph at lines 724--727
+Underfull \hbox (badness 10000) in paragraph at lines 729--732
 
  []
 
 [30]
 Appendix B.
+[31
+
+] [32] [33]
+Appendix C.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 747.
+nput line 808.
 (../LICENSE
 Overfull \hbox (18.00415pt too wide) in paragraph at lines 12--13
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
@@ -1080,7 +1084,7 @@ Overfull \hbox (36.00433pt too wide) in paragraph at lines 30--31
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[31
+[34
 
 ]
 Overfull \hbox (6.00403pt too wide) in paragraph at lines 33--34
@@ -1202,7 +1206,7 @@ Overfull \hbox (30.00427pt too wide) in paragraph at lines 74--75
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[32]
+[35]
 Overfull \hbox (12.00409pt too wide) in paragraph at lines 81--82
 [][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1337,7 +1341,7 @@ Overfull \hbox (24.00421pt too wide) in paragraph at lines 125--126
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[33]
+[36]
 Overfull \hbox (30.00427pt too wide) in paragraph at lines 129--130
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1457,7 +1461,7 @@ Overfull \hbox (6.00403pt too wide) in paragraph at lines 174--175
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[34]
+[37]
 Overfull \hbox (30.00427pt too wide) in paragraph at lines 175--176
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1587,7 +1591,7 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 216--217
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[35]
+[38]
 Overfull \hbox (30.00427pt too wide) in paragraph at lines 222--223
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1742,7 +1746,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 266--267
 [][][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
-[36]
+[39]
 Overfull \hbox (42.0044pt too wide) in paragraph at lines 267--268
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1877,7 +1881,7 @@ Overfull \hbox (30.00427pt too wide) in paragraph at lines 312--313
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[37]
+[40]
 Overfull \hbox (72.0047pt too wide) in paragraph at lines 316--317
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1938,22 +1942,22 @@ Overfull \hbox (18.00415pt too wide) in paragraph at lines 338--339
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 748.
- [38]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 748.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 809.
+ [41]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 809.
  (./ElSpec-manual.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 748.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 748.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 809.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 809.
 Package rerunfilecheck Info: File `ElSpec-manual.out' has not changed.
-(rerunfilecheck)             Checksum: 97F0AEE76B69C0407FA72DA0DEFAA7B6;2134.
+(rerunfilecheck)             Checksum: 52F65F6E557FBD73A34F990C859128C2;2192.
  ) 
 Here is how much of TeX's memory you used:
- 11976 strings out of 494299
- 166006 string characters out of 6163396
- 351785 words of memory out of 5000000
- 14611 multiletter control sequences out of 15000+600000
+ 11981 strings out of 494226
+ 166049 string characters out of 6161812
+ 352032 words of memory out of 5000000
+ 14619 multiletter control sequences out of 15000+600000
  101238 words of font info for 160 fonts, out of 8000000 for 9000
- 372 hyphenation exceptions out of 8191
+ 417 hyphenation exceptions out of 8191
  45i,9n,97p,850b,1714s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/ec.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texlive/texmf-di
@@ -1970,10 +1974,10 @@ ist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/t
 xfonts/txmia.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ElSpec-manual.pdf (39 pages, 977117 bytes).
+Output written on ElSpec-manual.pdf (42 pages, 980992 bytes).
 PDF statistics:
- 1031 PDF objects out of 1200 (max. 8388607)
- 961 compressed objects within 10 object streams
- 517 named destinations out of 1000 (max. 500000)
- 282 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1048 PDF objects out of 1200 (max. 8388607)
+ 975 compressed objects within 10 object streams
+ 521 named destinations out of 1000 (max. 500000)
+ 290 words of extra memory for PDF output out of 10000 (max. 10000000)
 
