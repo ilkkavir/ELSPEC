@@ -337,45 +337,6 @@ if out.nstep > out.ninteg
     error('nstep must not be larger than ninteg.')
 end
 
-% Then print all the inputs
-fprintf('\nElSpec input arguments\n\n')
-
-fprintf('%12s: %s\n','ppdir',out.ppdir);
-fprintf('%12s: %s\n','fitdir',out.fitdir);
-fprintf('%12s: %s\n','experiment',out.experiment);
-fprintf('%12s: %s\n','radar',out.radar);
-fprintf('%12s: %i\n','version',out.version);
-fprintf('%12s: %5.1f\n','hmin [km]',out.hmin);
-fprintf('%12s: %5.1f\n','hmax [km]',out.hmax);
-fprintf('%12s: ','btime');
-for kk=1:length(out.btime)
-    fprintf('%i ',out.btime(kk));
-end
-fprintf('\n');
-fprintf('%12s: ','etime');
-for kk=1:length(out.etime)
-    fprintf('%i ',out.etime(kk));
-end
-fprintf('\n');
-fprintf('%12s: %s\n','ionomodel',out.ionomodel);
-fprintf('%12s: %s\n','recombmodel',out.recombmodel);
-fprintf('%12s: %s\n','integtype',out.integtype);
-fprintf('%12s: ','E [keV]');
-for kk=1:(length(out.egrid)/10)
-    if kk>1
-        fprintf('%14s','');
-    end
-    fprintf(' %5.2f',out.E((kk-1)*10+1:min(length(out.E),kk*10))/1000);
-    fprintf('\n');
-end
-fprintf('%12s: %i\n','maxorder',out.maxorder);
-fprintf('%12s: %i\n','plotres',out.plotres);
-fprintf('%12s: %s\n','tres',out.tres);
-fprintf('%12s: %10.0f\n','Emin [eV]',out.emin);
-fprintf('%12s: %i\n','ninteg',out.ninteg);
-fprintf('%12s: %i\n','nstep',out.nstep);
-
-
 
 
 % read the data and model values
@@ -442,6 +403,20 @@ end
 %    out.iri(indd,10,:) = interp1(tsic,Op(indd,:),out.ts,'linear','extrap');
 % end
 
+% Calculate ion production matrix to approximately adjust the energy grid
+[A,Ec,dE] = ion_production( out.E , out.h*1000 , out.iri(:,4,1) , ...
+                            out.iri(:,5,1) , out.iri(:,6,1) , out.iri(:,7,1) , ...
+                            out.iri(:,1,1) , out.ionomodel , out.I);
+% adjust the energy grid according to the lowest measured altitude
+[~,imax] = max(A(1,:));
+if imax < length(Ec)
+    Ec = Ec(1:imax);
+    dE = dE(1:imax);
+    A = A(:,1:imax);
+    out.E = out.E(1:(imax+1));
+    out.egrid = out.egrid(1:(imax+1));
+    disp([imax length(Ec)])
+end
 
 % time step sizes
 if length(out.te)==1
@@ -499,6 +474,43 @@ fms_opts.TolX=1e-8;
 out.outputfile = ['ElSpec_',datestr(datetime(round(out.ts(1)), ...
                                             'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'-',datestr(datetime(round(out.te(end)),'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'_',out.experiment,'_',out.radar,'_',out.ionomodel,'_',out.recombmodel,'_',out.integtype,'_',num2str(out.ninteg),'_',num2str(out.nstep),'_',out.tres,'_',datestr(datetime('now'),'yyyymmddTHHMMSS'),'.mat'];
 
+% Then print all the inputs
+fprintf('\nElSpec input arguments\n\n')
+
+fprintf('%12s: %s\n','ppdir',out.ppdir);
+fprintf('%12s: %s\n','fitdir',out.fitdir);
+fprintf('%12s: %s\n','experiment',out.experiment);
+fprintf('%12s: %s\n','radar',out.radar);
+fprintf('%12s: %i\n','version',out.version);
+fprintf('%12s: %5.1f\n','hmin [km]',out.hmin);
+fprintf('%12s: %5.1f\n','hmax [km]',out.hmax);
+fprintf('%12s: ','btime');
+for kk=1:length(out.btime)
+    fprintf('%i ',out.btime(kk));
+end
+fprintf('\n');
+fprintf('%12s: ','etime');
+for kk=1:length(out.etime)
+    fprintf('%i ',out.etime(kk));
+end
+fprintf('\n');
+fprintf('%12s: %s\n','ionomodel',out.ionomodel);
+fprintf('%12s: %s\n','recombmodel',out.recombmodel);
+fprintf('%12s: %s\n','integtype',out.integtype);
+fprintf('%12s: ','E [keV]');
+for kk=1:(length(out.egrid)/10)
+    if kk>1
+        fprintf('%14s','');
+    end
+    fprintf(' %5.2f',out.E((kk-1)*10+1:min(length(out.E),kk*10))/1000);
+    fprintf('\n');
+end
+fprintf('%12s: %i\n','maxorder',out.maxorder);
+fprintf('%12s: %i\n','plotres',out.plotres);
+fprintf('%12s: %s\n','tres',out.tres);
+fprintf('%12s: %10.0f\n','Emin [eV]',out.emin);
+fprintf('%12s: %i\n','ninteg',out.ninteg);
+fprintf('%12s: %i\n','nstep',out.nstep);
 
 fprintf('Will write results in:\n %s\n',out.outputfile);
 

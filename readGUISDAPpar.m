@@ -185,7 +185,10 @@ if nf>0
     
     % FAdev degree tolerance to allow changes in field-direction...
     %    rminds = abs(mod(azel(:,1),360) - 187) > 3 | abs(abs(90-azel(:,2))-12.45) > 3;
-    rminds = abs(mod(azel(:,1),360) - FAaz) > abs(FAdev) | abs(abs(90-azel(:,2))-(90-FAele)) > abs(FAdev);
+    %    rminds = abs(mod(azel(:,1),360) - FAaz) > abs(FAdev) | abs(abs(90-azel(:,2))-(90-FAele)) > abs(FAdev);
+    FAvec = [cos(FAele*pi/180)*cos(FAaz*pi/180) cos(FAele*pi/180)*sin(FAaz*pi/180) sin(FAele*pi/180)];
+    BEAMvecs = [cos(azel(:,2)*pi/180).*cos(azel(:,1)*pi/180) cos(azel(:,2)*pi/180).*sin(azel(:,1)*pi/180) sin(azel(:,2)*pi/180)];
+    rminds = acos(BEAMvecs*FAvec')*180/pi > FAdev;
     h(:,rminds) = [];
     ts(rminds) = [];
     te(rminds) = [];
@@ -194,7 +197,7 @@ if nf>0
     azel(rminds,:) = [];
     
     
-    % do not accept Ti > 300 K below 100 km altitude or Ti < 50 K anywhere. If Ne < 1e9, keep the electron densities but do not use the temperatures
+    % do not accept Ti > 300 K below 100 km altitude or Ti < 50 K anywhere. If Ne < 1e9, keep the electron densities but do not use the temperatures. remove negative temperatures...
     [dim1 dim2] = size(h);
     for i1 = 1:dim1
         for i2 = 1:dim2
@@ -211,6 +214,10 @@ if nf>0
             if par(i1,1,i2) < 1e9 
                 par(i1,2:end,i2) = NaN;
                 parstd(i1,2:end,i2) = NaN;
+            end
+            if par(i1,2,i2) < 0 | par(i1,3,i2) < 0
+                par(i1,:,i2) = NaN;
+                parstd(i1,:,i2) = NaN;
             end
         end
     end

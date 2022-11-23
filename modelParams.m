@@ -85,6 +85,9 @@ end
 % the table apf107table is a persistent variable, so it is enough
 % to read the original file once.
 %
+% The latest apf107.dat file is available from https://chain-new.chain-project.net/echaim_downloads/apf107.dat
+%
+%
 % file format:
 %
 %  year(I3), month(I3), day(I3), 3-hour Ap indices for the UT
