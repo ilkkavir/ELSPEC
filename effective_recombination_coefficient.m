@@ -75,7 +75,7 @@ switch lower(type)
     alpha = sum( [a1 a2 a3] .* [O2p N2p NOp] , 2 );
     % make sure that sum of ion abundances is 1
     alpha = alpha ./ sum([O2p N2p NOp] , 2 );
-  case 'sheehagro2+'
+  case 'sheehangro2+'
     [a1,a2,a3] = recombination_rate( Te , 'SheehanGr' );
     alpha = a1;
   case 'sheehangrn2+'

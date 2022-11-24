@@ -57,6 +57,7 @@ function ElSpecOut = ElSpec(varargin)
 %  fadev        maximum beam direction deviation from field-aligned  [deg], default 3
 %  bottomstdfail standard deviation given for model Ne in the lowest observed gate when the
 %                guisdap fit has failed [m^-3], default 1e10
+%  refineEgrid  logial, refine energy grid according to the lowest measured altitude? Default 1
 %
 % OUTPUT:
 %  ElSpecOut    A MATLAB structure with fields:...
@@ -270,6 +271,10 @@ checkFAdev = @(x) (isnumeric(x)&length(x)==1);
 defaultBottomStdFail = 1e10;
 checkBottomStdFail = @(x) (isnumeric(x)&length(x)==1 & x>0);
 
+% should the energy axis be refined according to the lowest altitude=
+defaultRefineEgrid = true;
+checkRefineEgrid = @(x) ((isnumeric(x)|islogial(x))&length(x)==1);
+
 % start time
 defaultBtime = [];
 
@@ -303,6 +308,7 @@ addParameter(p,'nstep',defaultNstep,checkNstep);
 addParameter(p,'saveiecov',defaultSaveiecov,checkSaveiecov);
 addParameter(p,'fadev',defaultFAdev,checkFAdev);
 addParameter(p,'bottomstdfail',defaultBottomStdFail,checkBottomStdFail);
+addParameter(p,'refineEgrid',defaultRefineEgrid,checkRefineEgrid);
 parse(p,varargin{:})
 
 %out = struct;
@@ -403,19 +409,25 @@ end
 %    out.iri(indd,10,:) = interp1(tsic,Op(indd,:),out.ts,'linear','extrap');
 % end
 
-% Calculate ion production matrix to approximately adjust the energy grid
-[A,Ec,dE] = ion_production( out.E , out.h*1000 , out.iri(:,4,1) , ...
-                            out.iri(:,5,1) , out.iri(:,6,1) , out.iri(:,7,1) , ...
-                            out.iri(:,1,1) , out.ionomodel , out.I);
-% adjust the energy grid according to the lowest measured altitude
-[~,imax] = max(A(1,:));
-if imax < length(Ec)
-    Ec = Ec(1:imax);
-    dE = dE(1:imax);
-    A = A(:,1:imax);
-    out.E = out.E(1:(imax+1));
-    out.egrid = out.egrid(1:(imax+1));
-    disp([imax length(Ec)])
+
+
+if out.refineEgrid
+    
+    % Calculate ion production matrix to approximately adjust the energy grid
+    [A,Ec,dE] = ion_production( out.E , out.h*1000 , out.iri(:,4,1) , ...
+                                out.iri(:,5,1) , out.iri(:,6,1) , out.iri(:,7,1) , ...
+                                out.iri(:,1,1) , out.ionomodel , out.I);
+    % adjust the energy grid according to the lowest measured altitude
+    [~,imax] = max(A(1,:));
+    if imax < length(Ec)
+        Ec = Ec(1:imax);
+        dE = dE(1:imax);
+        A = A(:,1:imax);
+        out.E = out.E(1:(imax+1));
+        out.egrid = out.egrid(1:(imax+1));
+        %    disp([imax length(Ec)])
+    end
+
 end
 
 % time step sizes

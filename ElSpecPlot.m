@@ -493,10 +493,16 @@ set(h5,'layer','top')
 set(h6,'layer','top')
 
 
-tstr1 = datestr(datenum(datetime((ElSpecOut.te(1)),'ConvertFrom', ...
+% time string corresponding to start and end of the measurement. One percent tolerance to
+% avoid double time stamps in cases where just one time step is from the previous/next day
+tdiff = ElSpecOut.te(end)-ElSpecOut.te(1);
+
+tstr1 = datestr(datenum(datetime((ElSpecOut.te(1)+.01*tdiff),'ConvertFrom', ...
                                  'posixtime')),29);
-tstr2 = datestr(datenum(datetime((ElSpecOut.te(end)),'ConvertFrom', ...
+tstr2 = datestr(datenum(datetime((ElSpecOut.te(end)-.01*tdiff),'ConvertFrom', ...
                                  'posixtime')),29);
+
+
 if strcmp(tstr1,tstr2)
     tstr = tstr1;
 else
