@@ -58,7 +58,17 @@ if isempty(ppdir)
         ppstd = [];
         return
     end
-    hind = hpar(:,1)>=hmin & hpar(:,1)<=hmax;
+
+
+    % the height gates are not always exactly the same, interpolate to a uniform grid
+    nhtmp = size(hpar,1);
+    htmp = zeros(nhtmp,1);
+    for kk = 1:nhtmp
+        htmp(kk) = median(hpar(kk,:),'omitnan');
+    end
+    hind = htmp>=hmin & htmp<= hmax & ~isnan(htmp);
+    h = htmp(hind)';
+    nh = length(h);
     if isempty(tmin)
         t1 = -Inf;
     else
@@ -72,11 +82,57 @@ if isempty(ppdir)
     it = find((ts >= t1) & (te <= t2));
     ts = ts(it);
     te = te(it);
-    h = hpar(hind,1)';
-    par = par(hind,:,it);
-    parstd = parstd(hind,:,it);
+    nt = length(ts);
+
+    pardims = size(par);
+    npar = pardims(2);
+    partmp = NaN(nh,npar,nt);
+    parstdtmp = NaN(nh,npar,nt);
+
+    % first interpolate some altitudes to the missing gates in middle of profiles
+    % to make sure that we will have NaN as parameters at these altitudes in the final interpolated data
+    for kk=1:nt
+        iinan = isnan(hpar(:,kk));
+        hpar(:,kk) = interp1(find(~iinan),hpar(~iinan,kk),1:length(hpar(:,kk)));
+        hpar(isnan(hpar(:,kk)),kk) = 0;
+    end
+
+    % then interpolate the data to the median altitude grid
+    for kk = 1:nt
+        for ll = 1:npar
+            indh = hpar(:,kk) > 0;
+            partmp(:,ll,kk) = interp1(hpar(indh,it(kk)),par(indh,ll,it(kk)),h);
+            parstdtmp(:,ll,kk) = interp1(hpar(indh,it(kk)),parstd(indh,ll,it(kk)),h);
+        end
+    end
+
+    par = partmp;
+    parstd = parstdtmp;
     pp = squeeze(par(:,1,:));
     ppstd = squeeze(parstd(:,1,:));
+
+    
+    
+    % % this may cause errors if the altitudes change during an experiment (should not happen in theory, but seemsot happen in practice in the madrigal hdf5 files)
+    % hind = hpar(:,1)>=hmin & hpar(:,1)<=hmax;
+    % if isempty(tmin)
+    %     t1 = -Inf;
+    % else
+    %     t1 = date2unixtime(tmin);
+    % end
+    % if isempty(tmax)
+    %     t2 = Inf;
+    % else
+    %     t2 = date2unixtime(tmax);
+    % end
+    % it = find((ts >= t1) & (te <= t2));
+    % ts = ts(it);
+    % te = te(it);
+    % h = hpar(hind,1)';
+    % par = par(hind,:,it);
+    % parstd = parstd(hind,:,it);
+    % pp = squeeze(par(:,1,:));
+    % ppstd = squeeze(parstd(:,1,:));
 
 
     % the guisdap error estimates are not good enough for us, try

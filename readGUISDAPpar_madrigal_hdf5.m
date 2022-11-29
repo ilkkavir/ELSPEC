@@ -93,9 +93,14 @@ for it=1:nt
         nh = nh1;
         ih = 1:nh;
     else
+        % this causes problems if there are many new gates below / above the lowest/highest old one...
         ih=[];
         for ii = 1:length(hh)
             [dummy,ih(ii)] = min(abs(h(:,1)-hh(ii)));
+        end
+        % if this created duplicates, just fill from the bottom
+        if length(ih) ~= length(unique(ih))
+            ih = 1:nh1;
         end
     end
     h(ih,it) = hh;

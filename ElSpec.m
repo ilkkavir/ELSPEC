@@ -818,6 +818,11 @@ for tt = 1:out.nstep:nt-out.ninteg
 end
 try
     save(out.outputfile,'ElSpecOut','-v7.3');
+    efig = ElSpecPlot(ElSpecOut,'visible','off');
+    [part1,part2,~] = fileparts(out.outputfile);
+    figfile = fullfile(part1,part2);
+    print(efig,figfile,'-dpng');
+    close(efig)
 catch
     ;
 end

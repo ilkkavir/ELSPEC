@@ -147,6 +147,10 @@ if nf>0
             for ii = 1:length(r_h)
                 [dummy,ih(ii)] = min(abs(h(:,1)-r_h(ii)));
             end
+            % if this created duplicates, just fill from the bottom
+            if length(ih) ~= length(unique(ih))
+                ih = 1:nh1;
+            end
         end
         
         h(ih,k) = r_h;
