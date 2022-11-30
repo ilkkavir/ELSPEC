@@ -101,8 +101,13 @@ if isempty(ppdir)
     for kk = 1:nt
         for ll = 1:npar
             indh = hpar(:,kk) > 0;
-            partmp(:,ll,kk) = interp1(hpar(indh,it(kk)),par(indh,ll,it(kk)),h);
-            parstdtmp(:,ll,kk) = interp1(hpar(indh,it(kk)),parstd(indh,ll,it(kk)),h);
+            % a slight adjustement according to possible tiny variations in range gates
+            partmp(:,ll,kk) = interp1(hpar(indh,it(kk)),par(indh,ll,it(kk)),h,'linear');
+            parstdtmp(:,ll,kk) = interp1(hpar(indh,it(kk)),parstd(indh,ll,it(kk)),h,'linear');
+            % fill NaN's produced by the linear interpolation with nearest neighbours
+            inan = isnan(partmp(:,ll,it(kk)));
+            partmp(inan,ll,kk) = interp1(hpar(indh,it(kk)),par(indh,ll,it(kk)),h(inan),'nearest');
+            parstdtmp(inan,ll,kk) = interp1(hpar(indh,it(kk)),parstd(indh,ll,it(kk)),h(inan),'nearest');
         end
     end
 
