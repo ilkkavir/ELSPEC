@@ -784,7 +784,7 @@ for tt = 1:out.nstep:nt-out.ninteg
 
     tstamp = datestr(datenum(datetime((out.te(tt) + out.ts(tt))/2,'ConvertFrom','posixtime')));
     fprintf(['%s %i order, chisqr: %3.1f, FAC: %5.2f (%5.2f) uA/m^2, Power: ' ...
-             '%5.2f (%5.2f) mW/m^2, E0: %5.2f kEv\n'],tstamp,locminAIC,out.chisqr(tt),out.FAC(tt)*1e6,out.FACstd(tt)*1e6,out.Pe(tt)*1e3,out.PeStd(tt)*1e3,out.E0(tt)/1000)
+             '%5.2f (%5.2f) mW/m^2, E0: %5.2f keV\n'],tstamp,locminAIC,out.chisqr(tt),out.FAC(tt)*1e6,out.FACstd(tt)*1e6,out.Pe(tt)*1e3,out.PeStd(tt)*1e3,out.E0(tt)/1000)
 
 
     % update the output file
