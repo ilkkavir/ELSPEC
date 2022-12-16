@@ -369,17 +369,17 @@ else
     if strcmp(out.recombmodel,'SheehanGrFlipchem')
     out.iri = calculateFlipchemComposition(out.ts,out.h,out.par,out.pp,out.loc,out.iri);
     end
-    % warn about the ESR compositions
-    if strcmp(p.Results.radar,'esr')
-        if readIRI
-            disp(['WARNING: With the selected recombination model ElSpec calculates the ion  compositions ' ...
-                  'with EISCAT Tromso coordinates, the compositions may be ' ...
-                  'incorrect for the ESR radar'])
-            % disp(['WARNING: ElSpec calculates the ion and neutral compositions ' ...
-            %       'with EISCAT Tromso coordinates, the compositions may be ' ...
-            %       'incorrect for the ESR radar'])
-        end
-    end
+    % % warn about the ESR compositions
+    % if strcmp(p.Results.radar,'esr')
+    %     if readIRI
+    %         disp(['WARNING: With the selected recombination model ElSpec calculates the ion  compositions ' ...
+    %               'with EISCAT Tromso coordinates, the compositions may be ' ...
+    %               'incorrect for the ESR radar'])
+    %         % disp(['WARNING: ElSpec calculates the ion and neutral compositions ' ...
+    %         %       'with EISCAT Tromso coordinates, the compositions may be ' ...
+    %         %       'incorrect for the ESR radar'])
+    %     end
+    % end
 
 
 end
