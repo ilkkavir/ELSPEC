@@ -64,10 +64,12 @@ checkIEelim = @(x) (isnumeric(x) & (length(x)==2));
 defaultElim = [1 100];%[min(ElSpecOut.Ec) max(ElSpecOut.Ec)]./1000;
 checkElim = @(x) (isnumeric(x) & (length(x)==2));
 
-defaultFAClim = [0 10];
+%defaultFAClim = [0 10];
+defaultFAClim = [0 ceil(max(ElSpecOut.FAC)*2e5)*5];
 checkFAClim = @(x) (isnumeric(x) & (length(x)==2));
 
-defaultPlim = [0 50];
+%defaultPlim = [0 50];
+defaultPlim = [0 ceil(max(ElSpecOut.Pe)*50)*20];
 checkPlim = @(x) (isnumeric(x) & (length(x)==2));
 
 defaultChisqrlim = [0 10];
@@ -129,7 +131,7 @@ parse(p,ElSpecOut,varargin{:})
 % put white space on data gaps
 if p.Results.cutgaps
     mediandt = median(diff(ElSpecOut.ts));
-    gaps = diff(ElSpecOut.ts) > (10*mediandt);
+    gaps = diff(ElSpecOut.ts) > (5*mediandt);
     rminds = [find(gaps) ; (find(gaps)+1)];
     ElSpecOut.pp(:,rminds) = NaN;
     ElSpecOut.ne(:,rminds) = NaN;
@@ -330,12 +332,14 @@ pos3=get(h3,'Position');
 pos4=get(h4,'Position');
 pos5=get(h5,'Position');
 pos6=get(h6,'Position');
-set(h1, 'Position', [pos1(1:2)-[0,.05] [.85 1.77].*pos4(3:4)]);
-set(h2, 'Position', [pos2(1:2)-[0,.05] [.85 1.77].*pos4(3:4)]);
-set(h3, 'Position', [pos3(1:2)-[0,.05] [.85 1.77].*pos4(3:4)]);
-set(h4, 'Position', [pos4(1:2)-[0,.05] [.85 1.77].*pos4(3:4)]);
-set(h5, 'Position', [pos5(1:2)-[0,.05] [.85 1.77].*pos4(3:4)]);
-set(h6, 'Position', [pos6(1:2)-[0,.05] [.85 1.77].*pos4(3:4)]);
+panelshift = -[0,.05];
+panelscale = [.85 1.65];
+set(h1, 'Position', [pos1(1:2)+panelshift panelscale.*pos4(3:4)]);
+set(h2, 'Position', [pos2(1:2)+panelshift panelscale.*pos4(3:4)]);
+set(h3, 'Position', [pos3(1:2)+panelshift panelscale.*pos4(3:4)]);
+set(h4, 'Position', [pos4(1:2)+panelshift panelscale.*pos4(3:4)]);
+set(h5, 'Position', [pos5(1:2)+panelshift panelscale.*pos4(3:4)]);
+set(h6, 'Position', [pos6(1:2)+panelshift panelscale.*pos4(3:4)]);
 linkaxes([h1 h2 h3 h4 h5 h6],'x')
 linkaxes([h1 h2],'y')
 if strcmp(p.Results.fluxtype,'both')
@@ -508,7 +512,8 @@ if strcmp(tstr1,tstr2)
 else
     tstr = [tstr1,' -- ',tstr2];
 end
-title(h1,tstr)
+%title(h1,tstr)
+title(h1,[upper(ElSpecOut.radar) ' ' tstr])
 drawnow
 
 

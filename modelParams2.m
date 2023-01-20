@@ -48,9 +48,9 @@ hour = matlabtime.Hour;
 if readIRI
 
     if isempty(year_prev) | year_prev ~= year | readIRIprev ~= readIRI | locprev ~= loc
-        if sum(abs(loc - [69.58 19.23])) < 5
+        if sum(abs(loc(1:2) - [69.58 19.23])) < 5
             load(['ElSpecModelParametersTRO',num2str(year),'.mat']);
-        elseif sum(abs(loc - [78.15 16.02])) < 5
+        elseif sum(abs(loc(1:2) - [78.15 16.02])) < 5
             load(['ElSpecModelParametersESR',num2str(year),'.mat']);
         else
             error(['IRI parameters are not available for location ' loc])

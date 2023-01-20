@@ -510,7 +510,7 @@ fprintf('%12s: %s\n','ionomodel',out.ionomodel);
 fprintf('%12s: %s\n','recombmodel',out.recombmodel);
 fprintf('%12s: %s\n','integtype',out.integtype);
 fprintf('%12s: ','E [keV]');
-for kk=1:(length(out.egrid)/10)
+for kk=1:ceil(length(out.egrid)/10)
     if kk>1
         fprintf('%14s','');
     end
