@@ -9,3 +9,8 @@ The package uses GUISDAP "raw electron densities" and/or fitted plasma parameter
 See doc/ElSpec-manual.pdf for instructions.
 
 Ilkka Virtanen June 2016-
+
+
+
+.. |zenodo| image:: https://zenodo.org/badge/6644454.svg
+		    :target: https://zenodo.org/badge/latestdoi/6644454
