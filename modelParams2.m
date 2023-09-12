@@ -1,6 +1,6 @@
 function [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp,f107,f107a,ap] = modelParams2( time , heights , loc , readIRI )
 %
-% IRI and MSIS model parameters. The parameters are read from a
+% IRI and MSIS model parameters. The IRI parameters are read from a
 % table delivered as part of the ElSpec package.
 %
 % [Tn,Ti,Te,nN2,nO2,nO,nAr,nO2p,nN2p,nNOp] = modelParams( time ,

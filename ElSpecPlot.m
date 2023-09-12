@@ -436,11 +436,16 @@ set(h3,'XTick',get(h1,'XTick'))
 set(h4,'XTick',get(h1,'XTick'))
 set(h5,'XTick',get(h1,'XTick'))
 set(h6,'XTick',get(h1,'XTick'))
-datetick(h2,'x',13,'keeplimits','keepticks')
-datetick(h3,'x',13,'keeplimits','keepticks')
-datetick(h4,'x',13,'keeplimits','keepticks')
-datetick(h5,'x',13,'keeplimits','keepticks')
-datetick(h6,'x',13,'keeplimits','keepticks')
+datetick(h2,'x',13,'keeplimits')
+datetick(h3,'x',13,'keeplimits')
+datetick(h4,'x',13,'keeplimits')
+datetick(h5,'x',13,'keeplimits')
+datetick(h6,'x',13,'keeplimits')
+% datetick(h2,'x',13,'keeplimits','keepticks')
+% datetick(h3,'x',13,'keeplimits','keepticks')
+% datetick(h4,'x',13,'keeplimits','keepticks')
+% datetick(h5,'x',13,'keeplimits','keepticks')
+% datetick(h6,'x',13,'keeplimits','keepticks')
 set(h1,'XTickLabel','')
 set(h2,'XTickLabel','')
 set(h3,'XTickLabel','')
@@ -517,4 +522,9 @@ title(h1,[upper(ElSpecOut.radar) ' ' tstr])
 drawnow
 
 
+end
+
+
+function rr = range(x)
+    rr = max(x) - min(x);
 end

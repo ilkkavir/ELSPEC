@@ -1,4 +1,6 @@
 
+|zenodo|
+
 ElSpec is a package for estimating power spectra of precipitating electrons
 from EISCAT data. The package is based on "ISR_Akaike_inversion" by Björn
 Gustavsson (bjorn.gustavsson@uit.no).
