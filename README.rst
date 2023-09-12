@@ -10,7 +10,6 @@ See doc/ElSpec-manual.pdf for instructions.
 
 Ilkka Virtanen June 2016-
 
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6644454.svg
+   :target: https://doi.org/10.5281/zenodo.6644454
 
-
-.. |zenodo| image:: https://zenodo.org/badge/6644454.svg
-		    :target: https://zenodo.org/badge/latestdoi/6644454
