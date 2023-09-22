@@ -527,7 +527,8 @@ fprintf('%12s: %i\n','nstep',out.nstep);
 fprintf('Will write results in:\n %s\n',out.outputfile);
 
 % save interval is 100 step, independently from the time resolution
-ndtsave = 100;%ceil(mean(120./out.dt));
+% changed to Inf (no intermediate saves) 20230922,IV
+ndtsave = Inf;%100;%ceil(mean(120./out.dt));
 
 % iteration over all time steps
 for tt = 1:out.nstep:nt-out.ninteg

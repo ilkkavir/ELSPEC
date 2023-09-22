@@ -14,13 +14,22 @@ function s = model_spectrum(X0,E)
 % Copyright I Virtanen <ilkka.i.virtanen@oulu.fi> and B Gustavsson <bjorn.gustavsson@uit.no>
 % This is free software, licensed under GNU GPL version 2 or later
 
-% create the polynomial
-    p = E.*0;
-    for k=1:length(X0)
-        p = p + X0(k).*(E/1e4).^(k-1);
+    persistent Epowers
+    if isempty(Epowers) | size(Epowers,2) < numel(X0)
+        Epowers = ones(numel(E),numel(X0));
+        for k = 1:numel(X0)
+            Epowers(:,k) = (E(:)/1e4).^(k-1);
+        end
     end
+
     
-    s = E.*exp( p );
-    
+    % create the polynomial
+    p = E(:).*0;
+    for k=1:length(X0)
+        %p = p + X0(k).*(E(:)/1e4).^(k-1);
+        p = p + X0(k).*Epowers(:,k);
+    end
+    s = E(:).*exp( p(:) );
+
     
 end
