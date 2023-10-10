@@ -1,4 +1,4 @@
-function AIC = ElSpec_fitfun(X0,ne,stdne,ne0,A,alpha,dt,E,dE,integtype,IePrior,stdPrior,nmeas_eff)
+function AIC = ElSpec_fitfun(X0,ne,stdne,ne0,A,photoprod,alpha,dt,E,dE,integtype,IePrior,stdPrior,nmeas_eff)
 %
 % The function to be minimized in the electron energy spectrum
 % fit. Re-arranges the paremeter vector p in a more understanble
@@ -12,6 +12,7 @@ function AIC = ElSpec_fitfun(X0,ne,stdne,ne0,A,alpha,dt,E,dE,integtype,IePrior,s
 %  stdne      standard deviations of ne
 %  ne0        modeled electron density profile from the previous time step
 %  A          Ion production profile matrix
+%  photoprod  Ion production rate by photoionization
 %  alpha      effective recombination rates
 %  dt         time step [s]
 %  E          energies of the dense "model grid"
@@ -35,7 +36,7 @@ function AIC = ElSpec_fitfun(X0,ne,stdne,ne0,A,alpha,dt,E,dE,integtype,IePrior,s
 
 
 % calculate the actual AICc value
-AIC = update_AICc(ne,stdne,ne0,A,alpha,dt,X0,E,dE,integtype,IePrior,stdPrior,nmeas_eff);
+AIC = update_AICc(ne,stdne,ne0,A,photoprod,alpha,dt,X0,E,dE,integtype,IePrior,stdPrior,nmeas_eff);
 %if isnan(AIC)
 %    disp('AIC=NaN')
 %end

@@ -1,4 +1,4 @@
-function modelout = calculateFlipchemComposition(ts,h,par,pp,loc,modelin)
+function [modelout, photoprod] = calculateFlipchemComposition(ts,h,par,pp,loc,modelin)
 %
 % model = calculateFlipchemComposition(ts,h,par,loc)
 %
@@ -18,6 +18,7 @@ function modelout = calculateFlipchemComposition(ts,h,par,pp,loc,modelin)
 % IV 2021
 
     modelout = modelin;
+    photoprod = zeros(size(pp));
     for it = 1:length(ts)
         fprintf('\r %i / %i',it ,length(ts))
         timetmp = datetime(ts(it),'convertfrom','posixtime');
@@ -34,6 +35,9 @@ function modelout = calculateFlipchemComposition(ts,h,par,pp,loc,modelin)
             outputsm = cell(outputs);
             modelout(ih,9,it) = outputsm{5}; % O2+
             modelout(ih,8,it) = outputsm{6}; % NO+
+
+            % photoionization rate
+            photoprod(ih,it) = outputsm{11};
         end
     end
     

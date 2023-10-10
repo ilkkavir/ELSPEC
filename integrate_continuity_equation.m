@@ -1,4 +1,4 @@
-function ne = integrate_continuity_equation(ne0,s,dt,A,dE,alpha,type)
+function ne = integrate_continuity_equation(ne0,s,dt,A,photoprod,dE,alpha,type)
 %
 % Integrate the electron continuity equation.
 % The electron density, for cases where the convection can be
@@ -16,6 +16,7 @@ function ne = integrate_continuity_equation(ne0,s,dt,A,dE,alpha,type)
 %   s     electron precipitation spectrum [m^-2s eV^-1]
 %   dt    time step [s]
 %   A     a matrix of ion production profiles [m^-1]
+%   photoprod ion production rates by photoionization [m^-3s^-1]
 %   dE    widths of the energy bins [eV]
 %   alpha effective recombination coefficients [m^-3 s^-1]
 %   type  a string telling which approximation to use:
@@ -42,7 +43,7 @@ function ne = integrate_continuity_equation(ne0,s,dt,A,dE,alpha,type)
 % This is free software, licensed under GNU GPL version 2 or later
 
 % ion production rate
-q = A*(s.*dE);
+q = A*(s.*dE) + photoprod;
 
 switch lower(type)
   case 'endne'

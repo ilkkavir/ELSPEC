@@ -1,4 +1,4 @@
-function AIC = update_AICc(ne,stdne,ne0,A,alpha,dt,X0,E,dE, ...
+function AIC = update_AICc(ne,stdne,ne0,A,photoprod,alpha,dt,X0,E,dE, ...
                            integtype,IePrior,stdPrior , nmeas)
 %
 % Calculate corrected Akaike information criterion value for model
@@ -11,6 +11,7 @@ function AIC = update_AICc(ne,stdne,ne0,A,alpha,dt,X0,E,dE, ...
 %  stdne      standard deviations of ne
 %  ne0        modeled electron density profile from the previous time step
 %  A          Ion production profile matrix
+%  photoprod  Ion production by photoionization
 %  alpha      effective recombination rates
 %  dt         time step [s]
 %  X0         coefficients of the polynomial
@@ -36,7 +37,7 @@ s = model_spectrum( X0 , E );
 
 % the updated model ne profile
 if strcmp(integtype,'equilibrium')
-    nemod = integrate_continuity_equation(ne0(:),s(:),dt(1),A,dE(: ...
+    nemod = integrate_continuity_equation(ne0(:),s(:),dt(1),A,photoprod,dE(: ...
                                                       ),alpha(:),integtype);
     nemeas = ne(:,1);
     stdmeas = stdne(:,1);
@@ -57,12 +58,12 @@ else
     ninteg = length(dt);
     nemod = NaN(length(ne0),ninteg);
     neEnd = NaN(length(ne0),ninteg);
-    nemod(:,1) = integrate_continuity_equation(ne0(:),s(:),dt(1),A,dE(:),alpha(:),integtype);
-    neEnd(:,1) = integrate_continuity_equation(ne0(:),s(:),dt(1),A,dE(:),alpha(:),integ_type_end);
+    nemod(:,1) = integrate_continuity_equation(ne0(:),s(:),dt(1),A,photoprod,dE(:),alpha(:),integtype);
+    neEnd(:,1) = integrate_continuity_equation(ne0(:),s(:),dt(1),A,photoprod,dE(:),alpha(:),integ_type_end);
     if ninteg > 1
         for tt=2:ninteg
-            nemod(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(:),dt(tt),A,dE(:),alpha(:),integtype);
-            neEnd(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(:),dt(tt),A,dE(:),alpha(:),integ_type_end);
+            nemod(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(:),dt(tt),A,photoprod,dE(:),alpha(:),integtype);
+            neEnd(:,tt) = integrate_continuity_equation(neEnd(:,tt-1),s(:),dt(tt),A,photoprod,dE(:),alpha(:),integ_type_end);
         end
     end
     nemeas = ne;

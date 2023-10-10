@@ -1,4 +1,4 @@
-function [neStd,neCov] = ElSpec_error_estimate_ne2( ne0 , P , ne0Pcov , dt , A , Ec , dE , alpha , integ_type )
+function [neStd,neCov] = ElSpec_error_estimate_ne2( ne0 , P , ne0Pcov , dt , A , photoprod , Ec , dE , alpha , integ_type )
 %
 % estimate standard deviation of the fitted electron density
 % profile using the combined covariance matrix of ne0 and P. The
@@ -7,7 +7,7 @@ function [neStd,neCov] = ElSpec_error_estimate_ne2( ne0 , P , ne0Pcov , dt , A ,
 % mutual covariances.
 %
 % neStd = ElSpec_error_estimate_ne( ne0 , ne00Cov , Ie , IeCov , dt
-% , A , Ec , dE , alpha , integ_type )
+% , A , photoprod , Ec , dE , alpha , integ_type )
 %
 % IV 2017, 2018
 %
@@ -16,7 +16,7 @@ function [neStd,neCov] = ElSpec_error_estimate_ne2( ne0 , P , ne0Pcov , dt , A ,
 
 
 % density at the fit convergence point
-nefit =  integrate_continuity_equation( ne0 , model_spectrum( P , Ec(:) ) , dt , A , dE , alpha , integ_type );
+nefit =  integrate_continuity_equation( ne0 , model_spectrum( P , Ec(:) ) , dt , A , photoprod , dE , alpha , integ_type );
 
 
 % number of height gates
@@ -53,7 +53,7 @@ for im = 1:nm
     mdiff = m;
     mdiff(im) = mdiff(im) + dm(im);
     B(:,im) = ( integrate_continuity_equation( mdiff(nP+1:end), ...
-                                              model_spectrum(mdiff(1:nP),Ec(:)),dt,A,dE, ...
+                                              model_spectrum(mdiff(1:nP),Ec(:)),dt,A,photoprod,dE, ...
                                               alpha,integ_type) - ...
                 nefit ) / dm(im);
 end
