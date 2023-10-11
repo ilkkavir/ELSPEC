@@ -40,6 +40,11 @@ function [modelout, photoprod] = calculateFlipchemComposition(ts,h,par,pp,loc,mo
             photoprod(ih,it) = outputsm{11};
         end
     end
+
+    % remove possible NaN values
+    modelout(:,9,:) = fillmissing(squeeze(modelout(:,9,:)) , 'linear', 1 );
+    modelout(:,8,:) = fillmissing(squeeze(modelout(:,8,:)) , 'linear', 1 );
+    photoprod = fillmissing(photoprod , 'linear', 1 );
     
 end
 
