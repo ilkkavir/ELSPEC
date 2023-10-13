@@ -36,7 +36,7 @@ function ElSpecOut = ElSpec(varargin)
 %  recombmodel  Recombination model, 'Rees', 'ReesO2+', 'ReesN2+', 'ReesNO+',
 %               'SheehanGrO2+', 'SheehanGrN2+', 'SheehanGrNO+', 'SheehanGrFlipchem'
 %               'delPozo1', or 'delPozo2'. See details.
-%  photomodel   Photo-ionization model, 'none' or 'flipchem', default 'none'. See details.
+%  photomodel   Photo-ionization model, 'none', 'flipchem', or 'glow', default 'none'. See details.
 %  integtype   Type of continuity function integration, 'endNe',
 %              'integrate', or 'equilibrium'. See details.
 %  egrid        Energy grid [eV]
@@ -111,7 +111,10 @@ function ElSpecOut = ElSpec(varargin)
 %  Photo-ionization is not modelled by default, but with photomodel='flipchem'
 %  one can calculate the solar EUV production rates using the flipchem
 %  model. Notice that this requires a modified version of flipchem,
-%  available from https://github.com/ilkkavir/flipchem
+%  available from https://github.com/ilkkavir/flipchem . With photomodel='glow'
+%  the production rates are  calculated with the glow model. Notice that
+%  the glowaurora python module must be installed and it must be on the
+%  MATLAB search path.
 %
 %  Three different methods for integrating the electron continuity
 %  equation are available. 'endNe' ignores the actual integration,
@@ -223,7 +226,7 @@ checkRecombmodel = @(x) any(validatestring(x,validRecombmodel));
 
 % photo-ionization  model
 defaultPhotomodel = 'none';
-validPhotomodel = {'none','flipchem'};
+validPhotomodel = {'none','flipchem','glow'};
 checkPhotomodel = @(x) any(validatestring(x,validPhotomodel));
 
 % type of integration
@@ -388,6 +391,9 @@ else
     end
     if strcmp(out.photomodel,'flipchem')
         out.photoprod = photoprodtmp;
+    end
+    if strcmp(out.photomodel,'glow')
+        out.photoprod = photoproductionGlow(out.ts,out.h,out.loc);
     end
     % % warn about the ESR compositions
     % if strcmp(p.Results.radar,'esr')
