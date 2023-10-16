@@ -113,7 +113,7 @@ function ElSpecOut = ElSpec(varargin)
 %  model. Notice that this requires a modified version of flipchem,
 %  available from https://github.com/ilkkavir/flipchem . With photomodel='glow'
 %  the production rates are  calculated with the glow model. Notice that
-%  the glowaurora python module must be installed and it must be on the
+%  the ncar-glow python module must be installed and it must be on the
 %  MATLAB search path.
 %
 %  Three different methods for integrating the electron continuity
@@ -393,7 +393,8 @@ else
         out.photoprod = photoprodtmp;
     end
     if strcmp(out.photomodel,'glow')
-        out.photoprod = photoproductionGlow(out.ts,out.h,out.loc);
+        out.photoprod = photoproductionGlow(out.ts,out.h,out.loc,out.f107,out.f107a,out.f107p,out.ap);
+        %        out.photoprod = photoproductionGlow(out.ts,out.h,out.loc);
     end
     % % warn about the ESR compositions
     % if strcmp(p.Results.radar,'esr')
