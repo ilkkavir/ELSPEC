@@ -1,5 +1,5 @@
 function photoprod = photoproductionGlow(ts,h,loc,f107,f107a,f107p,ap);
-        %function photoprod = photoproductionGlow(ts,h,loc)
+%function photoprod = photoproductionGlow(ts,h,loc)
 %
 % photoionization rates with the glow model using glow.m in the ncar-glow package
 %
@@ -29,9 +29,9 @@ function photoprod = photoproductionGlow(ts,h,loc,f107,f107a,f107p,ap);
         % if the glow run fails we skip it and interpolate later
         try
             glowout = ncarglow.glow(datetime(ts2(it2),'convertfrom','posixtime') , loc(1) , loc(2) , f107a2(it2) , f1072(it2) , f107p2(it2) , ap2(it2) , 0 , 1e2 , 177);
-            
             photoprod2(:,it2) = interp1(glowout.altkm,glowout.ionrate,h,'linear')*1e6;
         catch
+            disp('error')
             ;
         end
     end
@@ -42,7 +42,7 @@ function photoprod = photoproductionGlow(ts,h,loc,f107,f107a,f107p,ap);
 
     % interpolate to the final time resolution
     photoprod = interp2(ts2,h,photoprod2,ts,h,'spline');
-    
+
 end
 
     

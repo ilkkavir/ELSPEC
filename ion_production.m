@@ -67,6 +67,8 @@ end
 switch lower(model(1:4))
   case 'fang'
     [q,Ec,dE] = ion_production_Fang2010(E,z,nN2,nO2,nO,nAr,Tn,inclination);
+  case 'prot'
+    [q,Ec,dE] = ion_production_protons_Fang2013(E,z,nN2,nO2,nO,nAr,Tn,inclination);
   case 'serg'
     [q,Ec,dE] = ion_production_Sergienko1993(E,z,nN2,nO2,nO,Tn);
   case 'rees'
