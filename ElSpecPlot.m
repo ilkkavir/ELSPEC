@@ -38,6 +38,8 @@ function fignum = ElSpecPlot(ElSpecOut,varargin)
 %              data gaps. Default true
 %    visible   figure visibility. Use 'on' to plot on a visible device,
 %              'off' to avoid opening a figure window. Default 'on'
+%    plimE0    The peak energy is plotted as a line in the spectrum panel,
+%              when the integral energy flux is larger then plimE0 mW/m^2
 %
 %
 % IV 2016, 2017, 2018
@@ -65,11 +67,13 @@ defaultElim = [1 100];%[min(ElSpecOut.Ec) max(ElSpecOut.Ec)]./1000;
 checkElim = @(x) (isnumeric(x) & (length(x)==2));
 
 %defaultFAClim = [0 10];
-defaultFAClim = [0 ceil(max(ElSpecOut.FAC)*2e5)*5];
+%defaultFAClim = [0 ceil(max(ElSpecOut.FAC)*2e5)*5];
+defaultFAClim = [0 ceil( min( max(ElSpecOut.FAC) , quantile(ElSpecOut.FAC,.99)*2) * 2e5)*5];
 checkFAClim = @(x) (isnumeric(x) & (length(x)==2));
 
 %defaultPlim = [0 50];
-defaultPlim = [0 ceil(max(ElSpecOut.Pe)*50)*20];
+%defaultPlim = [0 ceil(max(ElSpecOut.Pe)*50)*20];
+defaultPlim = [0 ceil( min( max(ElSpecOut.Pe) , quantile(ElSpecOut.Pe,.99)*2) * 50)*20];
 checkPlim = @(x) (isnumeric(x) & (length(x)==2));
 
 defaultChisqrlim = [0 10];
@@ -98,6 +102,9 @@ checkCutgaps = @(x) (islogical(x)|isnumeric(x));
 defaultVisible = 'on';
 checkVisible = @(x) (ischar(x)); % this is enough,the option will be checked by figure()
 
+defaultPlimE0 = 2;
+checkPlimE0 = @(x) (isnumeric(x));
+
 if isfield(ElSpecOut,'Emin')
     defaultEmin = ElSpecOut.Emin;
 elseif isfield(ElSpecOut,'emin')
@@ -125,6 +132,7 @@ addParameter(p,'neplot',defaultNeplot,checkNeplot)
 addParameter(p,'emin',defaultEmin,checkEmin)
 addParameter(p,'cutgaps',defaultCutgaps,checkCutgaps)
 addParameter(p,'visible',defaultVisible,checkVisible)
+addParameter(p,'plime0',defaultPlimE0,checkPlimE0)
 parse(p,ElSpecOut,varargin{:})
 
 
@@ -141,6 +149,7 @@ if p.Results.cutgaps
     ElSpecOut.Pe(rminds) = NaN;
     ElSpecOut.PeStd(rminds) = NaN;
     ElSpecOut.chisqr(rminds) = NaN;
+    ElSpecOut.E0(rminds) = NaN;
 end
 
 
@@ -148,6 +157,8 @@ end
 tt = datenum(datetime((ElSpecOut.te + ElSpecOut.ts)/2,'ConvertFrom','posixtime'));
 % start points of time-bins for the pcolor plots
 ts = datenum(datetime(ElSpecOut.ts,'ConvertFrom','posixtime'));
+% end points of time-bins
+te = datenum(datetime(ElSpecOut.te,'ConvertFrom','posixtime'));
 % heighs
 hh = ElSpecOut.h;
 % energies
@@ -269,6 +280,20 @@ ylabel(cbh2,{'N_e [m^{-3}] (model)'})
 h3=subplot(6,1,3);
 pcolor(ts,EE,log10(Ie)),shading flat
 set(h3,'yscale','log')
+if isfinite(p.Results.plime0)
+    hold on
+    E0 = ElSpecOut.E0/1e3;
+    E0(ElSpecOut.Pe*1000<p.Results.plime0) = NaN;
+    %    E0(ElSpecOut.Pe*1e3 < .01) = NaN;
+    %    E0 = [E0(:),E0(:)]';
+    E0 = E0(:);
+    %    tttmp = [ts(:),ts(:)]';
+    %    tttmp = tttmp(:);
+    %    ttE0 = [tttmp(2:end);te(end)];
+    %    plot(ttE0,E0,'m-','linewidth',.5)
+    plot(tt,E0,'m.')
+    hold off
+end
 ylim(p.Results.elim)
 xlim(datenum([datetime(p.Results.btime) datetime(p.Results.etime)]))
 %caxis(p.Results.ielim)

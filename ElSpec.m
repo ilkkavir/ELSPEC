@@ -235,7 +235,7 @@ validIntegtype = {'integrate','equilibrium','endNe'};
 checkIntegtype = @(x) any(validatestring(x,validIntegtype));
 
 % energy grid
-defaultE = logspace(1,5,300);
+defaultE = logspace(1,5.5,338); %logspace(1,5,300);
 checkE = @(x) (isnumeric(x) & length(x)>1 & all(x>0));
 
 % maximum order of the polynomial model
@@ -275,7 +275,7 @@ checkNstep = @(x) (isnumeric(x) & length(x)==1 & all(x>0));
 
 % save the  large flux covariance matrix?
 defaultSaveiecov = false;
-checkSaveiecov = @(x) ((isnumeric(x)|islogial(x))&length(x)==1);
+checkSaveiecov = @(x) ((isnumeric(x)|islogical(x))&length(x)==1);
 
 % use only field-aligned data?
 defaultFAdev = 3;
@@ -287,7 +287,7 @@ checkBottomStdFail = @(x) (isnumeric(x)&length(x)==1 & x>0);
 
 % should the energy axis be refined according to the lowest altitude=
 defaultRefineEgrid = true;
-checkRefineEgrid = @(x) ((isnumeric(x)|islogial(x))&length(x)==1);
+checkRefineEgrid = @(x) ((isnumeric(x)|islogical(x))&length(x)==1);
 
 % start time
 defaultBtime = [];
@@ -806,6 +806,14 @@ for tt = 1:out.nstep:nt-out.ninteg
         out.Nflux(:,tt+istep) = out.Ie(:,tt+istep);
         out.Eflux(:,tt+istep) = out.Nflux(:,tt+istep) .* out.Ec(:);
         [EfMax,iMax] = max(out.Eflux(:,tt+istep));
+        % the highest energy bin counts as E0 only if also the second last point has high flux (the last point is prone to artifacts from the polynomial model
+        if iMax==nE
+            [EfMax2,iMax2] = max(out.Eflux(1:(nE-1),tt+istep));
+            if iMax2<(iMax-1)
+                iMax = iMax2;
+                EfMax = EfMax2;
+            end
+        end
         out.E0(tt+istep) = out.Ec(iMax);
 
     end
@@ -850,7 +858,7 @@ for tt = 1:out.nstep:nt-out.ninteg
 end
 try
     save(out.outputfile,'ElSpecOut','-v7.3');
-    efig = ElSpecPlot(ElSpecOut,'visible','off');
+    efig = ElSpecPlot(ElSpecOut,'visible','off','elim',[1 200],'plime0',Inf);
     [part1,part2,~] = fileparts(out.outputfile);
     figfile = fullfile(part1,part2);
     print(efig,figfile,'-dpng');
@@ -859,7 +867,7 @@ catch
     ;
 end
 if out.plotres
-    ElSpecPlot(ElSpecOut,plotfig);
+    ElSpecPlot(ElSpecOut,plotfig,'plime0',Inf,'elim',[1 200]);
 end
 
 end

@@ -201,6 +201,15 @@ end
 
 ppstd(ilow,ppstd(ilow,:)==1e12) = BottomStdFail;
 
+% completely remove everything from below ilow to avoid problems in energy grid refinement
+if ilow>1
+    h = h(ilow:end);
+    pp = pp(ilow:end,:);
+    ppstd = ppstd(ilow:end,:);
+    par = par(ilow:end,:,:);
+    parstd = parstd(ilow:end,:,:);
+    model = model(ilow:end,:,:);
+end
 
 
 end
