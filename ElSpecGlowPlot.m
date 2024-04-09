@@ -32,9 +32,11 @@ function fignum = ElSpecGlowPlot(ElSpecGlowOut,varargin)
 %              'saveiecov','false' in ElSpec.
 %    cutgaps   logical, should white space be plotted on obvious
 %              data gaps. Default true
+%    visible   figure visibility. Use 'on' to plot on a visible device,
+%              'off' to avoid opening a figure window. Default 'on'
 %
 %
-% IV 2016, 2017, 2018
+% IV 2016, 2017, 2018, 2024
 % Copyright I Virtanen <ilkka.i.virtanen@oulu.fi>
 % This is free software, licensed under GNU GPL version 2 or later
 
@@ -81,6 +83,9 @@ checkNeplot = @(x) any(validatestring(x,validNeplot));
 defaultCutgaps = 1;
 checkCutgaps = @(x) (islogical(x)|isnumeric(x));
 
+defaultVisible = 'on';
+checkVisible = @(x) (ischar(x)); % this is enough,the option will be checked by figure()
+
 defaultE5577lim = [0 3e4];
 checkE5577lim = @(x) (isnumeric(x) & length(x)==2);
 
@@ -106,6 +111,7 @@ addParameter(p,'fluxtype',defaultFluxtype,checkFluxtype)
 addParameter(p,'neplot',defaultNeplot,checkNeplot)
 addParameter(p,'emin',defaultEmin,checkEmin)
 addParameter(p,'cutgaps',defaultCutgaps,checkCutgaps)
+addParameter(p,'visible',defaultVisible,checkVisible)
 addParameter(p,'e5577lim',defaultE5577lim,checkE5577lim)
 parse(p,ElSpecGlowOut,varargin{:})
 
@@ -190,7 +196,7 @@ if fignum>0
     figure(fignum);
     figpos = get(gcf,'Position');
 else
-    figtmp = figure;
+    figtmp = figure('visible',p.Results.visible);
     fignum = figtmp.Number;
     figpos = [0 0 21/29.7*690 690];
 end
