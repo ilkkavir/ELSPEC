@@ -227,6 +227,11 @@ switch lower(p.Results.fluxtype)
     error(['Unknown flux type' , p.Results.fluxtype])
 end
 
+% for testing that what fluxes cannot be distinguished from zero
+%naninds = ElSpecOut.IeStd > ElSpecOut.Ie;
+%Ie(naninds) = NaN;
+
+
 
 fignum = p.Results.fignum;
 
@@ -254,7 +259,7 @@ error(['Unknown neplot ',neplot])
 end
 ylim(p.Results.hlim)
 xlim(datenum([datetime(p.Results.btime) datetime(p.Results.etime)]))
-datetick('x',13,'keeplimits')
+%datetick('x',13,'keeplimits')
 ylabel('Height [km]')
 cbh1=colorbar;
 ylabel(cbh1,{'N_e [m^{-3}] (meas.)'})
@@ -337,7 +342,8 @@ else
     end
     plot(tt,ElSpecOut.Pe*1000,'k-','LineWidth',1)
     hold off
-    ylabel('Power [mWm^{-2}]')
+    %    ylabel('Power [mWm^{-2}]')
+    ylabel({'Energy flux';'[mWm^{-2}]'})
 end
 grid on
 
@@ -351,6 +357,52 @@ grid on
 
 
 drawnow % this is important to update everything before setting the sizes...
+
+
+xlims = datenum([datetime(p.Results.btime) datetime(p.Results.etime)]);
+xstep = 1; % time step in seconds
+nx = diff(xlims)/(xstep/3600/24);
+tickfmt = 'HH:MM:SS';
+while nx > 10
+    if xstep == 1; xstepn = 2; end
+    if xstep == 2; xstepn = 5; end
+    if xstep == 5; xstepn = 10; end
+    if xstep == 10; xstepn = 15; end
+    if xstep == 15; xstepn = 30; end
+    if xstep == 30; xstepn = 60; end
+    if xstep == 60; xstepn = 2*60; end
+    if xstep == 2*60; xstepn = 5*60; end
+    if xstep == 5*60; xstepn = 10*60; end
+    if xstep == 10*60; xstepn = 15*60; end
+    if xstep == 15*60; xstepn = 30*60; end
+    if xstep == 30*60; xstepn = 60*60; end
+    if xstep == 60*60; xstepn = 2*60*60; end
+    if xstep == 2*60*60; xstepn = 3*60*60; end
+    if xstep == 3*60*60; xstepn = 4*60*60; end
+    if xstep == 4*60*60; xstepn = 5*60*60; end
+    if xstep == 5*60*60; xstepn = 6*60*60; end
+    if xstep == 6*60*60; xstepn = 12*60*60; end
+    if xstep == 12*60*60; xstepn = 24*60*60; end
+    xstep = xstepn;
+    if xstep >= 60
+        tickfmt = "HH:MM";
+    end
+    if xstep >= 3600
+        tickfmt = "HH";
+    end
+    nx = diff(xlims)/(xstep/3600/24);
+end
+xstep = xstep/3600/24;
+xticks = round(xlims(1)/xstep)*xstep : xstep : round(xlims(2)/xstep)*xstep;
+xticks = xticks(xticks>=xlims(1));
+xticks = xticks(xticks<=xlims(2));
+set(h1,'xtick',xticks);
+set(h2,'xtick',xticks);
+set(h3,'xtick',xticks);
+set(h4,'xtick',xticks);
+set(h5,'xtick',xticks);
+set(h6,'xtick',xticks);
+
 pos1=get(h1,'Position');
 pos2=get(h2,'Position');
 pos3=get(h3,'Position');
@@ -456,21 +508,23 @@ end
 chiticks = ceil(p.Results.chisqrlim(1)):chistep:floor(p.Results.chisqrlim(end)-.1);
 set(h6,'TickDir','both')
 set(h6,'Ytick',chiticks)
-set(h2,'XTick',get(h1,'XTick'))
-set(h3,'XTick',get(h1,'XTick'))
-set(h4,'XTick',get(h1,'XTick'))
-set(h5,'XTick',get(h1,'XTick'))
-set(h6,'XTick',get(h1,'XTick'))
-datetick(h2,'x',13,'keeplimits')
-datetick(h3,'x',13,'keeplimits')
-datetick(h4,'x',13,'keeplimits')
-datetick(h5,'x',13,'keeplimits')
-datetick(h6,'x',13,'keeplimits')
-% datetick(h2,'x',13,'keeplimits','keepticks')
-% datetick(h3,'x',13,'keeplimits','keepticks')
-% datetick(h4,'x',13,'keeplimits','keepticks')
-% datetick(h5,'x',13,'keeplimits','keepticks')
-% datetick(h6,'x',13,'keeplimits','keepticks')
+%set(h2,'XTick',get(h1,'XTick'))
+%set(h3,'XTick',get(h1,'XTick'))
+%set(h4,'XTick',get(h1,'XTick'))
+%set(h5,'XTick',get(h1,'XTick'))
+%set(h6,'XTick',get(h1,'XTick'))
+% datetick(h1,'x',13,'keeplimits')
+% datetick(h2,'x',13,'keeplimits')
+% datetick(h3,'x',13,'keeplimits')
+% datetick(h4,'x',13,'keeplimits')
+% datetick(h5,'x',13,'keeplimits')
+% datetick(h6,'x',13,'keeplimits')
+datetick(h1,'x',tickfmt,'keeplimits','keepticks')
+datetick(h2,'x',tickfmt,'keeplimits','keepticks')
+datetick(h3,'x',tickfmt,'keeplimits','keepticks')
+datetick(h4,'x',tickfmt,'keeplimits','keepticks')
+datetick(h5,'x',tickfmt,'keeplimits','keepticks')
+datetick(h6,'x',tickfmt,'keeplimits','keepticks')
 set(h1,'XTickLabel','')
 set(h2,'XTickLabel','')
 set(h3,'XTickLabel','')

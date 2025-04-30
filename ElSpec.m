@@ -782,6 +782,28 @@ for tt = 1:out.nstep:nt-out.ninteg
                                                           , integ_type_tt ...
                                                           );
 
+        % % test how sensitive the results ar to small fluxes (remove this...)
+        % minflux = 1;
+        % Ietmp = out.Ie(:,tt);
+        % Ietmp((Ietmp.*out.Ec(:))<minflux) = 0;
+        % netmp = integrate_continuity_equation( ne00 , Ietmp , out.dt(tt+istep) , A , out.photoprod(:,tt) , out.dE(:) , out.alpha(:,tt+istep) , integ_type_tt);
+        % nniiiter = 0;
+        % while sum((netmp-out.ne(:,tt+istep)).^2./out.ppstd(:,tt+istep).^2)<(.1*length(netmp))
+        %     minflux = minflux * 10;
+        %     Ietmp(Ietmp.*out.Ec(:)<minflux) = 0;
+        %     netmp = integrate_continuity_equation( ne00 , Ietmp , out.dt(tt+istep) , A , out.photoprod(:,tt) , out.dE(:) , out.alpha(:,tt+istep) , integ_type_tt);            
+        %     nniiiter = nniiiter +1;
+        %     if nniiiter > 100
+        %         disp('error')
+        %         disp(size(netmp-out.ne(:,tt+istep)))
+        %         disp(size(out.ppstd(:,tt+istep)))
+        %         disp(sum((netmp-out.ne(:,tt+istep)).^2./out.ppstd(:,tt+istep).^2))
+        %         break
+        %     end
+        % end
+        % disp(minflux/10)
+        % % end of the flux test...
+        
         % ion production...
         out.q(:,tt+istep) = A*(out.Ie(:,tt+istep).*out.dE') + out.photoprod(:,tt);
 
