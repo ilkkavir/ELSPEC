@@ -59,6 +59,25 @@ function ElSpecOut = ElSpec(varargin)
 %  bottomstdfail standard deviation given for model Ne in the lowest observed gate when the
 %                guisdap fit has failed [m^-3], default 1e10
 %  refineEgrid  logial, refine energy grid according to the lowest measured altitude? Default 1
+%  userdata     logical. Are data given as input arguments instead of being read from files?
+%
+%              If userdata==true the following inputs must be given. Ignored otherwise
+%  h            vector of altitudes [km]
+%  ts           vector of integration period start times [posix time]
+%  te           vector of integration period end times [posix time]
+%  pp           length(h) x length(ts) array of electron densities
+%  ppstd        length(h) x length(ts) array of std(pp)
+%  par          length(h) x 4 x length(ts) array of plasma parameters (Ne, Ti, Te, Vi). Only Te is actually used...
+%  parstd       length(h) x 4 x length(ts) array of std(par)
+%  iri          length(h) x 10 x length(ts) array of iri and msis model values (Tn, Ti, Te, N2, O2, O, Ar, NO+, O2+, O+)
+%  f107         F10.7 radio flux
+%  f107a        runnig 81-day average of F10.7
+%  f107p        F10.7 radio flux of the previous day
+%  ap           an array of Ap indices as required by the msis model
+%  loc          geodetic latitude and longitude of the radar site [deg]
+%  azel         azimuth and elevation angles of the radar beam [deg] 
+%  I            magnetic inclination [deg]
+%
 %
 % OUTPUT:
 %  ElSpecOut    A MATLAB structure with fields:...
@@ -196,7 +215,7 @@ checkExperiment = @(x) (isstr(x));
 
 % radar, only uhf exps implemented at the moment
 defaultRadar = 'uhf';
-validRadar = {'uhf','vhf','esr','42m','32m','esr42m','esr32m'};
+validRadar = {'uhf','vhf','esr','42m','32m','esr42m','esr32m','pfisr'};
 checkRadar = @(x) any(validatestring(x,validRadar));
 
 % experiment version
@@ -298,6 +317,10 @@ defaultEtime = [];
 % function for checking the time limits
 checkTlim = @(x) (isnumeric(x) & length(x)==6 & all(x>=0));
 
+% All input data given by the user as input arguments?
+defaultUserData = false;
+checkUserData = @(x) ((isnumeric(x)|islogical(x))&length(x)==1);
+
 addParameter(p,'btime',defaultBtime,checkTlim);
 addParameter(p,'etime',defaultEtime,checkTlim);
 addParameter(p,'ppdir',defaultPPdir,checkPPdir);
@@ -324,6 +347,24 @@ addParameter(p,'saveiecov',defaultSaveiecov,checkSaveiecov);
 addParameter(p,'fadev',defaultFAdev,checkFAdev);
 addParameter(p,'bottomstdfail',defaultBottomStdFail,checkBottomStdFail);
 addParameter(p,'refineEgrid',defaultRefineEgrid,checkRefineEgrid);
+addParameter(p,'userdata',defaultUserData,checkUserData);
+% optional data arrays when userdata=true
+addParameter(p,'h',[]);
+addParameter(p,'ts',[]);
+addParameter(p,'te',[]);
+addParameter(p,'pp',[]);
+addParameter(p,'ppstd',[]);
+addParameter(p,'par',[]);
+addParameter(p,'parstd',[]);
+addParameter(p,'iri',[]);
+addParameter(p,'f107',[]);
+addParameter(p,'f107a',[]);
+addParameter(p,'f107p',[]);
+addParameter(p,'ap',[]);
+addParameter(p,'loc',[]);
+addParameter(p,'azel',[]);
+addParameter(p,'I',[]);
+
 parse(p,varargin{:})
 
 %out = struct;
@@ -333,7 +374,7 @@ out = p.Results;
 out.E = out.egrid;
 
 % check that we have either ppdir or fitdir, or both
-if isempty(out.ppdir) & isempty(out.fitdir)
+if isempty(out.ppdir) & isempty(out.fitdir) & ~out.userdata
     error('Either ppdir or fitdir must be given')
 end
 
@@ -373,14 +414,37 @@ if strcmp(out.ppdir,'simu')
     out.parstd = simudata.parstd;
     out.iri = simudata.iri;
 else
-    readIRI = false;
-    if any(strcmp(out.recombmodel,{'SheehanGr','SheehanEx','Rees'}))
-        readIRI = true;
+    % all inputs given as input arguments by the user?
+    % If they are, they were already copied from p.Results to out.
+    %    if out.userdata
+        % % this is a temporary fix, replace with something better....
+        % disp('REMOVE THE TEMPORARY FIX FROM LINES 403-410 OF ELSPEC.M!!!')
+
+        % iinanpp = isnan(out.pp) | isnan(out.ppstd);
+        % out.pp(iinanpp) = 0;
+        % out.ppstd(iinanpp) = 1e12;
+        % iinanpar = isnan(out.par) | isnan(out.parstd);
+        % out.par(iinanpar) = 1;
+        % out.parstd(iinanpar) = 1e4;
+
+        % % failed fits in the lowest gates. Do this here, because the readFitData call will be skipped. 
+        % ilow = 1;
+        % while all(out.ppstd(ilow,:)==1e12)
+        %     ilow = ilow + 1;
+        % end
+        % out.ppstd(ilow,out.ppstd(ilow,:)==1e12) = out.bottomstdfail;
+        
+    %    else
+    if ~out.userdata
+        readIRI = false;
+        if any(strcmp(out.recombmodel,{'SheehanGr','SheehanEx','Rees'}))
+            readIRI = true;
+        end
+        [out.h,out.ts,out.te,out.pp,out.ppstd,out.par,out.parstd,out.iri,out.f107,out.f107a,out.f107p,out.ap,out.loc,out.azel,out.I] = ...
+            readFitData( out.ppdir , out.fitdir , out.hmin , out.hmax , ...
+                         out.btime , out.etime , out.experiment , out.radar , ...
+                         out.version , out.tres , readIRI, p.Results.fadev , p.Results.bottomstdfail);
     end
-    [out.h,out.ts,out.te,out.pp,out.ppstd,out.par,out.parstd,out.iri,out.f107,out.f107a,out.f107p,out.ap,out.loc,out.azel,out.I] = ...
-        readFitData( out.ppdir , out.fitdir , out.hmin , out.hmax , ...
-                     out.btime , out.etime , out.experiment , out.radar , ...
-                     out.version , out.tres , readIRI, p.Results.fadev , p.Results.bottomstdfail);
     out.photoprod = zeros(size(out.pp));
     if strcmp(out.recombmodel,'SheehanGrFlipchem') | strcmp(out.photomodel,'flipchem')
         [iritmp , photoprodtmp] = calculateFlipchemComposition(out.ts,out.h,out.par,out.pp,out.loc,out.iri);
@@ -444,6 +508,7 @@ if out.refineEgrid
     [A,Ec,dE] = ion_production( out.E , out.h*1000 , out.iri(:,4,1) , ...
                                 out.iri(:,5,1) , out.iri(:,6,1) , out.iri(:,7,1) , ...
                                 out.iri(:,1,1) , out.ionomodel , out.I);
+
     % adjust the energy grid according to the lowest measured altitude
     [~,imax] = max(A(1,:));
     if imax < length(Ec)

@@ -68,12 +68,12 @@ checkElim = @(x) (isnumeric(x) & (length(x)==2));
 
 %defaultFAClim = [0 10];
 %defaultFAClim = [0 ceil(max(ElSpecOut.FAC)*2e5)*5];
-defaultFAClim = [0 ceil( min( max(ElSpecOut.FAC) , quantile(ElSpecOut.FAC,.99)*2) * 2e5)*5];
+defaultFAClim = [0 max(ceil( min( max(ElSpecOut.FAC) , quantile(ElSpecOut.FAC,.99)*2) * 2e5)*5,.1)];
 checkFAClim = @(x) (isnumeric(x) & (length(x)==2));
 
 %defaultPlim = [0 50];
 %defaultPlim = [0 ceil(max(ElSpecOut.Pe)*50)*20];
-defaultPlim = [0 ceil( min( max(ElSpecOut.Pe) , quantile(ElSpecOut.Pe,.99)*2) * 50)*20];
+defaultPlim = [0 max(ceil( min( max(ElSpecOut.Pe) , quantile(ElSpecOut.Pe,.99)*2) * 50)*20,.1)];
 checkPlim = @(x) (isnumeric(x) & (length(x)==2));
 
 defaultChisqrlim = [0 10];
@@ -134,7 +134,6 @@ addParameter(p,'cutgaps',defaultCutgaps,checkCutgaps)
 addParameter(p,'visible',defaultVisible,checkVisible)
 addParameter(p,'plime0',defaultPlimE0,checkPlimE0)
 parse(p,ElSpecOut,varargin{:})
-
 
 % put white space on data gaps
 if p.Results.cutgaps
