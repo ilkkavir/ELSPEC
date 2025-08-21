@@ -79,10 +79,12 @@ function createModelParameterFile2(varargin)
             end
         end
         if years(iyear)>1980
-            save([p.Results.fname,'TRO',num2str(years(iyear)),'.mat'],'iriparTRO');
+            iripar = iriparTRO;
+            save([p.Results.fname,'TRO',num2str(years(iyear)),'.mat'],'iripar');
         end
         if years(iyear)>1995
-            save([p.Results.fname,'ESR',num2str(years(iyear)),'.mat'],'iriparESR');
+            iripar = iriparESR;
+            save([p.Results.fname,'ESR',num2str(years(iyear)),'.mat'],'iripar');
         end
     end
 end
