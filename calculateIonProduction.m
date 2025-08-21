@@ -35,7 +35,12 @@ function [q,qnorm,Ec,dE,Emax] = calculateIonProduction(time,heights,loc,Ec,model
     [Tn,Ti,Te,nN2,nO2,nO,nAr,nNOp,nO2p,nOp,f107,f107a,ap] = modelParams( posixtime(time) , heights , loc , 0);
 
     % magnetic inclination
-    [~,~, ~, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(time));
+    try
+        [~,~, ~, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(time));
+    catch
+        [~,~, ~, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), 2025.0);
+        warning('Using IGRF for dyear 2025.0. Update to MATLAB 2025a or later to avoid this.')
+    end
 
     % the production rates
     [q,Ec,dE] = ion_production(Ec,heights*1000,nN2,nO2,nO,nAr,Tn,model,I);

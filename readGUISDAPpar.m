@@ -174,7 +174,12 @@ if nf>0
     % remove other than field-aligned data
     %
     % local field-aligned direction in E region
-    [~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(r_time(1,:)));
+    try
+        [~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(r_time(1,:)));
+    catch
+        [~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), 2025.0);
+        warning('Using IGRF for dyear 2025.0. Update to MATLAB 2025a or later to avoid this.')
+    end
     FAele = abs(I);
     FAaz = D+180;
     if I<0

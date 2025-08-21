@@ -143,7 +143,12 @@ parstd(:,3,:) = parstd(:,2,:).*par(:,3,:) + parstd(:,3,:).*par(:,2,:);
 % remove other than field-aligned data
 %
 % local field-aligned direction in E region
-[~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(datetime(ts(1),'convertfrom','posixtime')));
+try
+    [~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), decyear(datetime(ts(1),'convertfrom','posixtime')));
+catch
+    [~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, loc(1), loc(2), 2025.0);
+    warning('Using IGRF for dyear 2025.0. Update to MATLAB 2025a or later to avoid this.')
+end    
 FAele = abs(I);
 FAaz = D+180;
 if I<0

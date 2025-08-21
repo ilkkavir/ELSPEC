@@ -22,8 +22,13 @@ function [prod , hh] = modelProductionProfile(Ec,time,lat,lon,ionomodel)
     [~,~,~,~,~,~,~,~,~,~,f107p,~,~] = modelParams2( ...
         tt-86400 , hh , [lat,lon,0] , false );
 
-    [~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, lat, lon, decyear(time));
-
+    try
+        [~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, lat, lon, decyear(time));
+    catch
+        [~,~, D, I,~,~,~,~,~,~] = igrfmagm(110000, lat, lon, 2025.0);
+        warning('Using IGRF for dyear 2025.0. Update to MATLAB 2025a or later to avoid this.')
+    end
+        
     prod = ion_production([-1 1]+Ec,hh,nN2,nO2,nO,nAr,Tn,ionomodel,I);
     
     
