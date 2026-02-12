@@ -105,7 +105,7 @@ if isempty(ppdir)
             partmp(:,ll,kk) = interp1(hpar(indh,it(kk)),par(indh,ll,it(kk)),h,'linear');
             parstdtmp(:,ll,kk) = interp1(hpar(indh,it(kk)),parstd(indh,ll,it(kk)),h,'linear');
             % fill NaN's produced by the linear interpolation with nearest neighbours
-            inan = isnan(partmp(:,ll,it(kk)));
+            inan = isnan(partmp(:,ll,kk));
             partmp(inan,ll,kk) = interp1(hpar(indh,it(kk)),par(indh,ll,it(kk)),h(inan),'nearest');
             parstdtmp(inan,ll,kk) = interp1(hpar(indh,it(kk)),parstd(indh,ll,it(kk)),h(inan),'nearest');
         end

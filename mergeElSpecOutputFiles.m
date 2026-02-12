@@ -40,17 +40,20 @@ clear tmplist
 % correct order for the data files
 htmp = [];
 etmp = [];
+detmp = [];
 tstarts = zeros(ndf,1);
 nt = 0;
 for k=1:ndf
     htmp = [htmp,outlist{k}.h];
     etmp = [etmp,outlist{k}.Ec];
+    detmp = [detmp,outlist{k}.dE];
     tstarts(k) = outlist{k}.ts(1);
     nt = nt + length(outlist{k}.ts);
 end
 ElSpecOut.h = unique(htmp);
 nh = length(ElSpecOut.h);
-ElSpecOut.Ec = unique(etmp);
+[ElSpecOut.Ec,iiEc] = unique(etmp);
+ElSpecOut.dE = detmp(iiEc);
 nE = length(ElSpecOut.Ec);
 [dummy,tinds] = sort(tstarts);
 
@@ -65,6 +68,7 @@ ElSpecOut.IeStd = NaN(nE,nt);
 ElSpecOut.chisqr = NaN(1,nt);
 ElSpecOut.FAC = NaN(1,nt);
 ElSpecOut.FACstd = NaN(1,nt);
+ElSpecOut.E0 = NaN(1,nt);
 ElSpecOut.Pe = NaN(1,nt);
 ElSpecOut.PeStd = NaN(1,nt);
 ElSpecOut.emin = Inf;
@@ -80,8 +84,7 @@ for k=1:ndf
     % check that there is no overlap
     if tcur>1
         if outlist{ii}.ts < ElSpecOut.ts(tcur-1)
-            error(['The output filest to be merged overlap in ' ...
-                   'time']);
+            error(['The output filest to be merged overlap in time']);
         end
     end
 
@@ -98,6 +101,7 @@ for k=1:ndf
     ElSpecOut.chisqr(tcur:tend) = outlist{ii}.chisqr;
     ElSpecOut.FAC(tcur:tend) = outlist{ii}.FAC;
     ElSpecOut.FACstd(tcur:tend) = outlist{ii}.FACstd;
+    ElSpecOut.E0(tcur:tend) = outlist{ii}.E0;
     ElSpecOut.Pe(tcur:tend) = outlist{ii}.Pe;
     ElSpecOut.PeStd(tcur:tend) = outlist{ii}.PeStd;
     ElSpecOut.q(:,tcur:tend) = interp1(outlist{ii}.h,outlist{ii}.q,ElSpecOut.h);
@@ -107,6 +111,8 @@ for k=1:ndf
     tcur = tend + 1;
 
 end
+
+ElSpecOut.radar = outlist{1}.radar;
 
 outfilename = ['ElSpec_',datestr(datetime(round(ElSpecOut.ts(1)),'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'-',datestr(datetime(round(ElSpecOut.te(end)),'ConvertFrom','posixtime'),'yyyymmddTHHMMss'),'_merged_',datestr(datetime('now'),'yyyymmddTHHMMSS'),'.mat'];
 save(outfilename,'ElSpecOut','-v7.3');
